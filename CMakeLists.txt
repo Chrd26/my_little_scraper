@@ -10,4 +10,3 @@ target_link_libraries(scraper PRIVATE cpr::cpr)
 
 find_package(armadillo CONFIG REQUIRED)
 target_link_libraries(scraper PRIVATE armadillo)
-

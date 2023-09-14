@@ -21,9 +21,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,9 +70,9 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="scraper" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="my_little_scraper" TARGET_NAME="scraper" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="my_little_scraper" RUN_TARGET_NAME="scraper">
@@ -95,6 +94,13 @@
       <workItem from="1694549779784" duration="170000" />
       <workItem from="1694550010234" duration="265000" />
       <workItem from="1694550476131" duration="1250000" />
+      <workItem from="1694711962518" duration="45000" />
+      <workItem from="1694712088338" duration="4000" />
+      <workItem from="1694712144609" duration="200000" />
+      <workItem from="1694712454728" duration="29000" />
+      <workItem from="1694712528531" duration="214000" />
+      <workItem from="1694712755965" duration="1064000" />
+      <workItem from="1694714214885" duration="4000" />
     </task>
     <servers />
   </component>
