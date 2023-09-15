@@ -1,9 +1,21 @@
-#include <iostream>
-#include <cpr/cpr.h>
-#include <mlpack/mlpack.hpp>
-#include <lexbor/html/parser.h>
+#include "scraping-handler.h"
 
 int main(){
-    std::cout << "Hello, World!" << std::endl;
+
+    Scraper scraper;
+
+    cpr::Response r = scraper.request_info("https://www.ethnos.gr/tag/141/astynomikhbia");
+
+    std::cout << "START OUTPUT!!!" << std::endl;
+
+    std::cout << r.url << std::endl;
+    //std::cout << r.text << std::endl;
+
+    scraper.ParseContent(r.text);
+
+
     return 0;
 }
+
+// More info and understanding
+// https://brightdata.com/blog/how-tos/web-scraping-in-c-plus-plus
