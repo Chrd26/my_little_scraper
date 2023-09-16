@@ -6,6 +6,7 @@
 #include <lexbor/html/parser.h>
 #include <lexbor/dom/interfaces/element.h>
 #include "lexbor/html/html.h"
+#include <lexbor/dom/dom.h>
 #include <string>
 
 // Get Data
@@ -21,6 +22,8 @@ class Scraper
 private:
     lxb_inline lxb_status_t serializer_callback(const lxb_char_t *data, size_t len, void *ctx);
     lxb_inline void serialize_node(lxb_dom_node_t *node);
+    // void getUrls();
+    // void checkUrlContent();
 
 public:
     cpr::Response request_info(std::string url);

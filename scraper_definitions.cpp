@@ -1,5 +1,6 @@
 #include "scraping-handler.h"
 
+// Get Info
 cpr::Response Scraper::request_info(std::string url)
 {
     // Use a user agent to mask the scraper
@@ -14,19 +15,21 @@ cpr::Response Scraper::request_info(std::string url)
     return r;
 }
 
+// serializer
 lxb_status_t Scraper::serializer_callback(const lxb_char_t *data, size_t len, void *ctx)
 {
-    printf("%.*s", (int) len, (const char *) data);
-
+    //printf("%.*s", (int) len, (const char *) data);
+    std::cout << (char*) data;
     return LXB_STATUS_OK;
 }
 
+// Serialize node
 void Scraper::serialize_node(lxb_dom_node_t *node)
 {
     lxb_status_t status;
 
     status = lxb_html_serialize_pretty_cb(node, LXB_HTML_SERIALIZE_OPT_UNDEF,
-                                          0, serializer_callback, NULL);
+                                          0, serializer_callback, nullptr);
     if (status != LXB_STATUS_OK) {
         exit(EXIT_FAILURE);
     }
@@ -35,13 +38,23 @@ void Scraper::serialize_node(lxb_dom_node_t *node)
 // Find the right content
 // Source 1: http://lexbor.com/docs/lexbor/
 // Source 2: https://github.com/lexbor/lexbor/tree/master/examples
-void Scraper::ParseContent(std::string content)
-{
+// Get elements by attribute: https://github.com/lexbor/lexbor/blob/master/examples/lexbor/html/elements_by_attr.c
+void Scraper::ParseContent(std::string content) {
     lxb_status_t status;
-    lxb_dom_element_t*  elem = nullptr;
-    const lxb_char_t* tagName = nullptr;
+    lxb_dom_element_t* body = nullptr;
+    lxb_dom_element_t* gather_collection = nullptr;
     lxb_html_document_t* document = nullptr;
     lxb_dom_collection_t* collection = nullptr;
+    lxb_html_parser_t* parser = nullptr;
+
+    // Initialize parser
+    parser = lxb_html_parser_create();
+    status = lxb_html_parser_init(parser);
+
+    if (status != LXB_STATUS_OK)
+    {
+        exit(EXIT_FAILURE);
+    }
 
     // Create an empty array of lxb_char_t
     // memset and then iterate through the content and
@@ -50,26 +63,21 @@ void Scraper::ParseContent(std::string content)
     lxb_char_t html[content.length() + 1];
     std::memset(html, 0, content.length() + 1);
 
-    for (int i = 0; i < content.length(); i++)
-    {
+    for (int i = 0; i < content.length(); i++) {
         html[i] = content[i];
     }
 
     size_t html_len = sizeof(html) - 1;
+    document = lxb_html_parse(parser, html, html_len);
 
-    document = lxb_html_document_create();
-    if (document == nullptr)
-    {
+    if (document == nullptr) {
         exit(EXIT_FAILURE);
     }
 
-    status = lxb_html_document_parse(document, html, html_len);
-    if (status != LXB_STATUS_OK)
-    {
-        exit(EXIT_FAILURE);
-    }
-    tagName = lxb_dom_element_qualified_name(lxb_dom_interface_element(document->body), nullptr);
+    // Destroy parser now that the process has finished
+    lxb_html_parser_destroy(parser);
 
+    body = lxb_dom_interface_element(document->body);
     collection = lxb_dom_collection_make(&document->dom_document, 128);
 
     if (collection == nullptr)
@@ -77,22 +85,32 @@ void Scraper::ParseContent(std::string content)
         exit(EXIT_FAILURE);
     }
 
-    status = lxb_dom_elements_by_tag_name(lxb_dom_interface_element(document->body),
-                                          collection, (const lxb_char_t*) "div", 3);
+    // Find elements that contain the href attribute and start with http.
+    status = lxb_dom_elements_by_attr_begin(body,
+                                            collection,
+                                            (const lxb_char_t*) "href", 4,
+                                            (const lxb_char_t*) "/Politics", 9,
+                                            true
+                                            );
 
-    if (status != LXB_STATUS_OK) {
+    if (status != LXB_STATUS_OK)
+    {
         exit(EXIT_FAILURE);
     }
 
+    size_t get_collection_length = lxb_dom_collection_length(collection);
 
-    for (int i = 0; i < lxb_dom_collection_length(collection); i++)
+    // Print out results
+    for (size_t i = 0; i < get_collection_length; i++)
     {
-        elem = lxb_dom_collection_element(collection, i);
-        serialize_node(lxb_dom_interface_node(elem));
+        //std::cout << i << std::endl;
+        gather_collection = lxb_dom_collection_element(collection, i);
+        serialize_node(lxb_dom_interface_node(gather_collection));
     }
-    std::cin.get();
 
-    // Make sure to destroy all the objects when finished
-    lxb_html_document_destroy(document);
+    // Destroy objects to avoid memory leaks
     lxb_dom_collection_destroy(collection, true);
+    lxb_html_document_destroy(document);
+
+    std::cin.get();
 }
