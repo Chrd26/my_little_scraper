@@ -1,5 +1,8 @@
 #include "scraping-handler.h"
 
+// You need to define static variables to use them, a declaration is not enough
+std::vector<std::string> Scraper::urls;
+
 // Get Info
 cpr::Response Scraper::request_info(std::string url)
 {
@@ -15,11 +18,29 @@ cpr::Response Scraper::request_info(std::string url)
     return r;
 }
 
+// Get urls from the serializer_callback
+void Scraper::getUrls(char* data)
+{
+   std::string getData = (std::string) data;
+
+   // characters use single quotes!!!
+   char symbol = '/';
+   char dataFirstChar = getData.at(0);
+   std::string createUrl = "https://www.ethnos.gr";
+   if (dataFirstChar == symbol)
+   {
+       // std::cout << "true1" << std::endl;
+       // std::cout << createUrl + getData << std::endl;
+       urls.push_back(createUrl + getData);
+   }
+}
+
 // serializer
 lxb_status_t Scraper::serializer_callback(const lxb_char_t *data, size_t len, void *ctx)
 {
     //printf("%.*s", (int) len, (const char *) data);
-    std::cout << (char*) data;
+    //std::cout << (char*) data
+    getUrls((char*) data);
     return LXB_STATUS_OK;
 }
 
@@ -39,14 +60,14 @@ void Scraper::serialize_node(lxb_dom_node_t *node)
 // Source 1: http://lexbor.com/docs/lexbor/
 // Source 2: https://github.com/lexbor/lexbor/tree/master/examples
 // Get elements by attribute: https://github.com/lexbor/lexbor/blob/master/examples/lexbor/html/elements_by_attr.c
-void Scraper::ParseContent(std::string content) {
+std::vector<std::string> Scraper::ParseContent(std::string content) {
     lxb_status_t status;
     lxb_dom_element_t* body = nullptr;
     lxb_dom_element_t* gather_collection = nullptr;
     lxb_html_document_t* document = nullptr;
     lxb_dom_collection_t* collection = nullptr;
     lxb_html_parser_t* parser = nullptr;
-
+    std::vector<std::string> output;
     // Initialize parser
     parser = lxb_html_parser_create();
     status = lxb_html_parser_init(parser);
@@ -85,11 +106,11 @@ void Scraper::ParseContent(std::string content) {
         exit(EXIT_FAILURE);
     }
 
-    // Find elements that contain the href attribute and start with http.
+    // Find elements that contain the href attribute and start with /politics.
     status = lxb_dom_elements_by_attr_begin(body,
                                             collection,
                                             (const lxb_char_t*) "href", 4,
-                                            (const lxb_char_t*) "/Politics", 9,
+                                            (const lxb_char_t*) "/greece", 7,
                                             true
                                             );
 
@@ -108,9 +129,14 @@ void Scraper::ParseContent(std::string content) {
         serialize_node(lxb_dom_interface_node(gather_collection));
     }
 
+    for (std::string item : urls)
+    {
+        output.push_back(item);
+    }
+
     // Destroy objects to avoid memory leaks
     lxb_dom_collection_destroy(collection, true);
     lxb_html_document_destroy(document);
 
-    std::cin.get();
+    return output;
 }
