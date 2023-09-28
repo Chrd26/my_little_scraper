@@ -35,3 +35,8 @@ public:
     cpr::Response request_info(std::string url);
     std::vector<std::string> ParseContent(std::string content);
 };
+
+class AnalyzePages : public Scraper
+{
+
+};

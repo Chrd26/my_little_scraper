@@ -3,6 +3,7 @@
 int main(){
     // Create scraper object
     Scraper scraper;
+    AnalyzePages pageAnalyzer;
 
     //urls vector
     std::vector<std::string> urls;
@@ -16,9 +17,12 @@ int main(){
     // Parse it
     urls = scraper.ParseContent(r.text);
 
+    // Itirate through them
     for (std::string item : urls)
     {
-        std::cout << item << std::endl;
+        cpr::Response res = pageAnalyzer.request_info(item);
+
+        std::cout << res.text << std::endl;
     }
 
     std::cin.get();
