@@ -16,7 +16,7 @@ typedef struct pageData{
     std::string url;
     std::string content;
     std::string date;
-};
+}pageData;
 
 // Scraper
 class Scraper
@@ -29,14 +29,18 @@ private:
     // Source: https://stackoverflow.com/questions/15687638/c-cannot-call-member-function-inside-the-class
     static void getUrls(char* data);
     lxb_inline lxb_status_t serializer_callback(const lxb_char_t *data, size_t len, void *ctx);
-    lxb_inline void serialize_node(lxb_dom_node_t *node);
 
 public:
-    cpr::Response request_info(std::string url);
-    std::vector<std::string> ParseContent(std::string content);
+    // This is used to avoid running unneeded code when page analysis is running
+    static bool analysis;
+    static cpr::Response request_info(std::string url);
+    lxb_inline void serialize_node(lxb_dom_node_t *node);
+    virtual std::vector<std::string> ParseContent(std::string content);
+    lxb_inline lxb_html_document_t* Parse(const lxb_char_t* html, size_t html_len);
 };
 
 class AnalyzePages : public Scraper
 {
-
+public:
+    static void analyzeEntry(std::string input);
 };

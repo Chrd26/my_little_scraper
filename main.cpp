@@ -1,4 +1,6 @@
 #include "scraping-handler.h"
+// More info and understanding
+// https://brightdata.com/blog/how-tos/web-scraping-in-c-plus-plus
 
 int main(){
     // Create scraper object
@@ -17,17 +19,14 @@ int main(){
     // Parse it
     urls = scraper.ParseContent(r.text);
 
-    // Itirate through them
-    for (std::string item : urls)
+    // Iterate through them
+    for (const std::string& item : urls)
     {
         cpr::Response res = pageAnalyzer.request_info(item);
+        pageAnalyzer.analyzeEntry(item);
 
-        std::cout << res.text << std::endl;
     }
 
     std::cin.get();
     return 0;
 }
-
-// More info and understanding
-// https://brightdata.com/blog/how-tos/web-scraping-in-c-plus-plus

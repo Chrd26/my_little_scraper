@@ -2,6 +2,7 @@
 
 // You need to define static variables to use them, a declaration is not enough
 std::vector<std::string> Scraper::urls;
+bool Scraper::analysis = false;
 
 // Get Info
 cpr::Response Scraper::request_info(std::string url)
@@ -16,6 +17,37 @@ cpr::Response Scraper::request_info(std::string url)
     cpr::Response r = cpr::Get(cpr::Url{url}, headers);
 
     return r;
+}
+
+// Parse content
+lxb_html_document_t* Scraper::Parse(const lxb_char_t* html, size_t html_len)
+{
+   lxb_status_t status;
+   lxb_html_parser_t* parser;
+   lxb_html_document_t* document;
+
+   // Initialize
+
+   parser = lxb_html_parser_create();
+   status = lxb_html_parser_init(parser);
+
+   if (status != LXB_STATUS_OK)
+   {
+       exit(EXIT_FAILURE);
+   }
+
+   // Parse
+   document = lxb_html_parse(parser, html,html_len);
+
+   if (document == nullptr)
+   {
+       exit(EXIT_FAILURE);
+   }
+
+   // Destroy parser
+   lxb_html_parser_destroy(parser);
+
+   return document;
 }
 
 // Get urls from the serializer_callback
@@ -39,8 +71,15 @@ void Scraper::getUrls(char* data)
 lxb_status_t Scraper::serializer_callback(const lxb_char_t *data, size_t len, void *ctx)
 {
     //printf("%.*s", (int) len, (const char *) data);
-    //std::cout << (char*) data
-    getUrls((char*) data);
+    if (analysis)
+    {
+        std::cout << (const char*)data << std::endl;
+    }
+
+   if (!analysis)
+   {
+       getUrls((char *) data);
+   }
     return LXB_STATUS_OK;
 }
 
@@ -110,7 +149,7 @@ std::vector<std::string> Scraper::ParseContent(std::string content) {
     status = lxb_dom_elements_by_attr_begin(body,
                                             collection,
                                             (const lxb_char_t*) "href", 4,
-                                            (const lxb_char_t*) "/greece", 7,
+                                            (const lxb_char_t*) "/", 1,
                                             true
                                             );
 
@@ -139,4 +178,55 @@ std::vector<std::string> Scraper::ParseContent(std::string content) {
     lxb_html_document_destroy(document);
 
     return output;
+}
+
+void AnalyzePages::analyzeEntry(std::string input)
+{
+    analysis = true;
+    cpr::Response getRes = request_info(input);
+    //std::cout << getRes.text << std::endl;
+
+    lxb_status_t status;
+    lxb_dom_element_t* elem = nullptr;
+    lxb_html_document_t* document = nullptr;
+    lxb_dom_collection_t* collection = nullptr;
+
+    lxb_char_t html[getRes.text.length() + 1];
+    std::memset(html, 0, getRes.text.length() + 1);
+
+    for (int i = 0; i < getRes.text.length(); i++) {
+        html[i] = getRes.text[i];
+    }
+
+    size_t html_len = sizeof(html) - 1;
+
+    document = Parse(html, html_len);
+    collection = lxb_dom_collection_make(&document->dom_document, 128);
+
+    if (collection == nullptr)
+    {
+        exit(EXIT_FAILURE);
+    }
+
+    // Get status of creating a collection of elements that use the paragraph tag
+    status = lxb_dom_elements_by_tag_name(lxb_dom_interface_element(document->body),
+                                          collection, (const lxb_char_t*) "p", 1);
+
+    if (status != LXB_STATUS_OK)
+    {
+        exit(EXIT_FAILURE);
+    }
+
+
+    for (size_t i = 0; i < lxb_dom_collection_length(collection); i++)
+    {
+        elem = lxb_dom_collection_element(collection, i);
+        serialize_node(lxb_dom_interface_node(elem));
+    }
+
+    lxb_dom_collection_destroy(collection, true);
+    lxb_html_document_destroy(document);
+
+    analysis = false;
+
 }
