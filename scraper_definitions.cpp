@@ -73,7 +73,7 @@ lxb_status_t Scraper::serializer_callback(const lxb_char_t *data, size_t len, vo
     //printf("%.*s", (int) len, (const char *) data);
     if (analysis)
     {
-        std::cout << (const char*)data << std::endl;
+        std::cout << (const char*)data;
     }
 
    if (!analysis)
@@ -190,6 +190,8 @@ void AnalyzePages::analyzeEntry(std::string input)
     lxb_dom_element_t* elem = nullptr;
     lxb_html_document_t* document = nullptr;
     lxb_dom_collection_t* collection = nullptr;
+    lxb_dom_node_t* node = nullptr;
+    lxb_dom_character_data_t *ch_data = nullptr;
 
     lxb_char_t html[getRes.text.length() + 1];
     std::memset(html, 0, getRes.text.length() + 1);
@@ -197,6 +199,8 @@ void AnalyzePages::analyzeEntry(std::string input)
     for (int i = 0; i < getRes.text.length(); i++) {
         html[i] = getRes.text[i];
     }
+
+    //std::cout << html << std::endl;
 
     size_t html_len = sizeof(html) - 1;
 
@@ -220,8 +224,17 @@ void AnalyzePages::analyzeEntry(std::string input)
 
     for (size_t i = 0; i < lxb_dom_collection_length(collection); i++)
     {
+        // Get the text from any paragraphs
+        // Special thanks to Alexander Lexborisov for providing me with the solution
+        // to get the text. Source: https://github.com/lexbor/lexbor/issues/196
         elem = lxb_dom_collection_element(collection, i);
-        serialize_node(lxb_dom_interface_node(elem));
+        node = lxb_dom_interface_node(elem)->first_child;
+
+        if (node != NULL && node->local_name == LXB_TAG__TEXT)
+        {
+            ch_data = lxb_dom_interface_character_data(node);
+            std::cout << (int) ch_data->data.length << (const char *) ch_data->data.data << std::endl;
+        }
     }
 
     lxb_dom_collection_destroy(collection, true);

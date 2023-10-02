@@ -7,6 +7,7 @@
 #include <lexbor/dom/interfaces/element.h>
 #include "lexbor/html/html.h"
 #include <lexbor/dom/dom.h>
+#include <lexbor/dom/interfaces/document.h>
 #include <string>
 #include <strings.h>
 #include <vector>
