@@ -3,6 +3,7 @@
 // You need to define static variables to use them, a declaration is not enough
 std::vector<std::string> Scraper::urls;
 bool Scraper::analysis = false;
+std::array<std::string, 3> Scraper::keywords = {"αστυνομική βία", "αστυνομία", "βία"};
 
 // Get Info
 cpr::Response Scraper::request_info(std::string url)
@@ -70,10 +71,12 @@ void Scraper::getUrls(char* data)
 // serializer
 lxb_status_t Scraper::serializer_callback(const lxb_char_t *data, size_t len, void *ctx)
 {
+
     //printf("%.*s", (int) len, (const char *) data);
     if (analysis)
     {
-        std::cout << (const char*)data;
+        std::cin.get();
+
     }
 
    if (!analysis)
@@ -180,11 +183,13 @@ std::vector<std::string> Scraper::ParseContent(std::string content) {
     return output;
 }
 
+
 void AnalyzePages::analyzeEntry(std::string input)
 {
     analysis = true;
     cpr::Response getRes = request_info(input);
     //std::cout << getRes.text << std::endl;
+    size_t found = 0;
 
     lxb_status_t status;
     lxb_dom_element_t* elem = nullptr;
@@ -233,7 +238,13 @@ void AnalyzePages::analyzeEntry(std::string input)
         if (node != NULL && node->local_name == LXB_TAG__TEXT)
         {
             ch_data = lxb_dom_interface_character_data(node);
-            std::cout << (int) ch_data->data.length << (const char *) ch_data->data.data << std::endl;
+            const auto getData = ch_data->data.data;
+            // To cast an unsigned char* to string, we need to use renterpret_cast
+            // This is not very safe but it works Source:
+            // https://stackoverflow.com/questions/17746688/convert-unsigned-char-to-stdstring
+            std::string toString(reinterpret_cast<char*>(getData));
+            std::cout << toString << std::endl;
+            //std::cout << (int) ch_data->data.length << (const char *) ch_data->data.data << std::endl;
         }
     }
 

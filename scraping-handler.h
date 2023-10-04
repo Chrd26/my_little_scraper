@@ -22,6 +22,9 @@ typedef struct pageData{
 // Scraper
 class Scraper
 {
+protected:
+    static bool analysis;
+    static std::array<std::string, 3> keywords;
 private:
     static std::vector<std::string> urls;
     // static function can only call other static functions
@@ -33,7 +36,6 @@ private:
 
 public:
     // This is used to avoid running unneeded code when page analysis is running
-    static bool analysis;
     static cpr::Response request_info(std::string url);
     lxb_inline void serialize_node(lxb_dom_node_t *node);
     virtual std::vector<std::string> ParseContent(std::string content);

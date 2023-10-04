@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Now the app gets the links from the search. Next, I need to analyze the content of each link to find certain content.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Now the application gets the text from the websites!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
@@ -50,6 +50,10 @@
         <option name="url" value="git@github.com:Chrd26/my_little_scraper.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/.vcpkg-clion/vcpkg_scraper/installed/x64-osx/include/lexbor/core/array.h" root0="SKIP_INSPECTION" />
+    <setting file="file://$USER_HOME$/.vcpkg-clion/vcpkg_scraper/installed/x64-osx/include/lexbor/dom/collection.h" root0="SKIP_INSPECTION" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="8ylkiwet" />
@@ -128,6 +132,11 @@
       <workItem from="1696220425492" duration="307000" />
       <workItem from="1696220777479" duration="1102000" />
       <workItem from="1696244809834" duration="684000" />
+      <workItem from="1696245803308" duration="207000" />
+      <workItem from="1696246146116" duration="196000" />
+      <workItem from="1696390423426" duration="1703000" />
+      <workItem from="1696392167810" duration="2103000" />
+      <workItem from="1696400019925" duration="1247000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -137,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694714439342</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Now the application gets the text from the websites!">
+      <option name="closed" value="true" />
+      <created>1696245958293</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1696245958293</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,6 +168,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Lexbor fixed some include issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Lexbor fixed some include issues" />
+    <MESSAGE value="Now the application gets the text from the websites!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now the application gets the text from the websites!" />
   </component>
 </project>
