@@ -239,12 +239,21 @@ void AnalyzePages::analyzeEntry(std::string input)
         {
             ch_data = lxb_dom_interface_character_data(node);
             const auto getData = ch_data->data.data;
+
             // To cast an unsigned char* to string, we need to use renterpret_cast
             // This is not very safe but it works Source:
             // https://stackoverflow.com/questions/17746688/convert-unsigned-char-to-stdstring
             std::string toString(reinterpret_cast<char*>(getData));
-            std::cout << toString << std::endl;
-            //std::cout << (int) ch_data->data.length << (const char *) ch_data->data.data << std::endl;
+
+            for (std::string keyword : keywords)
+            {
+                if (toString.find(keyword) != std::string::npos)
+                {
+                    std::cout << toString << std::endl;
+                }
+            }
+            //  std::cout << toString << std::endl;
+            //  std::cout << (int) ch_data->data.length << (const char *) ch_data->data.data << std::endl;
         }
     }
 
