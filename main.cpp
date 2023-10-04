@@ -17,7 +17,7 @@ int main(){
     cpr::Response r = scraper.request_info("https://www.ethnos.gr/tag/141/astynomikhbia");
 
     // Parse it
-    urls = scraper.ParseContent(r.text);
+    urls = scraper.ParseContent(r.text, (char*)"href", (char*)"/", 1);
 
     // Iterate through them
     for (const std::string& item : urls)
@@ -27,6 +27,7 @@ int main(){
 
     }
 
+    std::cout << "Done press enter to complete.";
     std::cin.get();
     return 0;
 }

@@ -20,9 +20,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added a conversion from unsigned char* to std::string to be able to use the std::string's methods.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added code to filter out content, I also need to find a way to get the data and time of the article.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +140,8 @@
       <workItem from="1696400019925" duration="1457000" />
       <workItem from="1696402193436" duration="535000" />
       <workItem from="1696403397918" duration="91000" />
+      <workItem from="1696403519772" duration="631000" />
+      <workItem from="1696414081674" duration="2495000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -163,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696401882320</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added code to filter out content, I also need to find a way to get the data and time of the article.">
+      <option name="closed" value="true" />
+      <created>1696403722653</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696403722654</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,10 +187,22 @@
     <isAutomaticFoundErrors value="true" />
     <isAutomaticFoundErrors value="true" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Lexbor fixed some include issues" />
     <MESSAGE value="Now the application gets the text from the websites!" />
     <MESSAGE value="Added a conversion from unsigned char* to std::string to be able to use the std::string's methods." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a conversion from unsigned char* to std::string to be able to use the std::string's methods." />
+    <MESSAGE value="Added code to filter out content, I also need to find a way to get the data and time of the article." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added code to filter out content, I also need to find a way to get the data and time of the article." />
   </component>
 </project>

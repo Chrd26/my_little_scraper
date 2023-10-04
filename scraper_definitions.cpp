@@ -102,7 +102,7 @@ void Scraper::serialize_node(lxb_dom_node_t *node)
 // Source 1: http://lexbor.com/docs/lexbor/
 // Source 2: https://github.com/lexbor/lexbor/tree/master/examples
 // Get elements by attribute: https://github.com/lexbor/lexbor/blob/master/examples/lexbor/html/elements_by_attr.c
-std::vector<std::string> Scraper::ParseContent(std::string content) {
+std::vector<std::string> Scraper::ParseContent(std::string content, char* attributeName, char* value, size_t length) {
     lxb_status_t status;
     lxb_dom_element_t* body = nullptr;
     lxb_dom_element_t* gather_collection = nullptr;
@@ -151,8 +151,8 @@ std::vector<std::string> Scraper::ParseContent(std::string content) {
     // Find elements that contain the href attribute and start with /politics.
     status = lxb_dom_elements_by_attr_begin(body,
                                             collection,
-                                            (const lxb_char_t*) "href", 4,
-                                            (const lxb_char_t*) "/", 1,
+                                            (const lxb_char_t*) attributeName, 4,
+                                            (const lxb_char_t*) value, 1,
                                             true
                                             );
 
@@ -183,10 +183,10 @@ std::vector<std::string> Scraper::ParseContent(std::string content) {
     return output;
 }
 
-
 void AnalyzePages::analyzeEntry(std::string input)
 {
     analysis = true;
+    bool keywordsFound = false;
     cpr::Response getRes = request_info(input);
     //std::cout << getRes.text << std::endl;
     size_t found = 0;
@@ -247,13 +247,26 @@ void AnalyzePages::analyzeEntry(std::string input)
 
             for (std::string keyword : keywords)
             {
+                if (keywordsFound)
+                {
+                    break;
+                }
+
                 if (toString.find(keyword) != std::string::npos)
                 {
-                    std::cout << toString << std::endl;
+                    std::cout << std::endl;
+                    std::cout << std::endl;
+                    keywordsFound = true;
+                    break;
                 }
             }
             //  std::cout << toString << std::endl;
             //  std::cout << (int) ch_data->data.length << (const char *) ch_data->data.data << std::endl;
+
+            if (keywordsFound)
+            {
+                std::cout << toString << std::endl;
+            }
         }
     }
 

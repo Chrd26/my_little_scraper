@@ -38,12 +38,14 @@ public:
     // This is used to avoid running unneeded code when page analysis is running
     static cpr::Response request_info(std::string url);
     lxb_inline void serialize_node(lxb_dom_node_t *node);
-    virtual std::vector<std::string> ParseContent(std::string content);
+    std::vector<std::string> ParseContent(std::string content, char* attributeName, char* value, size_t length);
     lxb_inline lxb_html_document_t* Parse(const lxb_char_t* html, size_t html_len);
 };
 
 class AnalyzePages : public Scraper
 {
+private:
+    static std::string getDateTime(std::string content);
 public:
     static void analyzeEntry(std::string input);
 };
