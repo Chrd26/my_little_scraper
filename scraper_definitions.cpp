@@ -201,11 +201,70 @@ void AnalyzePages::analyzeEntry(std::string input)
     lxb_char_t html[getRes.text.length() + 1];
     std::memset(html, 0, getRes.text.length() + 1);
 
-    for (int i = 0; i < getRes.text.length(); i++) {
+    for (int i = 0; i < getRes.text.length();) {
+        std::string keyword1 = "<strong>";
+        std::string keyword2 = "</strong>";
+        std::string keyword3 = "<span>";
+        std::string keyword4 = "</span>";
+        bool isTheSame = true;
+
+        for (int j = 0; j < keyword1.length(); j++) {
+            if (getRes.text[i + j] != keyword1[j]) {
+                isTheSame = false;
+                break;
+            }
+        }
+
+        if (isTheSame) {
+            i += keyword1.length(); // Move past "<strong>"
+            continue;
+        }
+
+        for (int k = 0; k < keyword2.length(); k++) {
+            if (getRes.text[i + k] != keyword2[k]) {
+                isTheSame = false;
+                break;
+            }
+        }
+
+        if (isTheSame) {
+            i += keyword2.length(); // Move past "</strong>"
+            continue;
+        }
+
+        for (int l = 0; l < keyword3.length(); l++) {
+            if (getRes.text[i + l] != keyword3[l]) {
+                isTheSame = false;
+                break;
+            }
+        }
+
+        if (isTheSame) {
+            i += keyword3.length(); // Move past "</strong>"
+            continue;
+        }
+
+
+        for (int m = 0; m < keyword4.length(); m++) {
+            if (getRes.text[i + m] != keyword4[m]) {
+                isTheSame = false;
+                break;
+            }
+        }
+
+        if (isTheSame) {
+            i += keyword4.length(); // Move past "</strong>"
+            continue;
+        }
+
         html[i] = getRes.text[i];
+        i++;
     }
 
     //std::cout << html << std::endl;
+    //std::cin.get();
+
+
 
     size_t html_len = sizeof(html) - 1;
 
@@ -217,7 +276,7 @@ void AnalyzePages::analyzeEntry(std::string input)
         exit(EXIT_FAILURE);
     }
 
-    // Get status of creating a collection of elements that use the paragraph tag
+    // Get status of creating a collection creation for paragraph tags
     status = lxb_dom_elements_by_tag_name(lxb_dom_interface_element(document->body),
                                           collection, (const lxb_char_t*) "p", 1);
 
@@ -225,7 +284,6 @@ void AnalyzePages::analyzeEntry(std::string input)
     {
         exit(EXIT_FAILURE);
     }
-
 
     for (size_t i = 0; i < lxb_dom_collection_length(collection); i++)
     {
