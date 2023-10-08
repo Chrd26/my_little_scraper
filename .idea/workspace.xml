@@ -20,10 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Now the application grabs the complete text from the articles! Progress at last. I removed any &lt;strong&gt;&lt;/strong&gt; and &lt;span&gt;&lt;/span&gt; tags to make sure that  lexbor grabs everything properly.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Replaced all the anchors with paragraphs to be able to get the content properly." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -144,6 +141,7 @@
       <workItem from="1696506207728" duration="2672000" />
       <workItem from="1696508974462" duration="1786000" />
       <workItem from="1696577815627" duration="649000" />
+      <workItem from="1696762234978" duration="7093000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -193,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696510889198</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Replaced all the anchors with paragraphs to be able to get the content properly.">
+      <option name="closed" value="true" />
+      <created>1696769560977</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1696769560977</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +229,7 @@
     <MESSAGE value="Added code to filter out content, I also need to find a way to get the data and time of the article." />
     <MESSAGE value="Added a message at the end of the runtime to know when it ends. Some fixes to the filter, duplicates apear, a simple comparison to a CSV file should make it possible to fix it. Some parts of the text is missing, probably because some of it is inside span tags." />
     <MESSAGE value="Now the application grabs the complete text from the articles! Progress at last. I removed any &lt;strong&gt;&lt;/strong&gt; and &lt;span&gt;&lt;/span&gt; tags to make sure that  lexbor grabs everything properly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Now the application grabs the complete text from the articles! Progress at last. I removed any &lt;strong&gt;&lt;/strong&gt; and &lt;span&gt;&lt;/span&gt; tags to make sure that  lexbor grabs everything properly." />
+    <MESSAGE value="Replaced all the anchors with paragraphs to be able to get the content properly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Replaced all the anchors with paragraphs to be able to get the content properly." />
   </component>
 </project>

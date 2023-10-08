@@ -271,7 +271,6 @@ void AnalyzePages::analyzeEntry(std::string input)
         }
 
         if (isTheSame) {
-            std::cout << "Replace opening tags" << std::endl;
             html[i] = '<';
             html[i+1] = 'p';
             html[i+2] = ' ';
@@ -290,7 +289,6 @@ void AnalyzePages::analyzeEntry(std::string input)
         }
 
         if (isTheSame) {
-            std::cout << "Replace closing tags" << std::endl;
             html[i] = '<';
             html[i+1] = '/';
             html[i+2] = 'p';
