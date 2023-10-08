@@ -14,7 +14,7 @@ int main(){
     std::vector<pageData> data;
 
     // Get info from website
-    cpr::Response r = scraper.request_info("https://www.ethnos.gr/tag/141/astynomikhbia");
+    cpr::Response r = scraper.request_info("https://www.ethnos.gr/search?q=αστυνομική+βία");
 
     // Parse it
     urls = scraper.ParseContent(r.text, (char*)"href", (char*)"/", 1);

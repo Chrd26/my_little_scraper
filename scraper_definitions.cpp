@@ -188,9 +188,6 @@ void AnalyzePages::analyzeEntry(std::string input)
     analysis = true;
     bool keywordsFound = false;
     cpr::Response getRes = request_info(input);
-    //std::cout << getRes.text << std::endl;
-    size_t found = 0;
-
     lxb_status_t status;
     lxb_dom_element_t* elem = nullptr;
     lxb_html_document_t* document = nullptr;
@@ -200,12 +197,14 @@ void AnalyzePages::analyzeEntry(std::string input)
 
     lxb_char_t html[getRes.text.length() + 1];
     std::memset(html, 0, getRes.text.length() + 1);
-
+    // Check for string, span and a tags, if a tags are found, then replace them with paragraph tags
     for (int i = 0; i < getRes.text.length();) {
         std::string keyword1 = "<strong>";
         std::string keyword2 = "</strong>";
         std::string keyword3 = "<span>";
         std::string keyword4 = "</span>";
+        std::string keyword5 = "<a ";
+        std::string keyword6 = "</a>";
         bool isTheSame = true;
 
         for (int j = 0; j < keyword1.length(); j++) {
@@ -216,8 +215,10 @@ void AnalyzePages::analyzeEntry(std::string input)
         }
 
         if (isTheSame) {
-            i += keyword1.length(); // Move past "<strong>"
+            i += keyword1.length(); // Move past
             continue;
+        }else{
+            isTheSame = true;
         }
 
         for (int k = 0; k < keyword2.length(); k++) {
@@ -228,8 +229,10 @@ void AnalyzePages::analyzeEntry(std::string input)
         }
 
         if (isTheSame) {
-            i += keyword2.length(); // Move past "</strong>"
+            i += keyword2.length(); // Move past
             continue;
+        }else{
+            isTheSame = true;
         }
 
         for (int l = 0; l < keyword3.length(); l++) {
@@ -240,10 +243,11 @@ void AnalyzePages::analyzeEntry(std::string input)
         }
 
         if (isTheSame) {
-            i += keyword3.length(); // Move past "</strong>"
+            i += keyword3.length(); // Move past
             continue;
+        }else{
+            isTheSame = true;
         }
-
 
         for (int m = 0; m < keyword4.length(); m++) {
             if (getRes.text[i + m] != keyword4[m]) {
@@ -253,16 +257,55 @@ void AnalyzePages::analyzeEntry(std::string input)
         }
 
         if (isTheSame) {
-            i += keyword4.length(); // Move past "</strong>"
+            i += keyword4.length(); // Move past
+            continue;
+        }else{
+            isTheSame = true;
+        }
+
+        for (int n = 0; n < keyword5.length(); n++) {
+            if (getRes.text[i + n] != keyword5[n]) {
+                isTheSame = false;
+                break;
+            }
+        }
+
+        if (isTheSame) {
+            std::cout << "Replace opening tags" << std::endl;
+            html[i] = '<';
+            html[i+1] = 'p';
+            html[i+2] = ' ';
+            i += keyword5.length(); // Move past
+            continue;
+        }else{
+            isTheSame = true;
+        }
+
+
+        for (int o = 0; o < keyword6.length(); o++) {
+            if (getRes.text[i + o] != keyword6[o]) {
+                isTheSame = false;
+                break;
+            }
+        }
+
+        if (isTheSame) {
+            std::cout << "Replace closing tags" << std::endl;
+            html[i] = '<';
+            html[i+1] = '/';
+            html[i+2] = 'p';
+            html[i+3] = '>';
+            i += keyword6.length(); // Move past
             continue;
         }
+
 
         html[i] = getRes.text[i];
         i++;
     }
 
-    //std::cout << html << std::endl;
-    //std::cin.get();
+    std::cout << html << std::endl;
+    std::cin.get();
 
 
 
@@ -303,19 +346,13 @@ void AnalyzePages::analyzeEntry(std::string input)
             // https://stackoverflow.com/questions/17746688/convert-unsigned-char-to-stdstring
             std::string toString(reinterpret_cast<char*>(getData));
 
+
             for (std::string keyword : keywords)
             {
-                if (keywordsFound)
-                {
-                    break;
-                }
-
                 if (toString.find(keyword) != std::string::npos)
                 {
-                    std::cout << std::endl;
-                    std::cout << std::endl;
                     keywordsFound = true;
-                    break;
+                    continue;
                 }
             }
             //  std::cout << toString << std::endl;
@@ -323,6 +360,7 @@ void AnalyzePages::analyzeEntry(std::string input)
 
             if (keywordsFound)
             {
+                std::cout << std::endl;
                 std::cout << toString << std::endl;
             }
         }
