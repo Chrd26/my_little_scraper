@@ -22,9 +22,9 @@ int main(){
     // Iterate through them
     for (const std::string& item : urls)
     {
+        std::cout << item << std::endl;
         cpr::Response res = pageAnalyzer.request_info(item);
         pageAnalyzer.analyzeEntry(item);
-
     }
 
     std::cout << "Done press enter to complete.";

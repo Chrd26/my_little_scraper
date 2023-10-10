@@ -24,7 +24,7 @@ class Scraper
 {
 protected:
     static bool analysis;
-    static std::array<std::string, 3> keywords;
+    static std::array<std::string, 5> keywords;
 private:
     static std::vector<std::string> urls;
     // static function can only call other static functions

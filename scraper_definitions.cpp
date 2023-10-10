@@ -3,7 +3,7 @@
 // You need to define static variables to use them, a declaration is not enough
 std::vector<std::string> Scraper::urls;
 bool Scraper::analysis = false;
-std::array<std::string, 3> Scraper::keywords = {"αστυνομική βία", "αστυνομία", "βία"};
+std::array<std::string, 5> Scraper::keywords = {"αστυνομική βία", "αστυνομία", "βία", "διαδηλωτές", "διαδηλώσεις"};
 
 // Get Info
 cpr::Response Scraper::request_info(std::string url)
@@ -194,7 +194,6 @@ void AnalyzePages::analyzeEntry(std::string input)
     lxb_dom_collection_t* collection = nullptr;
     lxb_dom_node_t* node = nullptr;
     lxb_dom_character_data_t *ch_data = nullptr;
-
     lxb_char_t html[getRes.text.length() + 1];
     std::memset(html, 0, getRes.text.length() + 1);
     // Check for string, span and a tags, if a tags are found, then replace them with paragraph tags
@@ -302,10 +301,8 @@ void AnalyzePages::analyzeEntry(std::string input)
         i++;
     }
 
-    std::cout << html << std::endl;
-    std::cin.get();
-
-
+    // std::cout << html << std::endl;
+    // std::cin.get();
 
     size_t html_len = sizeof(html) - 1;
 
@@ -326,6 +323,7 @@ void AnalyzePages::analyzeEntry(std::string input)
         exit(EXIT_FAILURE);
     }
 
+    std::cout << std::endl;
     for (size_t i = 0; i < lxb_dom_collection_length(collection); i++)
     {
         // Get the text from any paragraphs
@@ -334,33 +332,35 @@ void AnalyzePages::analyzeEntry(std::string input)
         elem = lxb_dom_collection_element(collection, i);
         node = lxb_dom_interface_node(elem)->first_child;
 
-        if (node != NULL && node->local_name == LXB_TAG__TEXT)
+        if (node != nullptr && node->local_name == LXB_TAG__TEXT)
         {
             ch_data = lxb_dom_interface_character_data(node);
             const auto getData = ch_data->data.data;
 
-            // To cast an unsigned char* to string, we need to use renterpret_cast
+            // To cast an unsigned char* to string, we need to use reinterpret_cast
             // This is not very safe but it works Source:
             // https://stackoverflow.com/questions/17746688/convert-unsigned-char-to-stdstring
             std::string toString(reinterpret_cast<char*>(getData));
 
-
-            for (std::string keyword : keywords)
+            for (std::string& keyword : keywords)
             {
                 if (toString.find(keyword) != std::string::npos)
                 {
                     keywordsFound = true;
-                    continue;
+                    break;
                 }
             }
-            //  std::cout << toString << std::endl;
+
+            //  Output the text
             //  std::cout << (int) ch_data->data.length << (const char *) ch_data->data.data << std::endl;
 
+            // Output
             if (keywordsFound)
             {
-                std::cout << std::endl;
                 std::cout << toString << std::endl;
+                keywordsFound = false;
             }
+
         }
     }
 
@@ -368,5 +368,4 @@ void AnalyzePages::analyzeEntry(std::string input)
     lxb_html_document_destroy(document);
 
     analysis = false;
-
 }
