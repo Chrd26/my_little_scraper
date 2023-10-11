@@ -3,7 +3,9 @@
 // You need to define static variables to use them, a declaration is not enough
 std::vector<std::string> Scraper::urls;
 bool Scraper::analysis = false;
-std::array<std::string, 5> Scraper::keywords = {"αστυνομική βία", "αστυνομία", "βία", "διαδηλωτές", "διαδηλώσεις"};
+std::array<std::string, 7> Scraper::keywords = {"αστυνομική βία", "αστυνομία", "βία",
+                                                "διαδηλωτές", "διαδηλώσεις", "νεκρός", "απειλή"};
+std::string Scraper::baseURL = "";
 
 // Get Info
 cpr::Response Scraper::request_info(std::string url)
@@ -59,12 +61,11 @@ void Scraper::getUrls(char* data)
    // characters use single quotes!!!
    char symbol = '/';
    char dataFirstChar = getData.at(0);
-   std::string createUrl = "https://www.ethnos.gr";
    if (dataFirstChar == symbol)
    {
        // std::cout << "true1" << std::endl;
        // std::cout << createUrl + getData << std::endl;
-       urls.push_back(createUrl + getData);
+       urls.push_back(baseURL + getData);
    }
 }
 
@@ -102,7 +103,7 @@ void Scraper::serialize_node(lxb_dom_node_t *node)
 // Source 1: http://lexbor.com/docs/lexbor/
 // Source 2: https://github.com/lexbor/lexbor/tree/master/examples
 // Get elements by attribute: https://github.com/lexbor/lexbor/blob/master/examples/lexbor/html/elements_by_attr.c
-std::vector<std::string> Scraper::ParseContent(std::string content, char* attributeName, char* value, size_t length) {
+std::vector<std::string> Scraper::ParseContent(std::string content, char* attributeName, char* value) {
     lxb_status_t status;
     lxb_dom_element_t* body = nullptr;
     lxb_dom_element_t* gather_collection = nullptr;
@@ -171,7 +172,8 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
         serialize_node(lxb_dom_interface_node(gather_collection));
     }
 
-    for (std::string item : urls)
+    output.reserve(urls.size());
+    for (std::string& item : urls)
     {
         output.push_back(item);
     }
@@ -198,6 +200,7 @@ void AnalyzePages::analyzeEntry(std::string input)
     std::memset(html, 0, getRes.text.length() + 1);
     // Check for string, span and a tags, if a tags are found, then replace them with paragraph tags
     for (int i = 0; i < getRes.text.length();) {
+        // This might need a refactor but I am unable to find a way to do so
         std::string keyword1 = "<strong>";
         std::string keyword2 = "</strong>";
         std::string keyword3 = "<span>";
@@ -214,7 +217,7 @@ void AnalyzePages::analyzeEntry(std::string input)
         }
 
         if (isTheSame) {
-            i += keyword1.length(); // Move past
+            i += int(keyword1.length()); // Move past
             continue;
         }else{
             isTheSame = true;
@@ -228,7 +231,7 @@ void AnalyzePages::analyzeEntry(std::string input)
         }
 
         if (isTheSame) {
-            i += keyword2.length(); // Move past
+            i += int(keyword2.length()); // Move past
             continue;
         }else{
             isTheSame = true;
@@ -242,7 +245,7 @@ void AnalyzePages::analyzeEntry(std::string input)
         }
 
         if (isTheSame) {
-            i += keyword3.length(); // Move past
+            i += int(keyword3.length()); // Move past
             continue;
         }else{
             isTheSame = true;
@@ -256,7 +259,7 @@ void AnalyzePages::analyzeEntry(std::string input)
         }
 
         if (isTheSame) {
-            i += keyword4.length(); // Move past
+            i += int(keyword4.length()); // Move past
             continue;
         }else{
             isTheSame = true;
@@ -273,7 +276,7 @@ void AnalyzePages::analyzeEntry(std::string input)
             html[i] = '<';
             html[i+1] = 'p';
             html[i+2] = ' ';
-            i += keyword5.length(); // Move past
+            i += int(keyword5.length()); // Move past
             continue;
         }else{
             isTheSame = true;
@@ -292,7 +295,7 @@ void AnalyzePages::analyzeEntry(std::string input)
             html[i+1] = '/';
             html[i+2] = 'p';
             html[i+3] = '>';
-            i += keyword6.length(); // Move past
+            i += int(keyword6.length()); // Move past
             continue;
         }
 

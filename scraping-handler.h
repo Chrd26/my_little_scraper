@@ -24,7 +24,7 @@ class Scraper
 {
 protected:
     static bool analysis;
-    static std::array<std::string, 5> keywords;
+    static std::array<std::string, 7> keywords;
 private:
     static std::vector<std::string> urls;
     // static function can only call other static functions
@@ -36,9 +36,10 @@ private:
 
 public:
     // This is used to avoid running unneeded code when page analysis is running
+    static std::string baseURL;
     static cpr::Response request_info(std::string url);
     lxb_inline void serialize_node(lxb_dom_node_t *node);
-    std::vector<std::string> ParseContent(std::string content, char* attributeName, char* value, size_t length);
+    std::vector<std::string> ParseContent(std::string content, char* attributeName, char* value);
     lxb_inline lxb_html_document_t* Parse(const lxb_char_t* html, size_t html_len);
 };
 
