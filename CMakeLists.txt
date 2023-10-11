@@ -18,3 +18,6 @@ target_link_libraries(scraper PRIVATE armadillo)
 
 #find_package(lexbor CONFIG REQUIRED)
 target_link_libraries(scraper PRIVATE liblexbor_static.a)
+
+find_package(wxWidgets CONFIG REQUIRED)
+target_link_libraries(scraper PRIVATE wx::core wx::base)
