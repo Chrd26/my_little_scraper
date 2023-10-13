@@ -8,7 +8,9 @@ link_directories("/Users/chrisd/.vcpkg-clion/vcpkg_scraper/packages/lexbor_x64-o
 
 add_executable(scraper main.cpp
         scraping-handler.h
-        scraper_definitions.cpp)
+        scraper_definitions.cpp
+        csv_handler.h
+        csv_handler_definitions.cpp)
 
 find_package(cpr CONFIG REQUIRED)
 target_link_libraries(scraper PRIVATE cpr::cpr)

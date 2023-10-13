@@ -1,4 +1,5 @@
 #include "scraping-handler.h"
+#include <wx/wx.h>
 // More info and understanding
 // https://brightdata.com/blog/how-tos/web-scraping-in-c-plus-plus
 
