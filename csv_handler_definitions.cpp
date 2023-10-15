@@ -2,40 +2,40 @@
 // Created by ChrisD on 13/10/23.
 //
 #include "csv_handler.h"
+// Read more
 
-std::vector<std::string> CSV_Handler::ReadFile()
+void CSV_Handler::ReadFile()
 {
-    // File pointer
-    std::fstream fin;
+    std::ifstream file;
+    size_t counter = 0;
+    file.open("/Users/chrisd/Desktop/my_little_scraper/example-csv/example.csv");
+    std::regex reg("^www.*|https?.*");
 
-    // Open file
-    fin.open("example-csv/example.csv", std::ios::in);
-
-    // Read row
-    std::vector<std::string> row;
-    std::string line, word, temp;
-
-    while (fin >> temp)
+    if(!file.is_open())
     {
-        // Clear before using
-        row.clear();
-
-        // Read an entire row and store it in the line
-        // string variable
-        std::getline(fin, line);
-
-        // Seperate words
-        std::stringstream s(line);
-
-        // Read every column data of a row and store it
-        // in a string variable
-        while(std::getline(s, word, ", "))
-        {
-            // add all the column data of a row to the row vector
-            row.push_back(word);
-        }
-
-
+        std::cout << std::strerror(errno) << std::endl;
+        exit(1);
     }
 
+    std::vector<std::string> fileURLS;
+    std::string column;
+    std::string val;
+    getline(file, column, ',');
+
+    while(getline(file,column, ','))
+    {
+        // std::cout << "Value: " << column << std::endl;
+        std::cout << std::regex_match(column, reg) << std::endl;
+
+        if (std::regex_match(column,reg))
+        {
+            links.push_back(column);
+        }else{
+            keywords.push_back(column);
+        }
+    }
+
+    file.close();
+    std::cout << "CSV file reading is complete" << std::endl;
+    std::cin.get();
 }

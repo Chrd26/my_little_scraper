@@ -1,28 +1,18 @@
 #include "scraping-handler.h"
 #include <wx/wx.h>
+#include "csv_handler.h"
 // More info and understanding
 // https://brightdata.com/blog/how-tos/web-scraping-in-c-plus-plus
+// preallocate the vector with the size of arguments.
+// It is not worth preallocating when the vector is reallocated
+// Read more here:
+// https://stackoverflow.com/questions/11888265/is-it-more-efficient-to-preallocate-a-vector
 
-int main(int argc, char* argv[]){
-    // Make sure that enough arguments have been provided
-    if (argc < 2)
-    {
-        std::cout << "Not enough arguments, add at least 1" << std::endl;
-        return 1;
-    }
+int main(){
+    CSV_Handler csv;
+    // std::vector<std::string> startingURLS;
 
-    std::vector<std::string> startingURLS;
-
-    // preallocate the vector with the size of arguments.
-    // It is not worth preallocating when the vector is reallocated
-    // Read more here:
-    // https://stackoverflow.com/questions/11888265/is-it-more-efficient-to-preallocate-a-vector
-    startingURLS.reserve(argc);
-
-for (int i = 0; i < argc; i++)
-    {
-        startingURLS.emplace_back(argv[i]);
-    }
+    csv.ReadFile();
 
     // Create scraper object
     Scraper scraper;
@@ -34,20 +24,18 @@ for (int i = 0; i < argc; i++)
     // Page data data structure
     std::vector<pageData> data;
 
-    for (int k = 0; k < argc; k++) {
-        // Get info from website
-        scraper.baseURL = startingURLS[k];
-        cpr::Response r = scraper.request_info(startingURLS[k]);
+    // Get info from website
+    scraper.baseURL = "ethnos.gr";
+    cpr::Response r = scraper.request_info(scraper.baseURL);
 
-        // Parse it
-        urls = scraper.ParseContent(r.text, (char *) "href", (char *) "/");
+    // Parse it
+    urls = scraper.ParseContent(r.text, (char *) "href", (char *) "/");
 
-        // Iterate through them
-        for (const std::string &item: urls) {
-            std::cout << item << std::endl;
-            cpr::Response res = pageAnalyzer.request_info(item);
-            pageAnalyzer.analyzeEntry(item);
-        }
+    // Iterate through them
+    for (const std::string &item: urls) {
+        std::cout << item << std::endl;
+        cpr::Response res = pageAnalyzer.request_info(item);
+        pageAnalyzer.analyzeEntry(item);
 
     }
 
