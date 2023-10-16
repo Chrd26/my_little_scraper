@@ -24,19 +24,21 @@ int main(){
     // Page data data structure
     std::vector<pageData> data;
 
-    // Get info from website
-    scraper.baseURL = "ethnos.gr";
-    cpr::Response r = scraper.request_info(scraper.baseURL);
+    for (std::string& url : csv.links) {
+        // Get info from website
+        scraper.baseURL = url;
+        cpr::Response r = scraper.request_info(scraper.baseURL);
 
-    // Parse it
-    urls = scraper.ParseContent(r.text, (char *) "href", (char *) "/");
+        // Parse it
+        urls = scraper.ParseContent(r.text, (char *) "href", (char *) "/");
 
-    // Iterate through them
-    for (const std::string &item: urls) {
-        std::cout << item << std::endl;
-        cpr::Response res = pageAnalyzer.request_info(item);
-        pageAnalyzer.analyzeEntry(item);
+        // Iterate through them
+        for (const std::string &item: urls) {
+            std::cout << item << std::endl;
+            cpr::Response res = pageAnalyzer.request_info(item);
+            pageAnalyzer.analyzeEntry(item);
 
+        }
     }
 
     std::cout << "Done press enter to complete.";

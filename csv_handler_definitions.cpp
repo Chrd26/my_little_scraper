@@ -39,3 +39,9 @@ void CSV_Handler::ReadFile()
     std::cout << "CSV file reading is complete" << std::endl;
     std::cin.get();
 }
+
+// Start adding data to the CSV file
+void CSV_Handle::WriteFile(std::vector<std::string> paragraphs, std::string& url)
+{
+
+}

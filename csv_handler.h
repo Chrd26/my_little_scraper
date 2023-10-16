@@ -16,9 +16,9 @@
 //,https://www.cnn.gr/,ισραήλ,βία,χαμάς,χεζμπολάχ,νεκροί,
 //,https://www.tanea.gr/,ισραήλ,βία,χαμάς,χεζμπολάχ,νεκροί,
 // So, an empty column before and after the content is needed to make it work properly
-class CSV_Handler{
-public:
+struct CSV_Handler{
     std::vector<std::string> keywords;
     std::vector<std::string> links;
     void ReadFile();
+    void WriteFile(std::vector<std::string> paragraphs, std::string& url)
 };

@@ -3,8 +3,6 @@
 // You need to define static variables to use them, a declaration is not enough
 std::vector<std::string> Scraper::urls;
 bool Scraper::analysis = false;
-std::array<std::string, 7> Scraper::keywords = {"αστυνομική βία", "αστυνομία", "βία",
-                                                "διαδηλωτές", "διαδηλώσεις", "νεκρός", "απειλή"};
 std::string Scraper::baseURL = "";
 
 // Get Info
