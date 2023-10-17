@@ -20,13 +20,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed an issue with where the program was unable to get the info from the CSV file. Now the program gets all links and keywords properly.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="The program now grabs the links from all the CSV file rows and search through them. (Needs to be tested)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +166,8 @@
       <workItem from="1697178908978" duration="628000" />
       <workItem from="1697195006794" duration="2143000" />
       <workItem from="1697365208688" duration="10353000" />
-      <workItem from="1697459936373" duration="689000" />
+      <workItem from="1697459936373" duration="783000" />
+      <workItem from="1697537483215" duration="32000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -269,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697379292431</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="The program now grabs the links from all the CSV file rows and search through them. (Needs to be tested)">
+      <option name="closed" value="true" />
+      <created>1697460715449</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1697460715449</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,6 +321,7 @@
     <MESSAGE value="Started working on converting the web scraper into a more general application for various uses." />
     <MESSAGE value="Created an example CSV file to use its data." />
     <MESSAGE value="Fixed an issue with where the program was unable to get the info from the CSV file. Now the program gets all links and keywords properly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue with where the program was unable to get the info from the CSV file. Now the program gets all links and keywords properly." />
+    <MESSAGE value="The program now grabs the links from all the CSV file rows and search through them. (Needs to be tested)" />
+    <option name="LAST_COMMIT_MESSAGE" value="The program now grabs the links from all the CSV file rows and search through them. (Needs to be tested)" />
   </component>
 </project>

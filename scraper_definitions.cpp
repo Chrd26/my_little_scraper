@@ -4,6 +4,8 @@
 std::vector<std::string> Scraper::urls;
 bool Scraper::analysis = false;
 std::string Scraper::baseURL = "";
+std::array<std::string, 7> Scraper::keywords = {"Keyword1", "Keyword2", "Keyword3", "Keyword4",
+                                                "Keyword5", "Keyword6", "Keyword7"};
 
 // Get Info
 cpr::Response Scraper::request_info(std::string url)

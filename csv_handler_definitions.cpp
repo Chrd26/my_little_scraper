@@ -41,7 +41,7 @@ void CSV_Handler::ReadFile()
 }
 
 // Start adding data to the CSV file
-void CSV_Handle::WriteFile(std::vector<std::string> paragraphs, std::string& url)
+void CSV_Handler::WriteFile(std::vector<std::string> paragraphs, std::string& url)
 {
 
 }
