@@ -20,8 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="The program now grabs the links from all the CSV file rows and search through them. (Needs to be tested)">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Started Implementing Wx Widgets, Made a simple window.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,6 +169,11 @@
       <workItem from="1697365208688" duration="10353000" />
       <workItem from="1697459936373" duration="783000" />
       <workItem from="1697537483215" duration="32000" />
+      <workItem from="1697560102663" duration="3253000" />
+      <workItem from="1697627432760" duration="571000" />
+      <workItem from="1697628087301" duration="365000" />
+      <workItem from="1697628739486" duration="242000" />
+      <workItem from="1697650602023" duration="1184000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -273,7 +279,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697460715449</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Started Implementing Wx Widgets, Made a simple window.">
+      <option name="closed" value="true" />
+      <created>1697565019641</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1697565019641</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,6 +336,7 @@
     <MESSAGE value="Created an example CSV file to use its data." />
     <MESSAGE value="Fixed an issue with where the program was unable to get the info from the CSV file. Now the program gets all links and keywords properly." />
     <MESSAGE value="The program now grabs the links from all the CSV file rows and search through them. (Needs to be tested)" />
-    <option name="LAST_COMMIT_MESSAGE" value="The program now grabs the links from all the CSV file rows and search through them. (Needs to be tested)" />
+    <MESSAGE value="Started Implementing Wx Widgets, Made a simple window." />
+    <option name="LAST_COMMIT_MESSAGE" value="Started Implementing Wx Widgets, Made a simple window." />
   </component>
 </project>

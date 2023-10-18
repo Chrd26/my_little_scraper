@@ -30,6 +30,14 @@ void OnAbout(wxCommandEvent& event);
 void OnStart(wxCommandEvent& event);
 };
 
+class AboutWindow: public wxFrame
+{
+public:
+    AboutWindow();
+private:
+    void OnExit(wxCommandEvent& event);
+};
+
 enum events
 {
     ID_Start = 1
@@ -49,7 +57,7 @@ MainFrame::MainFrame()
 {
     wxMenu* menuFile = new wxMenu;
 
-    menuFile->Append(ID_Start, " ", "Start Running");
+    menuFile->Append(ID_Start, "Start", "It starts the application");
     menuFile->AppendSeparator();
     menuFile->Append(wxID_EXIT);
 
@@ -70,6 +78,13 @@ MainFrame::MainFrame()
     Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
 }
 
+AboutWindow::AboutWindow()
+:wxFrame(NULL, wxID_ANY, "About")
+{
+    CreateStatusBar();
+    SetStatusText("This is an about window. You will find instructions here.");
+}
+
 void MainFrame::OnExit(wxCommandEvent &event)
 {
     close(true);
@@ -77,13 +92,18 @@ void MainFrame::OnExit(wxCommandEvent &event)
 
 void MainFrame::OnAbout(wxCommandEvent &event)
 {
-    wxMessageBox("This is a an example", "",
-                  wxOK|wxICON_INFORMATION);
+    AboutWindow* aboutWindow = new AboutWindow();
+    aboutWindow->Show(true);
 }
 
 void MainFrame::OnStart(wxCommandEvent &event)
 {
     wxMessageBox("The app should start running now!", "", wxOK|wxICON_INFORMATION);
+}
+
+void AboutWindow::OnExit(wxCommandEvent &event)
+{
+    close(true);
 }
 
 /*
