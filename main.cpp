@@ -1,5 +1,6 @@
 #include "scraping-handler.h"
 #include <wx/wx.h>
+#include <wx/stattext.h>
 #include "csv_handler.h"
 
 // More info and understanding
@@ -16,6 +17,8 @@ class ScraperApp : public wxApp
 public:
     virtual bool OnInit();
 };
+
+wxIMPLEMENT_APP(ScraperApp);
 
 // the public keyword is needed, otherwise the inherited code will be considered as
 // private member
@@ -40,21 +43,87 @@ private:
 
 enum events
 {
-    ID_Start = 1
+    ID_Start = 1,
 };
 
-wxIMPLEMENT_APP(ScraperApp);
+enum PanelId
+{
+    ID_Options = 1,
+};
+
+//Define logic
 
 bool ScraperApp::OnInit()
 {
     MainFrame* frame = new MainFrame();
+    // Use Hex to set the background color, read more here:
+    // https://docs.wxwidgets.org/3.2/classwx_colour.html#aac96e7922132d672a1f83d59ecf07343
+    // Stylizing the frame needs to use wxWindows class members
+    // Read: https://docs.wxwidgets.org/stable/classwx_window.html
+
+    // By Chat GPT
+    // Read more here:
+    // wxSize https://docs.wxwidgets.org/3.2/classwx_size.html#a89bbb1a42ad12573ff42809221e243a7
+    // Graphic Device Interface(wxGetDisplaySize() can be found here):
+    // https://docs.wxwidgets.org/3.2/group__group__funcmacro__gdi.html
+    // SetSize: https://docs.wxwidgets.org/3.2/classwx_window.html
+    wxSize screenSize = wxGetDisplaySize();
+    wxSize windowSize(screenSize.GetWidth() * 0.9, screenSize.GetHeight() * 0.9);
+    frame->SetSize(windowSize);
+    frame->SetBackgroundColour(wxColour(0,0,0));
+    frame->Center(wxBOTH);
     frame->Show(true);
     return true;
 }
 
 MainFrame::MainFrame()
-    : wxFrame(NULL, wxID_ANY, "Web Scraper")
+    : wxFrame(nullptr, wxID_ANY, "Web Scraper")
 {
+    // Frame Layout
+    wxPanel* top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
+    top->SetBackgroundColour("#4C6E81");
+
+    wxPanel* options = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
+    options->SetBackgroundColour("#7AACB3");
+
+    // Options Text
+    // Read more on static text:
+    // https://docs.wxwidgets.org/3.2/classwx_static_text.html#a9291a72fe2317f4a9e30c6eb7d02e014
+    wxStaticText* searchSettings = new wxStaticText(this, wxID_ANY, "Search Settings" ,wxDefaultPosition,
+                                                   wxDefaultSize, 0,  "Search Settings");
+
+    wxStaticText* databaseSettings = new wxStaticText(this, wxID_ANY, "Database Settings" ,wxDefaultPosition,
+                                                    wxDefaultSize, 0,  "Database Settings");
+
+    wxStaticText* database = new wxStaticText(this, wxID_ANY, "Database" ,wxDefaultPosition,
+                                                      wxDefaultSize, 0,  "Database");
+
+    wxStaticText* run = new wxStaticText(this, wxID_ANY, "Run" ,wxDefaultPosition,
+                                              wxDefaultSize, 0,  "Run");
+
+    wxBoxSizer* optionsText = new wxBoxSizer(wxHORIZONTAL);
+
+    optionsText->Add(searchSettings, 1);
+    optionsText->Add(databaseSettings, 1);
+    optionsText->Add(database, 1);
+    optionsText->Add(run, 1);
+
+    wxPanel* content = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
+    content->SetBackgroundColour("#4C6E81");
+
+    wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+    sizer->Add(top, 1, wxEXPAND);
+
+    wxBoxSizer* contentSizer = new wxBoxSizer(wxHORIZONTAL);
+    contentSizer->Add(options, 2, wxEXPAND);
+    contentSizer->Add(content, 3, wxEXPAND);
+
+    sizer->Add(contentSizer, 9, wxEXPAND);
+
+    this->SetSizerAndFit(sizer);
+
+    // Menu
+
     wxMenu* menuFile = new wxMenu;
 
     menuFile->Append(ID_Start, "Start", "It starts the application");
@@ -70,9 +139,6 @@ MainFrame::MainFrame()
 
     SetMenuBar( menubar );
 
-    CreateStatusBar();
-    SetStatusText("Hello");
-
     Bind(wxEVT_MENU, &MainFrame::OnStart, this, ID_Start);
     Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
@@ -83,6 +149,10 @@ AboutWindow::AboutWindow()
 {
     CreateStatusBar();
     SetStatusText("This is an about window. You will find instructions here.");
+
+    wxSize screen = wxGetDisplaySize();
+    wxSize windowSize(screen.GetWidth() * 0.4, screen.GetHeight() * 0.4);
+    SetSize(windowSize);
 }
 
 void MainFrame::OnExit(wxCommandEvent &event)
@@ -93,6 +163,9 @@ void MainFrame::OnExit(wxCommandEvent &event)
 void MainFrame::OnAbout(wxCommandEvent &event)
 {
     AboutWindow* aboutWindow = new AboutWindow();
+    aboutWindow->Center(wxBOTH);
+    // Set background color, Source: https://forums.wxwidgets.org/viewtopic.php?t=17706
+    aboutWindow->SetBackgroundColour("#AA5377");
     aboutWindow->Show(true);
 }
 
