@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="About button now opens up a new window. I need to add some forms to handle the CSV file. I should also look for some concepts to get some inspiration on the general design.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Started working on options text">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -181,6 +181,8 @@
       <workItem from="1697898528194" duration="243000" />
       <workItem from="1697898796026" duration="4422000" />
       <workItem from="1698056081147" duration="256000" />
+      <workItem from="1698084884719" duration="1961000" />
+      <workItem from="1698120759266" duration="1906000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -302,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697652270867</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Started working on options text">
+      <option name="closed" value="true" />
+      <created>1698087072821</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1698087072821</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,6 +363,7 @@
     <MESSAGE value="The program now grabs the links from all the CSV file rows and search through them. (Needs to be tested)" />
     <MESSAGE value="Started Implementing Wx Widgets, Made a simple window." />
     <MESSAGE value="About button now opens up a new window. I need to add some forms to handle the CSV file. I should also look for some concepts to get some inspiration on the general design." />
-    <option name="LAST_COMMIT_MESSAGE" value="About button now opens up a new window. I need to add some forms to handle the CSV file. I should also look for some concepts to get some inspiration on the general design." />
+    <MESSAGE value="Started working on options text" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started working on options text" />
   </component>
 </project>

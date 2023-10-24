@@ -83,30 +83,33 @@ MainFrame::MainFrame()
     wxPanel* top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
     top->SetBackgroundColour("#4C6E81");
 
+    wxStaticText* title = new wxStaticText(top, wxID_ANY, "Info Hunter", wxDefaultPosition,
+                                           wxDefaultSize, 0, "Info Hunter");
+    title->SetForegroundColour("#FFFFFF");
+
     wxPanel* options = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
     options->SetBackgroundColour("#7AACB3");
 
     // Options Text
     // Read more on static text:
     // https://docs.wxwidgets.org/3.2/classwx_static_text.html#a9291a72fe2317f4a9e30c6eb7d02e014
-    wxStaticText* searchSettings = new wxStaticText(this, wxID_ANY, "Search Settings" ,wxDefaultPosition,
+
+    wxStaticText* searchSettings = new wxStaticText(options, wxID_ANY, "Search Settings" ,wxPoint(0,100),
                                                    wxDefaultSize, 0,  "Search Settings");
+    searchSettings->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* databaseSettings = new wxStaticText(this, wxID_ANY, "Database Settings" ,wxDefaultPosition,
+    wxStaticText* databaseSettings = new wxStaticText(options, wxID_ANY, "Database Settings" ,wxPoint(0, 200),
                                                     wxDefaultSize, 0,  "Database Settings");
+    databaseSettings->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* database = new wxStaticText(this, wxID_ANY, "Database" ,wxDefaultPosition,
+    wxStaticText* database = new wxStaticText(options, wxID_ANY, "Database" ,wxPoint(0,300),
                                                       wxDefaultSize, 0,  "Database");
+    database->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* run = new wxStaticText(this, wxID_ANY, "Run" ,wxDefaultPosition,
+    wxStaticText* run = new wxStaticText(options, wxID_ANY, "Run" ,wxPoint(0,400),
                                               wxDefaultSize, 0,  "Run");
 
-    wxBoxSizer* optionsText = new wxBoxSizer(wxHORIZONTAL);
-
-    optionsText->Add(searchSettings, 1);
-    optionsText->Add(databaseSettings, 1);
-    optionsText->Add(database, 1);
-    optionsText->Add(run, 1);
+    run->SetForegroundColour("#FFFFFF");
 
     wxPanel* content = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
     content->SetBackgroundColour("#4C6E81");
@@ -115,6 +118,8 @@ MainFrame::MainFrame()
     sizer->Add(top, 1, wxEXPAND);
 
     wxBoxSizer* contentSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
+
     contentSizer->Add(options, 2, wxEXPAND);
     contentSizer->Add(content, 3, wxEXPAND);
 
