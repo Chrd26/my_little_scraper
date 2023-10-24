@@ -46,11 +46,6 @@ enum events
     ID_Start = 1,
 };
 
-enum PanelId
-{
-    ID_Options = 1,
-};
-
 //Define logic
 
 bool ScraperApp::OnInit()
@@ -94,19 +89,24 @@ MainFrame::MainFrame()
     // Read more on static text:
     // https://docs.wxwidgets.org/3.2/classwx_static_text.html#a9291a72fe2317f4a9e30c6eb7d02e014
 
-    wxStaticText* searchSettings = new wxStaticText(options, wxID_ANY, "Search Settings" ,wxPoint(0,100),
-                                                   wxDefaultSize, 0,  "Search Settings");
+    // Set Font size for the options panel
+    // Found here: https://stackoverflow.com/questions/67843563/font-size-scaling-problems
+    options->SetFont(wxFontInfo(wxSize(30,30)));
+
+    wxStaticText* searchSettings = new wxStaticText(options, wxID_ANY, "Search Settings" ,wxPoint(0,10),
+                                                    wxDefaultSize, 0,  "Search Settings");
     searchSettings->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* databaseSettings = new wxStaticText(options, wxID_ANY, "Database Settings" ,wxPoint(0, 200),
+
+    wxStaticText* databaseSettings = new wxStaticText(options, wxID_ANY, "Database Settings" ,wxPoint(0, 110),
                                                     wxDefaultSize, 0,  "Database Settings");
     databaseSettings->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* database = new wxStaticText(options, wxID_ANY, "Database" ,wxPoint(0,300),
+    wxStaticText* database = new wxStaticText(options, wxID_ANY, "Database" ,wxPoint(0,210),
                                                       wxDefaultSize, 0,  "Database");
     database->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* run = new wxStaticText(options, wxID_ANY, "Run" ,wxPoint(0,400),
+    wxStaticText* run = new wxStaticText(options, wxID_ANY, "Run" ,wxPoint(0,310),
                                               wxDefaultSize, 0,  "Run");
 
     run->SetForegroundColour("#FFFFFF");
