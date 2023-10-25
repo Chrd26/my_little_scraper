@@ -74,11 +74,15 @@ bool ScraperApp::OnInit()
 MainFrame::MainFrame()
     : wxFrame(nullptr, wxID_ANY, "Web Scraper")
 {
+    // Set Font
     // Frame Layout
     wxPanel* top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
     top->SetBackgroundColour("#4C6E81");
+    // This is how I maanged to make font settings to work. Helvetica Neue indeed changes the font
+    // Read more here: https://docs.wxwidgets.org/latest/classwx_font_info.html#a7273ff25fbd808e83ee79103d117ecaf
+    top->SetFont(wxFontInfo(65).FaceName("Helvetica Neue").Bold());
 
-    wxStaticText* title = new wxStaticText(top, wxID_ANY, "Info Hunter", wxDefaultPosition,
+    wxStaticText* title = new wxStaticText(top, wxID_ANY, "Info Hunter", wxPoint(100,10),
                                            wxDefaultSize, 0, "Info Hunter");
     title->SetForegroundColour("#FFFFFF");
 
@@ -92,22 +96,28 @@ MainFrame::MainFrame()
     // Set Font size for the options panel
     // Found here: https://stackoverflow.com/questions/67843563/font-size-scaling-problems
     options->SetFont(wxFontInfo(wxSize(30,30)));
+    wxSize optionsPanelSize = options->GetSize();
 
-    wxStaticText* searchSettings = new wxStaticText(options, wxID_ANY, "Search Settings" ,wxPoint(0,10),
-                                                    wxDefaultSize, 0,  "Search Settings");
+
+    wxStaticText* searchSettings = new wxStaticText(options, wxID_ANY, "Search Settings" ,
+                                                    wxPoint(optionsPanelSize.GetWidth()/2,10),wxDefaultSize,
+                                                    0,  "Search Settings");
     searchSettings->SetForegroundColour("#FFFFFF");
 
 
-    wxStaticText* databaseSettings = new wxStaticText(options, wxID_ANY, "Database Settings" ,wxPoint(0, 110),
-                                                    wxDefaultSize, 0,  "Database Settings");
+    wxStaticText* databaseSettings = new wxStaticText(options, wxID_ANY, "Database Settings" ,
+                                                      wxPoint(optionsPanelSize.GetWidth()/2, 110),
+                                                      wxDefaultSize, 0,  "Database Settings");
     databaseSettings->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* database = new wxStaticText(options, wxID_ANY, "Database" ,wxPoint(0,210),
-                                                      wxDefaultSize, 0,  "Database");
+    wxStaticText* database = new wxStaticText(options, wxID_ANY, "Database" ,
+                                              wxPoint(optionsPanelSize.GetWidth()/2,210),
+                                              wxDefaultSize, 0,  "Database");
     database->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* run = new wxStaticText(options, wxID_ANY, "Run" ,wxPoint(0,310),
-                                              wxDefaultSize, 0,  "Run");
+    wxStaticText* run = new wxStaticText(options, wxID_ANY, "Run" ,
+                                         wxPoint(optionsPanelSize.GetWidth()/2,310),
+                                         wxDefaultSize, 0,  "Run");
 
     run->SetForegroundColour("#FFFFFF");
 
