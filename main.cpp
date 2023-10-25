@@ -86,7 +86,7 @@ MainFrame::MainFrame()
                                            wxDefaultSize, 0, "Info Hunter");
     title->SetForegroundColour("#FFFFFF");
 
-    wxPanel* options = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
+    wxPanel* options = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     options->SetBackgroundColour("#7AACB3");
 
     // Options Text
@@ -95,40 +95,37 @@ MainFrame::MainFrame()
 
     // Set Font size for the options panel
     // Found here: https://stackoverflow.com/questions/67843563/font-size-scaling-problems
-    options->SetFont(wxFontInfo(wxSize(30,30)));
+    options->SetFont(wxFontInfo(55).FaceName("Roboto"));
     wxSize optionsPanelSize = options->GetSize();
 
-
     wxStaticText* searchSettings = new wxStaticText(options, wxID_ANY, "Search Settings" ,
-                                                    wxPoint(optionsPanelSize.GetWidth()/2,10),wxDefaultSize,
-                                                    0,  "Search Settings");
+                                                    wxPoint(optionsPanelSize.GetWidth()/2,60),
+                                                    wxDefaultSize, 0,  "Search Settings");
     searchSettings->SetForegroundColour("#FFFFFF");
 
-
     wxStaticText* databaseSettings = new wxStaticText(options, wxID_ANY, "Database Settings" ,
-                                                      wxPoint(optionsPanelSize.GetWidth()/2, 110),
+                                                      wxPoint(optionsPanelSize.GetWidth()/2, 180),
                                                       wxDefaultSize, 0,  "Database Settings");
     databaseSettings->SetForegroundColour("#FFFFFF");
 
     wxStaticText* database = new wxStaticText(options, wxID_ANY, "Database" ,
-                                              wxPoint(optionsPanelSize.GetWidth()/2,210),
+                                              wxPoint(optionsPanelSize.GetWidth()/2,300),
                                               wxDefaultSize, 0,  "Database");
     database->SetForegroundColour("#FFFFFF");
 
     wxStaticText* run = new wxStaticText(options, wxID_ANY, "Run" ,
-                                         wxPoint(optionsPanelSize.GetWidth()/2,310),
+                                         wxPoint(optionsPanelSize.GetWidth()/2,420),
                                          wxDefaultSize, 0,  "Run");
-
     run->SetForegroundColour("#FFFFFF");
 
-    wxPanel* content = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
+    wxPanel* content = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     content->SetBackgroundColour("#4C6E81");
+    content->SetFont(wxFontInfo(30).FaceName("Roboto"));
 
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(top, 1, wxEXPAND);
 
     wxBoxSizer* contentSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxBoxSizer* optionsSizer = new wxBoxSizer(wxVERTICAL);
 
     contentSizer->Add(options, 2, wxEXPAND);
     contentSizer->Add(content, 3, wxEXPAND);
