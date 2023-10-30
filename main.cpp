@@ -57,7 +57,7 @@ enum events
 enum ElementID
 {
     eID_SearchSettings = 0,
-    eID_DatagaseSettings,
+    eID_DatabaseSettings,
     eID_Database,
     eID_Run
 };
@@ -120,7 +120,7 @@ MainFrame::MainFrame()
                                                    wxDefaultSize, 0,  "Search Settings");
     searchSettings->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* databaseSettings = new wxStaticText(options, eID_DatagaseSettings, "Database Settings" ,
+    wxStaticText* databaseSettings = new wxStaticText(options, eID_DatabaseSettings, "Database Settings" ,
                                                       wxPoint(optionsPanelSize.GetWidth()/2, 180),
                                                       wxDefaultSize, 0,  "Database Settings");
     databaseSettings->SetForegroundColour("#FFFFFF");
@@ -176,11 +176,31 @@ MainFrame::MainFrame()
     // Read more: https://docs.wxwidgets.org/3.2.3/overview_events.html
     searchSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressSearchSettings,
                         this, eID_SearchSettings);
+    databaseSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressDatabaseSettings,
+                           this, eID_DatabaseSettings);
+    database->Bind(wxEVT_LEFT_UP, &MainFrame::PressDatabase, this,
+                            eID_Database);
+    run->Bind(wxEVT_LEFT_UP, &MainFrame::PressRun, this, eID_Run);
 }
 
 void MainFrame::PressSearchSettings(wxMouseEvent &event)
 {
-   std::cout << "Hello" << std::endl;
+   std::cout << "Pressed Search Settings" << std::endl;
+}
+
+void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
+{
+    std::cout << "Pressed Database Settings" << std::endl;
+}
+
+void MainFrame::PressDatabase(wxMouseEvent &event)
+{
+    std::cout << "Pressed Database" << std::endl;
+}
+
+void MainFrame::PressRun(wxMouseEvent &event)
+{
+    std::cout << "Pressed Run" << std::endl;
 }
 
 AboutWindow::AboutWindow()

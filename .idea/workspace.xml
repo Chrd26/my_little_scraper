@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Tried to add shadows but failed to do so. It is not very easy, I should create a bitmap with the shape I want for the panel and change the color to the same one that the content panel contains.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Found out how to use events with various elements. Read more on the source.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -187,7 +187,8 @@
       <workItem from="1698170370617" duration="3278000" />
       <workItem from="1698204623052" duration="123000" />
       <workItem from="1698225607635" duration="1360000" />
-      <workItem from="1698662291430" duration="2244000" />
+      <workItem from="1698662291430" duration="2382000" />
+      <workItem from="1698673252768" duration="881000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -349,7 +350,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698226892618</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Found out how to use events with various elements. Read more on the source.">
+      <option name="closed" value="true" />
+      <created>1698667648719</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1698667648719</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,6 +414,7 @@
     <MESSAGE value="Found a way to make the text of a panel bigger" />
     <MESSAGE value="Found out how to handle fonts and their styles." />
     <MESSAGE value="Tried to add shadows but failed to do so. It is not very easy, I should create a bitmap with the shape I want for the panel and change the color to the same one that the content panel contains." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tried to add shadows but failed to do so. It is not very easy, I should create a bitmap with the shape I want for the panel and change the color to the same one that the content panel contains." />
+    <MESSAGE value="Found out how to use events with various elements. Read more on the source." />
+    <option name="LAST_COMMIT_MESSAGE" value="Found out how to use events with various elements. Read more on the source." />
   </component>
 </project>
