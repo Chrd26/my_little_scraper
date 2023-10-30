@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Found a way to make the text of a panel bigger">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Tried to add shadows but failed to do so. It is not very easy, I should create a bitmap with the shape I want for the panel and change the color to the same one that the content panel contains.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -185,7 +185,9 @@
       <workItem from="1698120759266" duration="4369000" />
       <workItem from="1698151061076" duration="795000" />
       <workItem from="1698170370617" duration="3278000" />
-      <workItem from="1698204623052" duration="3000" />
+      <workItem from="1698204623052" duration="123000" />
+      <workItem from="1698225607635" duration="1360000" />
+      <workItem from="1698662291430" duration="2244000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -331,7 +333,23 @@
       <option name="project" value="LOCAL" />
       <updated>1698132945072</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Found out how to handle fonts and their styles.">
+      <option name="closed" value="true" />
+      <created>1698204666793</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1698204666793</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Tried to add shadows but failed to do so. It is not very easy, I should create a bitmap with the shape I want for the panel and change the color to the same one that the content panel contains.">
+      <option name="closed" value="true" />
+      <created>1698226892618</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1698226892618</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,6 +403,8 @@
     <MESSAGE value="Started working on options text" />
     <MESSAGE value="Added text to the right panels, I have been unable setting a sizer for them. Need some research." />
     <MESSAGE value="Found a way to make the text of a panel bigger" />
-    <option name="LAST_COMMIT_MESSAGE" value="Found a way to make the text of a panel bigger" />
+    <MESSAGE value="Found out how to handle fonts and their styles." />
+    <MESSAGE value="Tried to add shadows but failed to do so. It is not very easy, I should create a bitmap with the shape I want for the panel and change the color to the same one that the content panel contains." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tried to add shadows but failed to do so. It is not very easy, I should create a bitmap with the shape I want for the panel and change the color to the same one that the content panel contains." />
   </component>
 </project>

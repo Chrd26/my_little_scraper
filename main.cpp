@@ -31,6 +31,10 @@ private:
 void OnExit(wxCommandEvent& event);
 void OnAbout(wxCommandEvent& event);
 void OnStart(wxCommandEvent& event);
+void PressSearchSettings(wxMouseEvent& event);
+void PressDatabaseSettings(wxMouseEvent& event);
+void PressDatabase(wxMouseEvent& event);
+void PressRun(wxMouseEvent& event);
 };
 
 class AboutWindow: public wxFrame
@@ -44,7 +48,20 @@ private:
 enum events
 {
     ID_Start = 1,
+    ID_SearchSettings,
+    ID_DataBaseSettings,
+    ID_Database,
+    ID_Run
 };
+
+enum ElementID
+{
+    eID_SearchSettings = 0,
+    eID_DatagaseSettings,
+    eID_Database,
+    eID_Run
+};
+
 
 //Define logic
 
@@ -98,22 +115,22 @@ MainFrame::MainFrame()
     options->SetFont(wxFontInfo(55).FaceName("Roboto"));
     wxSize optionsPanelSize = options->GetSize();
 
-    wxStaticText* searchSettings = new wxStaticText(options, wxID_ANY, "Search Settings" ,
+    wxStaticText* searchSettings = new wxStaticText(options, eID_SearchSettings, "Search Settings" ,
                                                     wxPoint(optionsPanelSize.GetWidth()/2,60),
-                                                    wxDefaultSize, 0,  "Search Settings");
+                                                   wxDefaultSize, 0,  "Search Settings");
     searchSettings->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* databaseSettings = new wxStaticText(options, wxID_ANY, "Database Settings" ,
+    wxStaticText* databaseSettings = new wxStaticText(options, eID_DatagaseSettings, "Database Settings" ,
                                                       wxPoint(optionsPanelSize.GetWidth()/2, 180),
                                                       wxDefaultSize, 0,  "Database Settings");
     databaseSettings->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* database = new wxStaticText(options, wxID_ANY, "Database" ,
+    wxStaticText* database = new wxStaticText(options, eID_Database, "Database" ,
                                               wxPoint(optionsPanelSize.GetWidth()/2,300),
                                               wxDefaultSize, 0,  "Database");
     database->SetForegroundColour("#FFFFFF");
 
-    wxStaticText* run = new wxStaticText(options, wxID_ANY, "Run" ,
+    wxStaticText* run = new wxStaticText(options, eID_Run, "Run" ,
                                          wxPoint(optionsPanelSize.GetWidth()/2,420),
                                          wxDefaultSize, 0,  "Run");
     run->SetForegroundColour("#FFFFFF");
@@ -154,6 +171,16 @@ MainFrame::MainFrame()
     Bind(wxEVT_MENU, &MainFrame::OnStart, this, ID_Start);
     Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
+
+    // Handle events for certain elements in the window
+    // Read more: https://docs.wxwidgets.org/3.2.3/overview_events.html
+    searchSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressSearchSettings,
+                        this, eID_SearchSettings);
+}
+
+void MainFrame::PressSearchSettings(wxMouseEvent &event)
+{
+   std::cout << "Hello" << std::endl;
 }
 
 AboutWindow::AboutWindow()
