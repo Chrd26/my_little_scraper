@@ -31,10 +31,34 @@ private:
 void OnExit(wxCommandEvent& event);
 void OnAbout(wxCommandEvent& event);
 void OnStart(wxCommandEvent& event);
+
+// Hover Events
+private:
+    void HoverSearchSettings(wxMouseEvent& event);
+    void HoverDatabaseSettings(wxMouseEvent& event);
+    void HoverDatabase(wxMouseEvent& event);
+    void HoverRun(wxMouseEvent& event);
+
+// Stop Hovering Event
+private:
+    void StopHoverSearchSettings(wxMouseEvent& event);
+    void StopHoverDatabaseSettings(wxMouseEvent& event);
+    void StopHoverDatabase(wxMouseEvent& event);
+    void StopHoverRun(wxMouseEvent& event);
+
+
+// Click Button Events
+private:
 void PressSearchSettings(wxMouseEvent& event);
 void PressDatabaseSettings(wxMouseEvent& event);
 void PressDatabase(wxMouseEvent& event);
 void PressRun(wxMouseEvent& event);
+
+
+
+// Bools
+private:
+    bool isMouseHovering = false;
 };
 
 class AboutWindow: public wxFrame
@@ -95,7 +119,7 @@ MainFrame::MainFrame()
     // Frame Layout
     wxPanel* top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
     top->SetBackgroundColour("#4C6E81");
-    // This is how I maanged to make font settings to work. Helvetica Neue indeed changes the font
+    // This is how I managed to make font settings to work. Helvetica Neue indeed changes the font
     // Read more here: https://docs.wxwidgets.org/latest/classwx_font_info.html#a7273ff25fbd808e83ee79103d117ecaf
     top->SetFont(wxFontInfo(65).FaceName("Helvetica Neue").Bold());
 
@@ -174,6 +198,25 @@ MainFrame::MainFrame()
 
     // Handle events for certain elements in the window
     // Read more: https://docs.wxwidgets.org/3.2.3/overview_events.html
+
+    // On hover events
+    searchSettings->Bind(wxEVT_ENTER_WINDOW,&MainFrame::HoverSearchSettings,
+                         this, eID_SearchSettings);
+    databaseSettings->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverDatabaseSettings,
+                           this, eID_DatabaseSettings);
+    database->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverDatabase, this, eID_Database);
+    database->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverRun, this, eID_Run);
+
+    // On Exit hover events
+    searchSettings->Bind(wxEVT_LEAVE_WINDOW,&MainFrame::StopHoverSearchSettings,
+                         this, eID_SearchSettings);
+    databaseSettings->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverDatabaseSettings,
+                           this, eID_DatabaseSettings);
+    database->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverDatabase, this, eID_Database);
+    database->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverRun, this, eID_Run);
+
+
+    // On click events
     searchSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressSearchSettings,
                         this, eID_SearchSettings);
     databaseSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressDatabaseSettings,
@@ -183,6 +226,41 @@ MainFrame::MainFrame()
     run->Bind(wxEVT_LEFT_UP, &MainFrame::PressRun, this, eID_Run);
 }
 
+// Hover Events Functions
+void MainFrame::HoverSearchSettings(wxMouseEvent &event){
+    std::cout << "Hover Search Settings" << std::endl;
+}
+
+void MainFrame::HoverDatabaseSettings(wxMouseEvent &event){
+    std::cout << "Hover Database Settings" << std::endl;
+}
+
+void MainFrame::HoverDatabase(wxMouseEvent &event){
+    std::cout << "Hover Database" << std::endl;
+}
+
+void MainFrame::HoverRun(wxMouseEvent &event){
+    std::cout << "Hover Run" << std::endl;
+}
+
+// Stop Hovering Functions
+void MainFrame::StopHoverSearchSettings(wxMouseEvent &event){
+    std::cout << "Stop Hover Search Settings" << std::endl;
+}
+
+void MainFrame::StopHoverDatabaseSettings(wxMouseEvent &event){
+    std::cout << "Stop Hover Database Settings" << std::endl;
+}
+
+void MainFrame::StopHoverDatabase(wxMouseEvent &event){
+    std::cout << "Stop Hover Database" << std::endl;
+}
+
+void MainFrame::StopHoverRun(wxMouseEvent &event){
+    std::cout << "Stop Hover Run" << std::endl;
+}
+
+// Click Events Functions
 void MainFrame::PressSearchSettings(wxMouseEvent &event)
 {
    std::cout << "Pressed Search Settings" << std::endl;
