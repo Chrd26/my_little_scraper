@@ -24,9 +24,42 @@ wxIMPLEMENT_APP(ScraperApp);
 // private member
 class MainFrame : public wxFrame
 {
+
 public:
     MainFrame();
 
+// State manager and IDs
+private:
+    enum optionsHoverState
+    {
+        noHover = -1,
+        searchSettingsHover,
+        databaseSettingsHover,
+        databaseHover,
+        runHover
+    };
+    enum events
+    {
+        ID_Start = 1,
+        ID_SearchSettings,
+        ID_DataBaseSettings,
+        ID_Database,
+        ID_Run
+    };
+
+    enum ElementID
+    {
+        eID_SearchSettings = 0,
+        eID_DatabaseSettings,
+        eID_Database,
+        eID_Run
+    };
+
+// State Manager
+private:
+    int currentHoverState, currentButtonState;
+
+// Events Handling
 private:
 void OnExit(wxCommandEvent& event);
 void OnAbout(wxCommandEvent& event);
@@ -49,7 +82,7 @@ private:
 
 // Click Button Events
 private:
-void PressSearchSettings(wxMouseEvent& event);
+void PressSearchSettings(wxEvent &event);
 void PressDatabaseSettings(wxMouseEvent& event);
 void PressDatabase(wxMouseEvent& event);
 void PressRun(wxMouseEvent& event);
@@ -67,23 +100,6 @@ public:
     AboutWindow();
 private:
     void OnExit(wxCommandEvent& event);
-};
-
-enum events
-{
-    ID_Start = 1,
-    ID_SearchSettings,
-    ID_DataBaseSettings,
-    ID_Database,
-    ID_Run
-};
-
-enum ElementID
-{
-    eID_SearchSettings = 0,
-    eID_DatabaseSettings,
-    eID_Database,
-    eID_Run
 };
 
 
@@ -136,7 +152,7 @@ MainFrame::MainFrame()
 
     // Set Font size for the options panel
     // Found here: https://stackoverflow.com/questions/67843563/font-size-scaling-problems
-    options->SetFont(wxFontInfo(55).FaceName("Roboto"));
+    options->SetFont(wxFontInfo(55).FaceName("Helvetica Neue"));
     wxSize optionsPanelSize = options->GetSize();
 
     wxStaticText* searchSettings = new wxStaticText(options, eID_SearchSettings, "Search Settings" ,
@@ -228,40 +244,48 @@ MainFrame::MainFrame()
 
 // Hover Events Functions
 void MainFrame::HoverSearchSettings(wxMouseEvent &event){
+    currentHoverState = searchSettingsHover;
     std::cout << "Hover Search Settings" << std::endl;
 }
 
 void MainFrame::HoverDatabaseSettings(wxMouseEvent &event){
+    currentHoverState = databaseSettingsHover;
     std::cout << "Hover Database Settings" << std::endl;
 }
 
 void MainFrame::HoverDatabase(wxMouseEvent &event){
+    currentHoverState = databaseHover;
     std::cout << "Hover Database" << std::endl;
 }
 
 void MainFrame::HoverRun(wxMouseEvent &event){
+    currentHoverState = runHover;
     std::cout << "Hover Run" << std::endl;
 }
 
 // Stop Hovering Functions
 void MainFrame::StopHoverSearchSettings(wxMouseEvent &event){
+    currentHoverState = noHover;
     std::cout << "Stop Hover Search Settings" << std::endl;
 }
 
 void MainFrame::StopHoverDatabaseSettings(wxMouseEvent &event){
+    currentHoverState = noHover;
     std::cout << "Stop Hover Database Settings" << std::endl;
 }
 
 void MainFrame::StopHoverDatabase(wxMouseEvent &event){
+    currentHoverState = noHover;
     std::cout << "Stop Hover Database" << std::endl;
 }
 
 void MainFrame::StopHoverRun(wxMouseEvent &event){
+    currentHoverState = noHover;
     std::cout << "Stop Hover Run" << std::endl;
 }
 
 // Click Events Functions
-void MainFrame::PressSearchSettings(wxMouseEvent &event)
+void MainFrame::PressSearchSettings(wxEvent &event)
 {
    std::cout << "Pressed Search Settings" << std::endl;
 }
