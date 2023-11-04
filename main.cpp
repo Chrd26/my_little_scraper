@@ -41,26 +41,24 @@ private:
     enum events
     {
         ID_Start = 1,
-        ID_SearchSettings,
-        ID_DataBaseSettings,
-        ID_Database,
-        ID_Run
     };
 
     enum ElementID
     {
         eID_SearchSettings = 0,
         eID_DatabaseSettings,
+        eID_Title,
         eID_Database,
         eID_Run,
-        eID_OptionsImage
+        eID_OptionsImage,
+        eID_TopPanel,
+        eID_OptionsPanel,
+        eID_ContentPanel
     };
 
-// State Values
-private:
-    int currentHoverState, currentButtonState;
-
 // Events Handling
+
+// Window Events
 private:
 void OnExit(wxCommandEvent& event);
 void OnAbout(wxCommandEvent& event);
@@ -100,10 +98,10 @@ private:
     void OnExit(wxCommandEvent& event);
 };
 
-//Definitions
+//Define
 bool ScraperApp::OnInit()
 {
-    MainFrame* frame = new MainFrame();
+    auto* frame = new MainFrame();
     // Use Hex to set the background color, read more here:
     // https://docs.wxwidgets.org/3.2/classwx_colour.html#aac96e7922132d672a1f83d59ecf07343
     // Stylizing the frame needs to use wxWindows class members
@@ -129,18 +127,18 @@ MainFrame::MainFrame()
 {
     // Set Font
     // Frame Layout
-    top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
+    top = new wxPanel(this, eID_TopPanel, wxDefaultPosition, wxSize(200,100));
     top->SetBackgroundColour("#4C6E81");
 
     // This is how I managed to make font settings to work. Helvetica Neue indeed changes the font
     // Read more here: https://docs.wxwidgets.org/latest/classwx_font_info.html#a7273ff25fbd808e83ee79103d117ecaf
     top->SetFont(wxFontInfo(65).FaceName("Helvetica Neue").Bold());
 
-    title = new wxStaticText(top, wxID_ANY, "Info Hunter", wxPoint(10,10),
+    title = new wxStaticText(top, eID_Title, "Info Hunter", wxPoint(10,10),
                                            wxDefaultSize, 0, "Info Hunter");
     title->SetForegroundColour("#FFFFFFBB");
 
-    options = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+    options = new wxPanel(this, eID_OptionsPanel, wxDefaultPosition, wxDefaultSize);
     options->SetBackgroundColour("#4C6E81");
 
     // Options Text
@@ -181,7 +179,7 @@ MainFrame::MainFrame()
                                          wxDefaultSize, 0,  "Run");
     run->SetForegroundColour("#FFFFFFAA");
 
-    content = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+    content = new wxPanel(this, eID_ContentPanel, wxDefaultPosition, wxDefaultSize);
     content->SetBackgroundColour("#4C6E81");
     content->SetFont(wxFontInfo(30).FaceName("Roboto"));
 
@@ -219,6 +217,7 @@ MainFrame::MainFrame()
     Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
 
     // Handle events for certain elements in the window
+    // The argument after the handles has to be the id of the element
     // Read more: https://docs.wxwidgets.org/3.2.3/overview_events.html
 
     // On hover events
