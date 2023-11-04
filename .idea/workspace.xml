@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added functions for hover and stop hovering events. Needs to add a change mouse cursor during the event.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Tried out buttons but I was unable to make them work the I wanted them to. I reverted back to static text and added enums to handle states with switches to make the application dynamic.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -195,7 +195,9 @@
       <workItem from="1698864217380" duration="1438000" />
       <workItem from="1698918471841" duration="2728000" />
       <workItem from="1698926228679" duration="641000" />
-      <workItem from="1698952079887" duration="761000" />
+      <workItem from="1698952079887" duration="1189000" />
+      <workItem from="1699007090954" duration="459000" />
+      <workItem from="1699111364892" duration="3101000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -381,7 +383,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698676439266</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Tried out buttons but I was unable to make them work the I wanted them to. I reverted back to static text and added enums to handle states with switches to make the application dynamic.">
+      <option name="closed" value="true" />
+      <created>1698954181295</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1698954181295</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,6 +450,7 @@
     <MESSAGE value="Found out how to use events with various elements. Read more on the source." />
     <MESSAGE value="Elements now work as button. I need to make changes to the cursor as they are hovered." />
     <MESSAGE value="Added functions for hover and stop hovering events. Needs to add a change mouse cursor during the event." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functions for hover and stop hovering events. Needs to add a change mouse cursor during the event." />
+    <MESSAGE value="Tried out buttons but I was unable to make them work the I wanted them to. I reverted back to static text and added enums to handle states with switches to make the application dynamic." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tried out buttons but I was unable to make them work the I wanted them to. I reverted back to static text and added enums to handle states with switches to make the application dynamic." />
   </component>
 </project>

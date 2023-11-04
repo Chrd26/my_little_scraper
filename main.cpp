@@ -28,6 +28,10 @@ class MainFrame : public wxFrame
 public:
     MainFrame();
 
+// Class Properties
+private:
+    wxStaticText* searchSettings;
+
 // State manager and IDs
 private:
     enum optionsHoverState
@@ -55,7 +59,7 @@ private:
         eID_Run
     };
 
-// State Manager
+// State Values
 private:
     int currentHoverState, currentButtonState;
 
@@ -79,7 +83,6 @@ private:
     void StopHoverDatabase(wxMouseEvent& event);
     void StopHoverRun(wxMouseEvent& event);
 
-
 // Click Button Events
 private:
 void PressSearchSettings(wxEvent &event);
@@ -101,7 +104,6 @@ public:
 private:
     void OnExit(wxCommandEvent& event);
 };
-
 
 //Define logic
 
@@ -155,10 +157,11 @@ MainFrame::MainFrame()
     options->SetFont(wxFontInfo(55).FaceName("Helvetica Neue"));
     wxSize optionsPanelSize = options->GetSize();
 
-    wxStaticText* searchSettings = new wxStaticText(options, eID_SearchSettings, "Search Settings" ,
+    searchSettings = new wxStaticText(options, eID_SearchSettings, "Search Settings" ,
                                                     wxPoint(optionsPanelSize.GetWidth()/2,60),
                                                    wxDefaultSize, 0,  "Search Settings");
-    searchSettings->SetForegroundColour("#FFFFFF");
+
+    searchSettings->SetForegroundColour("#FFFFFF10");
 
     wxStaticText* databaseSettings = new wxStaticText(options, eID_DatabaseSettings, "Database Settings" ,
                                                       wxPoint(optionsPanelSize.GetWidth()/2, 180),
@@ -246,6 +249,7 @@ MainFrame::MainFrame()
 void MainFrame::HoverSearchSettings(wxMouseEvent &event){
     currentHoverState = searchSettingsHover;
     std::cout << "Hover Search Settings" << std::endl;
+    searchSettings->SetForegroundColour("#FFFFFF");
 }
 
 void MainFrame::HoverDatabaseSettings(wxMouseEvent &event){
@@ -267,6 +271,7 @@ void MainFrame::HoverRun(wxMouseEvent &event){
 void MainFrame::StopHoverSearchSettings(wxMouseEvent &event){
     currentHoverState = noHover;
     std::cout << "Stop Hover Search Settings" << std::endl;
+    searchSettings->SetForegroundColour("#FFFFFF10");
 }
 
 void MainFrame::StopHoverDatabaseSettings(wxMouseEvent &event){
