@@ -15,7 +15,7 @@
 class ScraperApp : public wxApp
 {
 public:
-    virtual bool OnInit();
+    bool OnInit() override;
 };
 
 wxIMPLEMENT_APP(ScraperApp);
@@ -29,19 +29,15 @@ public:
     MainFrame();
 
 // Class Properties
+// Inserting properties to event functors is not possible
+// Create class properties for easy manipulation
 private:
-    wxStaticText* searchSettings;
+    wxStaticText *searchSettings, *databaseSettings,  *database, *run, *title;
+    wxPanel *top, *options, *content;
+    wxStaticBitmap *optionsImage;
 
-// State manager and IDs
+// States and IDs
 private:
-    enum optionsHoverState
-    {
-        noHover = -1,
-        searchSettingsHover,
-        databaseSettingsHover,
-        databaseHover,
-        runHover
-    };
     enum events
     {
         ID_Start = 1,
@@ -56,7 +52,8 @@ private:
         eID_SearchSettings = 0,
         eID_DatabaseSettings,
         eID_Database,
-        eID_Run
+        eID_Run,
+        eID_OptionsImage
     };
 
 // State Values
@@ -85,12 +82,10 @@ private:
 
 // Click Button Events
 private:
-void PressSearchSettings(wxEvent &event);
-void PressDatabaseSettings(wxMouseEvent& event);
-void PressDatabase(wxMouseEvent& event);
-void PressRun(wxMouseEvent& event);
-
-
+    void PressSearchSettings(wxEvent &event);
+    void PressDatabaseSettings(wxMouseEvent& event);
+    void PressDatabase(wxMouseEvent& event);
+    void PressRun(wxMouseEvent& event);
 
 // Bools
 private:
@@ -105,8 +100,7 @@ private:
     void OnExit(wxCommandEvent& event);
 };
 
-//Define logic
-
+//Definitions
 bool ScraperApp::OnInit()
 {
     MainFrame* frame = new MainFrame();
@@ -122,7 +116,7 @@ bool ScraperApp::OnInit()
     // https://docs.wxwidgets.org/3.2/group__group__funcmacro__gdi.html
     // SetSize: https://docs.wxwidgets.org/3.2/classwx_window.html
     wxSize screenSize = wxGetDisplaySize();
-    wxSize windowSize(screenSize.GetWidth() * 0.9, screenSize.GetHeight() * 0.9);
+    wxSize windowSize(screenSize.GetWidth() * 0.98, screenSize.GetHeight() * 0.95);
     frame->SetSize(windowSize);
     frame->SetBackgroundColour(wxColour(0,0,0));
     frame->Center(wxBOTH);
@@ -135,18 +129,19 @@ MainFrame::MainFrame()
 {
     // Set Font
     // Frame Layout
-    wxPanel* top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
+    top = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200,100));
     top->SetBackgroundColour("#4C6E81");
+
     // This is how I managed to make font settings to work. Helvetica Neue indeed changes the font
     // Read more here: https://docs.wxwidgets.org/latest/classwx_font_info.html#a7273ff25fbd808e83ee79103d117ecaf
     top->SetFont(wxFontInfo(65).FaceName("Helvetica Neue").Bold());
 
-    wxStaticText* title = new wxStaticText(top, wxID_ANY, "Info Hunter", wxPoint(100,10),
+    title = new wxStaticText(top, wxID_ANY, "Info Hunter", wxPoint(10,10),
                                            wxDefaultSize, 0, "Info Hunter");
-    title->SetForegroundColour("#FFFFFF");
+    title->SetForegroundColour("#FFFFFFBB");
 
-    wxPanel* options = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
-    options->SetBackgroundColour("#7AACB3");
+    options = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+    options->SetBackgroundColour("#4C6E81");
 
     // Options Text
     // Read more on static text:
@@ -157,28 +152,36 @@ MainFrame::MainFrame()
     options->SetFont(wxFontInfo(55).FaceName("Helvetica Neue"));
     wxSize optionsPanelSize = options->GetSize();
 
+    // This is important to make sure that every supported
+    // file format works.
+    // Read more here: https://forums.wxwidgets.org/viewtopic.php?t=47660
+    wxInitAllImageHandlers();
+    optionsImage = new wxStaticBitmap(options, eID_OptionsImage,
+                                      wxBitmap("../graphics/Infohunter_Options_Panel.png",
+                                               wxBITMAP_TYPE_PNG),
+                                      wxDefaultPosition, wxDefaultSize);
+
     searchSettings = new wxStaticText(options, eID_SearchSettings, "Search Settings" ,
-                                                    wxPoint(optionsPanelSize.GetWidth()/2,60),
+                                                    wxPoint(optionsPanelSize.GetWidth()/2,120),
                                                    wxDefaultSize, 0,  "Search Settings");
+    searchSettings->SetForegroundColour("#FFFFFFAA");
 
-    searchSettings->SetForegroundColour("#FFFFFF10");
-
-    wxStaticText* databaseSettings = new wxStaticText(options, eID_DatabaseSettings, "Database Settings" ,
-                                                      wxPoint(optionsPanelSize.GetWidth()/2, 180),
+    databaseSettings = new wxStaticText(options, eID_DatabaseSettings, "Database Settings" ,
+                                                      wxPoint(optionsPanelSize.GetWidth()/2, 240),
                                                       wxDefaultSize, 0,  "Database Settings");
-    databaseSettings->SetForegroundColour("#FFFFFF");
+    databaseSettings->SetForegroundColour("#FFFFFFAA");
 
-    wxStaticText* database = new wxStaticText(options, eID_Database, "Database" ,
-                                              wxPoint(optionsPanelSize.GetWidth()/2,300),
+    database = new wxStaticText(options, eID_Database, "Database" ,
+                                              wxPoint(optionsPanelSize.GetWidth()/2,360),
                                               wxDefaultSize, 0,  "Database");
-    database->SetForegroundColour("#FFFFFF");
+    database->SetForegroundColour("#FFFFFFAA");
 
-    wxStaticText* run = new wxStaticText(options, eID_Run, "Run" ,
-                                         wxPoint(optionsPanelSize.GetWidth()/2,420),
+    run = new wxStaticText(options, eID_Run, "Run" ,
+                                         wxPoint(optionsPanelSize.GetWidth()/2,480),
                                          wxDefaultSize, 0,  "Run");
-    run->SetForegroundColour("#FFFFFF");
+    run->SetForegroundColour("#FFFFFFAA");
 
-    wxPanel* content = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
+    content = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     content->SetBackgroundColour("#4C6E81");
     content->SetFont(wxFontInfo(30).FaceName("Roboto"));
 
@@ -224,7 +227,7 @@ MainFrame::MainFrame()
     databaseSettings->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverDatabaseSettings,
                            this, eID_DatabaseSettings);
     database->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverDatabase, this, eID_Database);
-    database->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverRun, this, eID_Run);
+    run->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverRun, this, eID_Run);
 
     // On Exit hover events
     searchSettings->Bind(wxEVT_LEAVE_WINDOW,&MainFrame::StopHoverSearchSettings,
@@ -232,7 +235,7 @@ MainFrame::MainFrame()
     databaseSettings->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverDatabaseSettings,
                            this, eID_DatabaseSettings);
     database->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverDatabase, this, eID_Database);
-    database->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverRun, this, eID_Run);
+    run->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverRun, this, eID_Run);
 
 
     // On click events
@@ -247,46 +250,36 @@ MainFrame::MainFrame()
 
 // Hover Events Functions
 void MainFrame::HoverSearchSettings(wxMouseEvent &event){
-    currentHoverState = searchSettingsHover;
-    std::cout << "Hover Search Settings" << std::endl;
-    searchSettings->SetForegroundColour("#FFFFFF");
+    searchSettings->SetForegroundColour("#FFFFFFFF");
 }
 
 void MainFrame::HoverDatabaseSettings(wxMouseEvent &event){
-    currentHoverState = databaseSettingsHover;
-    std::cout << "Hover Database Settings" << std::endl;
+    databaseSettings->SetForegroundColour("#FFFFFFFF");
 }
 
 void MainFrame::HoverDatabase(wxMouseEvent &event){
-    currentHoverState = databaseHover;
-    std::cout << "Hover Database" << std::endl;
+    database->SetForegroundColour("#FFFFFFFF");
 }
 
 void MainFrame::HoverRun(wxMouseEvent &event){
-    currentHoverState = runHover;
-    std::cout << "Hover Run" << std::endl;
+    run->SetForegroundColour("#FFFFFFFF");
 }
 
 // Stop Hovering Functions
 void MainFrame::StopHoverSearchSettings(wxMouseEvent &event){
-    currentHoverState = noHover;
-    std::cout << "Stop Hover Search Settings" << std::endl;
-    searchSettings->SetForegroundColour("#FFFFFF10");
+    searchSettings->SetForegroundColour("#FFFFFFAA");
 }
 
 void MainFrame::StopHoverDatabaseSettings(wxMouseEvent &event){
-    currentHoverState = noHover;
-    std::cout << "Stop Hover Database Settings" << std::endl;
+    databaseSettings->SetForegroundColour("#FFFFFFAA");
 }
 
 void MainFrame::StopHoverDatabase(wxMouseEvent &event){
-    currentHoverState = noHover;
-    std::cout << "Stop Hover Database" << std::endl;
+    database->SetForegroundColour("#FFFFFFAA");
 }
 
 void MainFrame::StopHoverRun(wxMouseEvent &event){
-    currentHoverState = noHover;
-    std::cout << "Stop Hover Run" << std::endl;
+    run->SetForegroundColour("#FFFFFFAA");
 }
 
 // Click Events Functions
