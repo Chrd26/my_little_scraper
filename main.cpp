@@ -35,6 +35,8 @@ private:
     wxStaticText *searchSettings, *databaseSettings,  *database, *run, *title;
     wxPanel *top, *options, *content;
     wxStaticBitmap *optionsImage;
+    wxButton *confirmButton, *connectDatabaseButton, *addMoreButton;
+    wxSize contentPanelSize;
 
 // States and IDs
 private:
@@ -53,7 +55,8 @@ private:
         eID_OptionsImage,
         eID_TopPanel,
         eID_OptionsPanel,
-        eID_ContentPanel
+        eID_ContentPanel,
+        eID_ConfirmButton
     };
 
 // Events Handling
@@ -134,7 +137,7 @@ MainFrame::MainFrame()
     // Read more here: https://docs.wxwidgets.org/latest/classwx_font_info.html#a7273ff25fbd808e83ee79103d117ecaf
     top->SetFont(wxFontInfo(65).FaceName("Helvetica Neue").Bold());
 
-    title = new wxStaticText(top, eID_Title, "Info Hunter", wxPoint(10,10),
+    title = new wxStaticText(top, eID_Title, "Info Hunter", wxPoint(5,10),
                                            wxDefaultSize, 0, "Info Hunter");
     title->SetForegroundColour("#FFFFFFBB");
 
@@ -155,27 +158,27 @@ MainFrame::MainFrame()
     // Read more here: https://forums.wxwidgets.org/viewtopic.php?t=47660
     wxInitAllImageHandlers();
     optionsImage = new wxStaticBitmap(options, eID_OptionsImage,
-                                      wxBitmap("../graphics/Infohunter_Options_Panel.png",
+                                      wxBitmap("../graphics/Infohunter_Options_Panel_2.png",
                                                wxBITMAP_TYPE_PNG),
                                       wxDefaultPosition, wxDefaultSize);
 
     searchSettings = new wxStaticText(options, eID_SearchSettings, "Search Settings" ,
-                                                    wxPoint(optionsPanelSize.GetWidth()/2,120),
+                                                    wxPoint(optionsPanelSize.GetWidth()/2,40),
                                                    wxDefaultSize, 0,  "Search Settings");
     searchSettings->SetForegroundColour("#FFFFFFAA");
 
     databaseSettings = new wxStaticText(options, eID_DatabaseSettings, "Database Settings" ,
-                                                      wxPoint(optionsPanelSize.GetWidth()/2, 240),
+                                                      wxPoint(optionsPanelSize.GetWidth()/2, 140),
                                                       wxDefaultSize, 0,  "Database Settings");
     databaseSettings->SetForegroundColour("#FFFFFFAA");
 
     database = new wxStaticText(options, eID_Database, "Database" ,
-                                              wxPoint(optionsPanelSize.GetWidth()/2,360),
+                                              wxPoint(optionsPanelSize.GetWidth()/2,240),
                                               wxDefaultSize, 0,  "Database");
     database->SetForegroundColour("#FFFFFFAA");
 
     run = new wxStaticText(options, eID_Run, "Run" ,
-                                         wxPoint(optionsPanelSize.GetWidth()/2,480),
+                                         wxPoint(optionsPanelSize.GetWidth()/2,340),
                                          wxDefaultSize, 0,  "Run");
     run->SetForegroundColour("#FFFFFFAA");
 
@@ -188,13 +191,18 @@ MainFrame::MainFrame()
 
     wxBoxSizer* contentSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    contentSizer->Add(options, 2, wxEXPAND);
-    contentSizer->Add(content, 3, wxEXPAND);
+    contentSizer->Add(options, 1, wxEXPAND);
+    contentSizer->Add(content, 5, wxEXPAND);
 
     sizer->Add(contentSizer, 9, wxEXPAND);
 
     this->SetSizerAndFit(sizer);
 
+    contentPanelSize = content->GetSize();
+    confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
+                                 wxPoint(contentPanelSize.GetWidth() * 0.45,
+                                         contentPanelSize.GetHeight() * 0.8),
+                                 wxDefaultSize, 0, wxDefaultValidator, "Confirm");
     // Menu
 
     wxMenu* menuFile = new wxMenu;

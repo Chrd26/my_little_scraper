@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed static text interactivity colors, added background picture to the application.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Cleaned up the code a little, added some needed comments.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -198,7 +198,9 @@
       <workItem from="1698952079887" duration="1189000" />
       <workItem from="1699007090954" duration="459000" />
       <workItem from="1699111364892" duration="8199000" />
-      <workItem from="1699123645706" duration="1453000" />
+      <workItem from="1699123645706" duration="1491000" />
+      <workItem from="1699294275486" duration="2524000" />
+      <workItem from="1699297311468" duration="708000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -408,7 +410,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699121369794</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Cleaned up the code a little, added some needed comments.">
+      <option name="closed" value="true" />
+      <created>1699125685922</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1699125685922</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +454,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Now the application gets the text from the websites!" />
     <MESSAGE value="Added a conversion from unsigned char* to std::string to be able to use the std::string's methods." />
     <MESSAGE value="Added code to filter out content, I also need to find a way to get the data and time of the article." />
     <MESSAGE value="Added a message at the end of the runtime to know when it ends. Some fixes to the filter, duplicates apear, a simple comparison to a CSV file should make it possible to fix it. Some parts of the text is missing, probably because some of it is inside span tags." />
@@ -469,6 +478,7 @@
     <MESSAGE value="Tried out buttons but I was unable to make them work the I wanted them to. I reverted back to static text and added enums to handle states with switches to make the application dynamic." />
     <MESSAGE value="At last, I maanged to find a solution for the clickable static text. Making them class property was the answer!" />
     <MESSAGE value="Fixed static text interactivity colors, added background picture to the application." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed static text interactivity colors, added background picture to the application." />
+    <MESSAGE value="Cleaned up the code a little, added some needed comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up the code a little, added some needed comments." />
   </component>
 </project>
