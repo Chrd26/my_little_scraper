@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Cleaned up the code a little, added some needed comments.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="added confirm button, fixed some sizing issues with the png image as it was too big and made the options panel way to big. The confirm button might need some cetntering.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -200,7 +200,8 @@
       <workItem from="1699111364892" duration="8199000" />
       <workItem from="1699123645706" duration="1491000" />
       <workItem from="1699294275486" duration="2524000" />
-      <workItem from="1699297311468" duration="708000" />
+      <workItem from="1699297311468" duration="946000" />
+      <workItem from="1699379840559" duration="3194000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -418,7 +419,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699125685922</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="added confirm button, fixed some sizing issues with the png image as it was too big and made the options panel way to big. The confirm button might need some cetntering.">
+      <option name="closed" value="true" />
+      <created>1699298251862</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1699298251862</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,7 +463,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added a conversion from unsigned char* to std::string to be able to use the std::string's methods." />
     <MESSAGE value="Added code to filter out content, I also need to find a way to get the data and time of the article." />
     <MESSAGE value="Added a message at the end of the runtime to know when it ends. Some fixes to the filter, duplicates apear, a simple comparison to a CSV file should make it possible to fix it. Some parts of the text is missing, probably because some of it is inside span tags." />
     <MESSAGE value="Now the application grabs the complete text from the articles! Progress at last. I removed any &lt;strong&gt;&lt;/strong&gt; and &lt;span&gt;&lt;/span&gt; tags to make sure that  lexbor grabs everything properly." />
@@ -479,6 +487,7 @@
     <MESSAGE value="At last, I maanged to find a solution for the clickable static text. Making them class property was the answer!" />
     <MESSAGE value="Fixed static text interactivity colors, added background picture to the application." />
     <MESSAGE value="Cleaned up the code a little, added some needed comments." />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up the code a little, added some needed comments." />
+    <MESSAGE value="added confirm button, fixed some sizing issues with the png image as it was too big and made the options panel way to big. The confirm button might need some cetntering." />
+    <option name="LAST_COMMIT_MESSAGE" value="added confirm button, fixed some sizing issues with the png image as it was too big and made the options panel way to big. The confirm button might need some cetntering." />
   </component>
 </project>

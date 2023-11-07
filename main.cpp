@@ -37,6 +37,11 @@ private:
     wxStaticBitmap *optionsImage;
     wxButton *confirmButton, *connectDatabaseButton, *addMoreButton;
     wxSize contentPanelSize;
+    wxTextCtrl *url;
+    wxTextCtrl *keyword1;
+    wxTextCtrl *keyword2;
+    wxTextCtrl *keyword3;
+    wxTextCtrl *keyword4;
 
 // States and IDs
 private:
@@ -59,7 +64,14 @@ private:
         eID_ConfirmButton
     };
 
-// Events Handling
+    enum TextInput
+    {
+        itID_SearchSettingsURL = 0,
+        itID_Keyword1,
+        itID_Keyword2,
+        itID_Keyword3,
+        itID_Keyword4,
+    };
 
 // Window Events
 private:
@@ -203,8 +215,19 @@ MainFrame::MainFrame()
                                  wxPoint(contentPanelSize.GetWidth() * 0.45,
                                          contentPanelSize.GetHeight() * 0.8),
                                  wxDefaultSize, 0, wxDefaultValidator, "Confirm");
-    // Menu
 
+    url = new wxTextCtrl(content, itID_SearchSettingsURL, "Add url", wxPoint(90, 50),
+                         wxDefaultSize, 0, wxDefaultValidator, "Add URL");
+    keyword1 = new wxTextCtrl(content, itID_Keyword1, "Add Keyword", wxPoint(210, 50),
+                         wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
+    keyword2 = new wxTextCtrl(content, itID_Keyword2, "Add Keyword", wxPoint(410, 50),
+                         wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
+    keyword3 = new wxTextCtrl(content, itID_Keyword3, "Add Keyword", wxPoint(610, 50),
+                         wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
+    keyword4 = new wxTextCtrl(content, itID_Keyword4, "Add Keyword", wxPoint(810, 50),
+                         wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
+
+    // Menu
     wxMenu* menuFile = new wxMenu;
 
     menuFile->Append(ID_Start, "Start", "It starts the application");
