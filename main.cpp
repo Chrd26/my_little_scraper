@@ -212,20 +212,36 @@ MainFrame::MainFrame()
 
     contentPanelSize = content->GetSize();
     confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
-                                 wxPoint(contentPanelSize.GetWidth() * 0.45,
+                                 wxPoint(contentPanelSize.GetWidth() * 0.44,
                                          contentPanelSize.GetHeight() * 0.8),
-                                 wxDefaultSize, 0, wxDefaultValidator, "Confirm");
+                                 wxDefaultSize, wxBU_EXACTFIT, wxDefaultValidator, "Confirm");
 
-    url = new wxTextCtrl(content, itID_SearchSettingsURL, "Add url", wxPoint(90, 50),
+    confirmButton->SetFont(wxFont(wxFontInfo(20).FaceName("Helvetica")));
+
+    addMoreButton = new wxButton(content, eID_ConfirmButton, "+",
+                                 wxPoint(contentPanelSize.GetWidth() * 0.455,
+                                         contentPanelSize.GetHeight() * 0.25),
+                                 wxDefaultSize, wxBU_EXACTFIT, wxDefaultValidator, "+");
+
+    addMoreButton->SetFont(wxFont(wxFontInfo(20).FaceName("Helvetica")));
+
+
+    url = new wxTextCtrl(content, itID_SearchSettingsURL, "Add url", wxPoint(90, 60),
                          wxDefaultSize, 0, wxDefaultValidator, "Add URL");
-    keyword1 = new wxTextCtrl(content, itID_Keyword1, "Add Keyword", wxPoint(210, 50),
+    keyword1 = new wxTextCtrl(content, itID_Keyword1, "Add Keyword", wxPoint(210, 60),
                          wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
-    keyword2 = new wxTextCtrl(content, itID_Keyword2, "Add Keyword", wxPoint(410, 50),
+    keyword2 = new wxTextCtrl(content, itID_Keyword2, "Add Keyword", wxPoint(410, 60),
                          wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
-    keyword3 = new wxTextCtrl(content, itID_Keyword3, "Add Keyword", wxPoint(610, 50),
+    keyword3 = new wxTextCtrl(content, itID_Keyword3, "Add Keyword", wxPoint(610, 60),
                          wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
-    keyword4 = new wxTextCtrl(content, itID_Keyword4, "Add Keyword", wxPoint(810, 50),
+    keyword4 = new wxTextCtrl(content, itID_Keyword4, "Add Keyword", wxPoint(810, 60),
                          wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
+
+    url->SetFont(wxFontInfo(25));
+    keyword1->SetFont(wxFontInfo(25));
+    keyword2->SetFont(wxFontInfo(25));
+    keyword3->SetFont(wxFontInfo(25));
+    keyword4->SetFont(wxFontInfo(25));
 
     // Menu
     wxMenu* menuFile = new wxMenu;
