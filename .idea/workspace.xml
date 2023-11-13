@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added control text, there is a strange thing going on with the values of width. I need to investigate a bit further to see what is going and center the options better. I must find a key to introduce multiple rows of inputs(table)/">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -202,7 +202,17 @@
       <workItem from="1699294275486" duration="2524000" />
       <workItem from="1699297311468" duration="946000" />
       <workItem from="1699379840559" duration="3744000" />
-      <workItem from="1699420372012" duration="1588000" />
+      <workItem from="1699420372012" duration="1746000" />
+      <workItem from="1699426956807" duration="371000" />
+      <workItem from="1699465873545" duration="194000" />
+      <workItem from="1699466111265" duration="2013000" />
+      <workItem from="1699483205910" duration="1166000" />
+      <workItem from="1699518924035" duration="58000" />
+      <workItem from="1699519038104" duration="3212000" />
+      <workItem from="1699873897163" duration="48000" />
+      <workItem from="1699874034482" duration="956000" />
+      <workItem from="1699880435401" duration="168000" />
+      <workItem from="1699880665002" duration="1074000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -436,7 +446,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699384230355</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs.">
+      <option name="closed" value="true" />
+      <created>1699422154753</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1699422154753</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,7 +490,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added a message at the end of the runtime to know when it ends. Some fixes to the filter, duplicates apear, a simple comparison to a CSV file should make it possible to fix it. Some parts of the text is missing, probably because some of it is inside span tags." />
     <MESSAGE value="Now the application grabs the complete text from the articles! Progress at last. I removed any &lt;strong&gt;&lt;/strong&gt; and &lt;span&gt;&lt;/span&gt; tags to make sure that  lexbor grabs everything properly." />
     <MESSAGE value="Replaced all the anchors with paragraphs to be able to get the content properly." />
     <MESSAGE value="Removed somw comments, fixed a problem in the previous commit where it was not possible to replace the anchor tags because the istheSame variable never becomes true after becoming false. This made the anchor tags replacement impossible." />
@@ -497,6 +514,7 @@
     <MESSAGE value="Cleaned up the code a little, added some needed comments." />
     <MESSAGE value="added confirm button, fixed some sizing issues with the png image as it was too big and made the options panel way to big. The confirm button might need some cetntering." />
     <MESSAGE value="Added control text, there is a strange thing going on with the values of width. I need to investigate a bit further to see what is going and center the options better. I must find a key to introduce multiple rows of inputs(table)/" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added control text, there is a strange thing going on with the values of width. I need to investigate a bit further to see what is going and center the options better. I must find a key to introduce multiple rows of inputs(table)/" />
+    <MESSAGE value="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs." />
   </component>
 </project>

@@ -35,13 +35,19 @@ private:
     wxStaticText *searchSettings, *databaseSettings,  *database, *run, *title;
     wxPanel *top, *options, *content;
     wxStaticBitmap *optionsImage;
-    wxButton *confirmButton, *connectDatabaseButton, *addMoreButton;
+    wxButton *connectDatabaseButton, *addMoreButton;
     wxSize contentPanelSize;
-    wxTextCtrl *url;
-    wxTextCtrl *keyword1;
-    wxTextCtrl *keyword2;
-    wxTextCtrl *keyword3;
-    wxTextCtrl *keyword4;
+    std::vector<wxTextCtrl> urlsHolder;
+    int currentState;
+
+// Starting Content
+private:
+    wxStaticText *instructions;
+
+// Search Settings
+private:
+    wxTextCtrl *urlInput, *keyword1, *keyword2, *keyword3, *keyword4;
+    wxButton *confirmButton;
 
 // States and IDs
 private:
@@ -61,7 +67,8 @@ private:
         eID_TopPanel,
         eID_OptionsPanel,
         eID_ContentPanel,
-        eID_ConfirmButton
+        eID_ConfirmButton,
+        eID_Instructions
     };
 
     enum TextInput
@@ -71,6 +78,16 @@ private:
         itID_Keyword2,
         itID_Keyword3,
         itID_Keyword4,
+    };
+
+    enum states
+    {
+        ST_Instructions = 0,
+        ST_SearchSettings,
+        ST_DatabaseSettings,
+        ST_Database,
+        ST_Run,
+        ST_Runing
     };
 
 // Window Events
@@ -138,8 +155,11 @@ bool ScraperApp::OnInit()
 }
 
 MainFrame::MainFrame()
-    : wxFrame(nullptr, wxID_ANY, "Web Scraper")
+    : wxFrame(nullptr, wxID_ANY, "Info Hunter")
 {
+    // Starting stae
+    currentState = ST_Instructions;
+
     // Set Font
     // Frame Layout
     top = new wxPanel(this, eID_TopPanel, wxDefaultPosition, wxSize(200,100));
@@ -210,39 +230,6 @@ MainFrame::MainFrame()
 
     this->SetSizerAndFit(sizer);
 
-    contentPanelSize = content->GetSize();
-    confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
-                                 wxPoint(contentPanelSize.GetWidth() * 0.44,
-                                         contentPanelSize.GetHeight() * 0.8),
-                                 wxDefaultSize, wxBU_EXACTFIT, wxDefaultValidator, "Confirm");
-
-    confirmButton->SetFont(wxFont(wxFontInfo(20).FaceName("Helvetica")));
-
-    addMoreButton = new wxButton(content, eID_ConfirmButton, "+",
-                                 wxPoint(contentPanelSize.GetWidth() * 0.455,
-                                         contentPanelSize.GetHeight() * 0.25),
-                                 wxDefaultSize, wxBU_EXACTFIT, wxDefaultValidator, "+");
-
-    addMoreButton->SetFont(wxFont(wxFontInfo(20).FaceName("Helvetica")));
-
-
-    url = new wxTextCtrl(content, itID_SearchSettingsURL, "Add url", wxPoint(90, 60),
-                         wxDefaultSize, 0, wxDefaultValidator, "Add URL");
-    keyword1 = new wxTextCtrl(content, itID_Keyword1, "Add Keyword", wxPoint(210, 60),
-                         wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
-    keyword2 = new wxTextCtrl(content, itID_Keyword2, "Add Keyword", wxPoint(410, 60),
-                         wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
-    keyword3 = new wxTextCtrl(content, itID_Keyword3, "Add Keyword", wxPoint(610, 60),
-                         wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
-    keyword4 = new wxTextCtrl(content, itID_Keyword4, "Add Keyword", wxPoint(810, 60),
-                         wxDefaultSize, 0, wxDefaultValidator, "Add Keyword");
-
-    url->SetFont(wxFontInfo(25));
-    keyword1->SetFont(wxFontInfo(25));
-    keyword2->SetFont(wxFontInfo(25));
-    keyword3->SetFont(wxFontInfo(25));
-    keyword4->SetFont(wxFontInfo(25));
-
     // Menu
     wxMenu* menuFile = new wxMenu;
 
@@ -263,6 +250,17 @@ MainFrame::MainFrame()
     Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
 
+    content->SetFont(wxFontInfo(35).FaceName("Helvetica"));
+    content->SetForegroundColour("#FFFFFF");
+
+    instructions = new wxStaticText(content, eID_Instructions,
+                                    std::string("How to use the application:\n1. Add urls, keywords and")
+                                    + std::string("set up a timer in the search settings\n")
+                                    + std::string("2. Connect to a database in in the database settings\n")
+                                    + std::string("3. Press run to start scanning\n")
+                                    + std::string("4. Press the database option to see the results"),
+                                    wxPoint(20, 50), wxDefaultSize, 0, "Instructions");
+
     // Handle events for certain elements in the window
     // The argument after the handles has to be the id of the element
     // Read more: https://docs.wxwidgets.org/3.2.3/overview_events.html
@@ -282,7 +280,6 @@ MainFrame::MainFrame()
                            this, eID_DatabaseSettings);
     database->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverDatabase, this, eID_Database);
     run->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverRun, this, eID_Run);
-
 
     // On click events
     searchSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressSearchSettings,
@@ -331,7 +328,13 @@ void MainFrame::StopHoverRun(wxMouseEvent &event){
 // Click Events Functions
 void MainFrame::PressSearchSettings(wxEvent &event)
 {
-   std::cout << "Pressed Search Settings" << std::endl;
+   if (currentState == ST_Instructions)
+   {
+       instructions->Destroy();
+   }
+
+   wxStaticText* text = new wxStaticText(content, wxID_ANY, "Hello!", wxDefaultPosition,
+                                         wxDefaultSize, 0, "Hello!");
 }
 
 void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
