@@ -37,7 +37,6 @@ private:
     wxStaticBitmap *optionsImage;
     wxButton *connectDatabaseButton, *addMoreButton;
     wxSize contentPanelSize;
-    std::vector<wxTextCtrl> urlsHolder;
     int currentState;
 
 // Starting Content
@@ -46,8 +45,13 @@ private:
 
 // Search Settings
 private:
-    wxTextCtrl *urlInput, *keyword1, *keyword2, *keyword3, *keyword4;
+    std::vector<wxTextCtrl*> urlInput;
+    std::vector<wxTextCtrl*> keywords1;
+    std::vector<wxTextCtrl*> keywords2;
+    std::vector<wxTextCtrl*> keywords3;
+    std::vector<wxTextCtrl*> keywords4;
     wxButton *confirmButton;
+    wxButton *addMoreRows;
 
 // States and IDs
 private:
@@ -333,8 +337,65 @@ void MainFrame::PressSearchSettings(wxEvent &event)
        instructions->Destroy();
    }
 
-   wxStaticText* text = new wxStaticText(content, wxID_ANY, "Hello!", wxDefaultPosition,
-                                         wxDefaultSize, 0, "Hello!");
+   if (currentState == ST_SearchSettings)
+   {
+       urlInput.clear();
+       keywords1.clear();
+       keywords2.clear();
+       keywords3.clear();
+       keywords4.clear();
+   }
+
+   content->SetFont(wxFontInfo(40).FaceName("Helvetica"));
+   wxSize panelSize = content->GetSize();
+
+   for (size_t i = 0; i < 5; i++)
+   {
+
+       auto *newURL = new wxTextCtrl(content, itID_SearchSettingsURL, "Add url",
+                                        wxPoint(0.1 * panelSize.GetWidth(),
+                                                50 + (i * 100)), wxDefaultSize, 0,
+                                        wxDefaultValidator, " ");
+
+       urlInput.push_back(newURL);
+
+       auto *keyword1 = new wxTextCtrl(content, itID_Keyword1, "Keyword",
+                                             wxPoint(0.23 * panelSize.GetWidth(),
+                                                     50 + (i * 100)), wxDefaultSize, 0,
+                                             wxDefaultValidator, " ");
+
+      keywords1.push_back(keyword1);
+
+       auto *keyword2 = new wxTextCtrl(content, itID_Keyword1, "keyword",
+                                             wxPoint(0.385 * panelSize.GetWidth(),
+                                                     50 + (i * 100)), wxDefaultSize, 0,
+                                             wxDefaultValidator, " ");
+
+       keywords2.push_back(keyword2);
+
+       auto *keyword3 = new wxTextCtrl(content, itID_Keyword1, "keyword",
+                                             wxPoint(0.535 * panelSize.GetWidth(),
+                                                     50 + (i * 100)), wxDefaultSize, 0,
+                                             wxDefaultValidator, " ");
+
+       keywords3.push_back(keyword3);
+
+       auto *keyword4 = new wxTextCtrl(content, itID_Keyword1, "keyword",
+                                             wxPoint(0.685 * panelSize.GetWidth(),
+                                                     50 + (i * 100)), wxDefaultSize, 0,
+                                             wxDefaultValidator, " ");
+
+       keywords4.push_back(keyword4);
+   }
+
+   confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
+                                wxPoint(0.4 * panelSize.GetWidth(),
+                                        0.7 * panelSize.GetHeight()),
+                                        wxSize(panelSize.GetWidth() * 0.2, panelSize.GetHeight() * 0.2),
+                                        wxBU_ALIGN_MASK,
+                                        wxDefaultValidator, " ");
+
+   currentState = ST_SearchSettings;
 }
 
 void MainFrame::PressDatabaseSettings(wxMouseEvent &event)

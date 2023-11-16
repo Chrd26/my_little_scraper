@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="I found a way to destroy the elements from a panel! Now I can make the GUI dynamic at last!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -212,7 +212,12 @@
       <workItem from="1699873897163" duration="48000" />
       <workItem from="1699874034482" duration="956000" />
       <workItem from="1699880435401" duration="168000" />
-      <workItem from="1699880665002" duration="1074000" />
+      <workItem from="1699880665002" duration="1302000" />
+      <workItem from="1699883554676" duration="1146000" />
+      <workItem from="1699884858124" duration="1295000" />
+      <workItem from="1699886861977" duration="3234000" />
+      <workItem from="1700073401481" duration="90000" />
+      <workItem from="1700128871359" duration="33000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -454,7 +459,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699422154753</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="I found a way to destroy the elements from a panel! Now I can make the GUI dynamic at last!">
+      <option name="closed" value="true" />
+      <created>1699882063028</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1699882063028</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,7 +503,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Now the application grabs the complete text from the articles! Progress at last. I removed any &lt;strong&gt;&lt;/strong&gt; and &lt;span&gt;&lt;/span&gt; tags to make sure that  lexbor grabs everything properly." />
     <MESSAGE value="Replaced all the anchors with paragraphs to be able to get the content properly." />
     <MESSAGE value="Removed somw comments, fixed a problem in the previous commit where it was not possible to replace the anchor tags because the istheSame variable never becomes true after becoming false. This made the anchor tags replacement impossible." />
     <MESSAGE value="Working on some fixes with text gathering. It is not perfect yet. I found a solution to not include the same articles. Save the url link and compare it to every new article." />
@@ -515,6 +527,7 @@
     <MESSAGE value="added confirm button, fixed some sizing issues with the png image as it was too big and made the options panel way to big. The confirm button might need some cetntering." />
     <MESSAGE value="Added control text, there is a strange thing going on with the values of width. I need to investigate a bit further to see what is going and center the options better. I must find a key to introduce multiple rows of inputs(table)/" />
     <MESSAGE value="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs." />
+    <MESSAGE value="I found a way to destroy the elements from a panel! Now I can make the GUI dynamic at last!" />
+    <option name="LAST_COMMIT_MESSAGE" value="I found a way to destroy the elements from a panel! Now I can make the GUI dynamic at last!" />
   </component>
 </project>
