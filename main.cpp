@@ -53,7 +53,8 @@ private:
     wxButton *addMoreRows;
 
 // Database Settings
-    wxTextCtrl* username, password, server;
+private:
+    wxTextCtrl *username, *password;
 
 // States and IDs
 private:
@@ -74,7 +75,9 @@ private:
         eID_OptionsPanel,
         eID_ContentPanel,
         eID_ConfirmButton,
-        eID_Instructions
+        eID_Instructions,
+        eID_Username,
+        eID_Password
     };
 
     enum TextInput
@@ -402,6 +405,8 @@ void MainFrame::PressSearchSettings(wxEvent &event)
 
 void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
 {
+    wxSize panelSize = content->GetSize();
+
     if (currentState == ST_Instructions)
     {
         instructions->Destroy();
@@ -415,6 +420,31 @@ void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
         keywords3.clear();
         keywords4.clear();
     }
+
+    if (currentState == ST_DatabaseSettings)
+    {
+        username->Destroy();
+        password->Destroy();
+        confirmButton->Destroy();
+    }
+
+    username = new wxTextCtrl(content, eID_Username ,"Username",
+                              wxPoint(panelSize.GetWidth() * 0.1,
+                                      panelSize.GetHeight() * 0.1
+                              ), wxDefaultSize, 0,
+                              wxDefaultValidator, "");
+
+    password = new wxTextCtrl(content, eID_Password, "Password",
+                              wxPoint(panelSize.GetWidth() * 0.1,
+                                      panelSize.GetHeight() * 0.3),
+                              wxDefaultSize, wxTE_PASSWORD,
+                              wxDefaultValidator, "");
+
+    confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
+                                 wxPoint(panelSize.GetWidth() * 0.4, panelSize.GetHeight() * 0.5),
+                                 wxDefaultSize, 0, wxDefaultValidator, "");
+
+    currentState = ST_DatabaseSettings;
 }
 
 void MainFrame::PressDatabase(wxMouseEvent &event)
