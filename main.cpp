@@ -35,7 +35,6 @@ private:
     wxStaticText *searchSettings, *databaseSettings,  *database, *run, *title;
     wxPanel *top, *options, *content;
     wxStaticBitmap *optionsImage;
-    wxButton *connectDatabaseButton, *addMoreButton;
     wxSize contentPanelSize;
     int currentState;
 
@@ -52,6 +51,9 @@ private:
     std::vector<wxTextCtrl*> keywords4;
     wxButton *confirmButton;
     wxButton *addMoreRows;
+
+// Database Settings
+    wxTextCtrl* username, password, server;
 
 // States and IDs
 private:
@@ -400,7 +402,19 @@ void MainFrame::PressSearchSettings(wxEvent &event)
 
 void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
 {
-    std::cout << "Pressed Database Settings" << std::endl;
+    if (currentState == ST_Instructions)
+    {
+        instructions->Destroy();
+    }
+
+    if (currentState == ST_SearchSettings)
+    {
+        urlInput.clear();
+        keywords1.clear();
+        keywords2.clear();
+        keywords3.clear();
+        keywords4.clear();
+    }
 }
 
 void MainFrame::PressDatabase(wxMouseEvent &event)

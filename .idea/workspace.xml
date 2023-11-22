@@ -20,8 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="I found a way to destroy the elements from a panel! Now I can make the GUI dynamic at last!">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed memory leak issue where re-selecting an option in the options menu caused a crash.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -218,6 +219,8 @@
       <workItem from="1699886861977" duration="3234000" />
       <workItem from="1700073401481" duration="90000" />
       <workItem from="1700128871359" duration="33000" />
+      <workItem from="1700128969650" duration="321000" />
+      <workItem from="1700654262892" duration="2099000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -467,7 +470,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699882063028</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Fixed memory leak issue where re-selecting an option in the options menu caused a crash.">
+      <option name="closed" value="true" />
+      <created>1700129276590</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1700129276590</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +514,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Replaced all the anchors with paragraphs to be able to get the content properly." />
     <MESSAGE value="Removed somw comments, fixed a problem in the previous commit where it was not possible to replace the anchor tags because the istheSame variable never becomes true after becoming false. This made the anchor tags replacement impossible." />
     <MESSAGE value="Working on some fixes with text gathering. It is not perfect yet. I found a solution to not include the same articles. Save the url link and compare it to every new article." />
     <MESSAGE value="Started working on converting the web scraper into a more general application for various uses." />
@@ -528,6 +538,7 @@
     <MESSAGE value="Added control text, there is a strange thing going on with the values of width. I need to investigate a bit further to see what is going and center the options better. I must find a key to introduce multiple rows of inputs(table)/" />
     <MESSAGE value="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs." />
     <MESSAGE value="I found a way to destroy the elements from a panel! Now I can make the GUI dynamic at last!" />
-    <option name="LAST_COMMIT_MESSAGE" value="I found a way to destroy the elements from a panel! Now I can make the GUI dynamic at last!" />
+    <MESSAGE value="Fixed memory leak issue where re-selecting an option in the options menu caused a crash." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed memory leak issue where re-selecting an option in the options menu caused a crash." />
   </component>
 </project>
