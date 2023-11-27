@@ -342,14 +342,52 @@ void MainFrame::PressSearchSettings(wxEvent &event)
        instructions->Destroy();
    }
 
+   // Destroying vector elements:
+   /*The error message you are seeing indicates that the elem variable is not a structure or union,
+    * but a pointer to a wxTextCtrl object. Therefore, you cannot use the -> operator to access its members.
+    * Instead, you should use the * operator to dereference the pointer and access the object’s members/*/
+
    if (currentState == ST_SearchSettings)
    {
+       for(auto elem = urlInput.begin(); elem < urlInput.end(); elem++)
+       {
+           (*elem)->Destroy();
+       }
+
+       for(auto elem = keywords1.begin(); elem < keywords1.end(); elem++)
+       {
+           (*elem)->Destroy();
+       }
+
+       for(auto elem = keywords2.begin(); elem < keywords2.end(); elem++)
+       {
+           (*elem)->Destroy();
+       }
+
+       for(auto elem = keywords3.begin(); elem < keywords3.end(); elem++)
+       {
+           (*elem)->Destroy();
+       }
+
+       for(auto elem = keywords4.begin(); elem < keywords4.end(); elem++)
+       {
+           (*elem)->Destroy();
+       }
+
        urlInput.clear();
        keywords1.clear();
        keywords2.clear();
        keywords3.clear();
        keywords4.clear();
+       confirmButton->Destroy();
    }
+
+    if (currentState == ST_DatabaseSettings)
+    {
+        username->Destroy();
+        password->Destroy();
+        confirmButton->Destroy();
+    }
 
    content->SetFont(wxFontInfo(40).FaceName("Helvetica"));
    wxSize panelSize = content->GetSize();
@@ -361,6 +399,8 @@ void MainFrame::PressSearchSettings(wxEvent &event)
                                         wxPoint(0.1 * panelSize.GetWidth(),
                                                 50 + (i * 100)), wxDefaultSize, 0,
                                         wxDefaultValidator, " ");
+
+       newURL->SetBackgroundColour("#FFFFFF55");
 
        urlInput.push_back(newURL);
 
@@ -393,12 +433,15 @@ void MainFrame::PressSearchSettings(wxEvent &event)
        keywords4.push_back(keyword4);
    }
 
+
    confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
                                 wxPoint(0.4 * panelSize.GetWidth(),
                                         0.7 * panelSize.GetHeight()),
-                                        wxSize(panelSize.GetWidth() * 0.2, panelSize.GetHeight() * 0.2),
-                                        wxBU_ALIGN_MASK,
+                                        wxDefaultSize,
+                                        0,
                                         wxDefaultValidator, " ");
+
+    confirmButton->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
 
    currentState = ST_SearchSettings;
 }
@@ -406,25 +449,53 @@ void MainFrame::PressSearchSettings(wxEvent &event)
 void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
 {
     wxSize panelSize = content->GetSize();
+    content->SetFont(wxFontInfo(40).FaceName("Helvetica"));
 
     if (currentState == ST_Instructions)
     {
         instructions->Destroy();
     }
 
+    if (currentState == ST_DatabaseSettings)
+    {
+        username->Destroy();
+        password->Destroy();
+        confirmButton->Destroy();
+    }
+
     if (currentState == ST_SearchSettings)
     {
+        for(auto elem = urlInput.begin(); elem < urlInput.end(); elem++)
+        {
+            (*elem)->Destroy();
+        }
+
+        for(auto elem = keywords1.begin(); elem < keywords1.end(); elem++)
+        {
+            (*elem)->Destroy();
+        }
+
+        for(auto elem = keywords2.begin(); elem < keywords2.end(); elem++)
+        {
+            (*elem)->Destroy();
+        }
+
+        for(auto elem = keywords3.begin(); elem < keywords3.end(); elem++)
+        {
+            (*elem)->Destroy();
+        }
+
+        for(auto elem = keywords4.begin(); elem < keywords4.end(); elem++)
+        {
+            (*elem)->Destroy();
+        }
+
         urlInput.clear();
         keywords1.clear();
         keywords2.clear();
         keywords3.clear();
         keywords4.clear();
-    }
 
-    if (currentState == ST_DatabaseSettings)
-    {
-        username->Destroy();
-        password->Destroy();
         confirmButton->Destroy();
     }
 
@@ -439,6 +510,8 @@ void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
                                       panelSize.GetHeight() * 0.3),
                               wxDefaultSize, wxTE_PASSWORD,
                               wxDefaultValidator, "");
+
+    content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
 
     confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
                                  wxPoint(panelSize.GetWidth() * 0.4, panelSize.GetHeight() * 0.5),

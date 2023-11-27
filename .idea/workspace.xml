@@ -20,9 +20,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added mongodb driver to the project, started working on the database settings part.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added text control for password and username as well as confirm button.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -221,7 +220,9 @@
       <workItem from="1700128871359" duration="33000" />
       <workItem from="1700128969650" duration="321000" />
       <workItem from="1700654262892" duration="3932000" />
-      <workItem from="1700666187483" duration="3000" />
+      <workItem from="1700666187483" duration="72000" />
+      <workItem from="1700734049223" duration="1626000" />
+      <workItem from="1701061299209" duration="2338000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -487,7 +488,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700662199352</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Added text control for password and username as well as confirm button.">
+      <option name="closed" value="true" />
+      <created>1700666251638</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1700666251638</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -523,7 +532,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working on some fixes with text gathering. It is not perfect yet. I found a solution to not include the same articles. Save the url link and compare it to every new article." />
     <MESSAGE value="Started working on converting the web scraper into a more general application for various uses." />
     <MESSAGE value="Created an example CSV file to use its data." />
     <MESSAGE value="Fixed an issue with where the program was unable to get the info from the CSV file. Now the program gets all links and keywords properly." />
@@ -548,6 +556,7 @@
     <MESSAGE value="I found a way to destroy the elements from a panel! Now I can make the GUI dynamic at last!" />
     <MESSAGE value="Fixed memory leak issue where re-selecting an option in the options menu caused a crash." />
     <MESSAGE value="Added mongodb driver to the project, started working on the database settings part." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added mongodb driver to the project, started working on the database settings part." />
+    <MESSAGE value="Added text control for password and username as well as confirm button." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added text control for password and username as well as confirm button." />
   </component>
 </project>
