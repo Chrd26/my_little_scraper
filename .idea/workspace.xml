@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added text control for password and username as well as confirm button.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed a problem where the inputs were not getting destroyed correctly. I have run into some problems with the wxButton objects. I need more reseach.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -222,7 +222,13 @@
       <workItem from="1700654262892" duration="3932000" />
       <workItem from="1700666187483" duration="72000" />
       <workItem from="1700734049223" duration="1626000" />
-      <workItem from="1701061299209" duration="2338000" />
+      <workItem from="1701061299209" duration="2529000" />
+      <workItem from="1701071030780" duration="4124000" />
+      <workItem from="1701193550866" duration="2870000" />
+      <workItem from="1701234036123" duration="162000" />
+      <workItem from="1701234286928" duration="2898000" />
+      <workItem from="1701768749565" duration="1445000" />
+      <workItem from="1701782058280" duration="3193000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -496,7 +502,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700666251638</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Fixed a problem where the inputs were not getting destroyed correctly. I have run into some problems with the wxButton objects. I need more reseach.">
+      <option name="closed" value="true" />
+      <created>1701063935699</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1701063935699</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -532,7 +546,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Started working on converting the web scraper into a more general application for various uses." />
     <MESSAGE value="Created an example CSV file to use its data." />
     <MESSAGE value="Fixed an issue with where the program was unable to get the info from the CSV file. Now the program gets all links and keywords properly." />
     <MESSAGE value="The program now grabs the links from all the CSV file rows and search through them. (Needs to be tested)" />
@@ -557,6 +570,7 @@
     <MESSAGE value="Fixed memory leak issue where re-selecting an option in the options menu caused a crash." />
     <MESSAGE value="Added mongodb driver to the project, started working on the database settings part." />
     <MESSAGE value="Added text control for password and username as well as confirm button." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added text control for password and username as well as confirm button." />
+    <MESSAGE value="Fixed a problem where the inputs were not getting destroyed correctly. I have run into some problems with the wxButton objects. I need more reseach." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed a problem where the inputs were not getting destroyed correctly. I have run into some problems with the wxButton objects. I need more reseach." />
   </component>
 </project>

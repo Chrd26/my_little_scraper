@@ -96,7 +96,7 @@ private:
         ST_DatabaseSettings,
         ST_Database,
         ST_Run,
-        ST_Runing
+        ST_Running
     };
 
 // Window Events
@@ -391,6 +391,7 @@ void MainFrame::PressSearchSettings(wxEvent &event)
 
    content->SetFont(wxFontInfo(40).FaceName("Helvetica"));
    wxSize panelSize = content->GetSize();
+   wxSizer *contentSizer = new wxBoxSizer(wxVERTICAL);
 
    for (size_t i = 0; i < 5; i++)
    {
@@ -433,17 +434,13 @@ void MainFrame::PressSearchSettings(wxEvent &event)
        keywords4.push_back(keyword4);
    }
 
-
-   confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
-                                wxPoint(0.4 * panelSize.GetWidth(),
-                                        0.7 * panelSize.GetHeight()),
-                                        wxDefaultSize,
-                                        0,
-                                        wxDefaultValidator, " ");
+    confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
+                                 wxPoint(panelSize.GetWidth() * 0.4, panelSize.GetHeight() * 0.5),
+                                 wxDefaultSize, 0, wxDefaultValidator, "");
 
     confirmButton->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
 
-   currentState = ST_SearchSettings;
+    currentState = ST_SearchSettings;
 }
 
 void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
@@ -499,23 +496,38 @@ void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
         confirmButton->Destroy();
     }
 
-    username = new wxTextCtrl(content, eID_Username ,"Username",
-                              wxPoint(panelSize.GetWidth() * 0.1,
-                                      panelSize.GetHeight() * 0.1
-                              ), wxDefaultSize, 0,
-                              wxDefaultValidator, "");
+    wxSizer *topSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxSizer *contentHolder = new wxBoxSizer(wxVERTICAL);
+    wxSizer *usernameSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxSizer *passwordSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxSizer *confirmButtonSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    password = new wxTextCtrl(content, eID_Password, "Password",
-                              wxPoint(panelSize.GetWidth() * 0.1,
-                                      panelSize.GetHeight() * 0.3),
-                              wxDefaultSize, wxTE_PASSWORD,
-                              wxDefaultValidator, "");
+    username = new wxTextCtrl(content, eID_Username, "username",
+                              wxDefaultPosition, wxDefaultSize, 0);
 
-    content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
+    password = new wxTextCtrl(content, eID_Password, "password",
+                              wxDefaultPosition, wxDefaultSize, wxTE_PASSWORD);
 
     confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
-                                 wxPoint(panelSize.GetWidth() * 0.4, panelSize.GetHeight() * 0.5),
-                                 wxDefaultSize, 0, wxDefaultValidator, "");
+                                wxDefaultPosition, wxDefaultSize, 0,
+                                wxDefaultValidator, "Confirm");
+
+    usernameSizer->Add(username, 1, wxEXPAND|wxLEFT|wxRIGHT,
+                       panelSize.GetWidth() * 0.2);
+    passwordSizer->Add(password, 1, wxEXPAND|wxLEFT|wxRIGHT,
+                        panelSize.GetWidth() * 0.2);
+    confirmButtonSizer->Add(confirmButton, 1, wxEXPAND);
+
+
+    contentHolder->Add(usernameSizer, 1, wxEXPAND);
+    contentHolder->Add(passwordSizer, 1, wxEXPAND);
+    contentHolder->Add(confirmButtonSizer, 2, wxEXPAND|wxSHAPED);
+
+    topSizer->Add(contentHolder, 1, wxEXPAND|wxTOP,
+                  panelSize.GetHeight() * 0.08);
+
+    content->SetSizer(topSizer);
+    content->Layout();
 
     currentState = ST_DatabaseSettings;
 }
