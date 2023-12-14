@@ -101,9 +101,9 @@ private:
 
 // Window Events
 private:
-void OnExit(wxCommandEvent& event);
-void OnAbout(wxCommandEvent& event);
-void OnStart(wxCommandEvent& event);
+    void OnExit(wxCommandEvent& event);
+    void OnAbout(wxCommandEvent& event);
+    void OnStart(wxCommandEvent& event);
 
 // Hover Events
 private:
@@ -164,7 +164,7 @@ bool ScraperApp::OnInit()
 }
 
 MainFrame::MainFrame()
-    : wxFrame(nullptr, wxID_ANY, "Info Hunter")
+        : wxFrame(nullptr, wxID_ANY, "Info Hunter")
 {
     // Starting stae
     currentState = ST_Instructions;
@@ -179,7 +179,7 @@ MainFrame::MainFrame()
     top->SetFont(wxFontInfo(65).FaceName("Helvetica Neue").Bold());
 
     title = new wxStaticText(top, eID_Title, "Info Hunter", wxPoint(5,10),
-                                           wxDefaultSize, 0, "Info Hunter");
+                             wxDefaultSize, 0, "Info Hunter");
     title->SetForegroundColour("#FFFFFFBB");
 
     options = new wxPanel(this, eID_OptionsPanel, wxDefaultPosition, wxDefaultSize);
@@ -204,23 +204,23 @@ MainFrame::MainFrame()
                                       wxDefaultPosition, wxDefaultSize);
 
     searchSettings = new wxStaticText(options, eID_SearchSettings, "Search Settings" ,
-                                                    wxPoint(optionsPanelSize.GetWidth()/2,40),
-                                                   wxDefaultSize, 0,  "Search Settings");
+                                      wxPoint(optionsPanelSize.GetWidth()/2,40),
+                                      wxDefaultSize, 0,  "Search Settings");
     searchSettings->SetForegroundColour("#FFFFFFAA");
 
     databaseSettings = new wxStaticText(options, eID_DatabaseSettings, "Database Settings" ,
-                                                      wxPoint(optionsPanelSize.GetWidth()/2, 140),
-                                                      wxDefaultSize, 0,  "Database Settings");
+                                        wxPoint(optionsPanelSize.GetWidth()/2, 140),
+                                        wxDefaultSize, 0,  "Database Settings");
     databaseSettings->SetForegroundColour("#FFFFFFAA");
 
     database = new wxStaticText(options, eID_Database, "Database" ,
-                                              wxPoint(optionsPanelSize.GetWidth()/2,240),
-                                              wxDefaultSize, 0,  "Database");
+                                wxPoint(optionsPanelSize.GetWidth()/2,240),
+                                wxDefaultSize, 0,  "Database");
     database->SetForegroundColour("#FFFFFFAA");
 
     run = new wxStaticText(options, eID_Run, "Run" ,
-                                         wxPoint(optionsPanelSize.GetWidth()/2,340),
-                                         wxDefaultSize, 0,  "Run");
+                           wxPoint(optionsPanelSize.GetWidth()/2,340),
+                           wxDefaultSize, 0,  "Run");
     run->SetForegroundColour("#FFFFFFAA");
 
     content = new wxPanel(this, eID_ContentPanel, wxDefaultPosition, wxDefaultSize);
@@ -292,11 +292,11 @@ MainFrame::MainFrame()
 
     // On click events
     searchSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressSearchSettings,
-                        this, eID_SearchSettings);
+                         this, eID_SearchSettings);
     databaseSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressDatabaseSettings,
                            this, eID_DatabaseSettings);
     database->Bind(wxEVT_LEFT_UP, &MainFrame::PressDatabase, this,
-                            eID_Database);
+                   eID_Database);
     run->Bind(wxEVT_LEFT_UP, &MainFrame::PressRun, this, eID_Run);
 }
 
@@ -337,50 +337,50 @@ void MainFrame::StopHoverRun(wxMouseEvent &event){
 // Click Events Functions
 void MainFrame::PressSearchSettings(wxEvent &event)
 {
-   if (currentState == ST_Instructions)
-   {
-       instructions->Destroy();
-   }
+    if (currentState == ST_Instructions)
+    {
+        instructions->Destroy();
+    }
 
-   // Destroying vector elements:
-   /*The error message you are seeing indicates that the elem variable is not a structure or union,
-    * but a pointer to a wxTextCtrl object. Therefore, you cannot use the -> operator to access its members.
-    * Instead, you should use the * operator to dereference the pointer and access the object’s members/*/
+    // Destroying vector elements:
+    /*The error message you are seeing indicates that the elem variable is not a structure or union,
+     * but a pointer to a wxTextCtrl object. Therefore, you cannot use the -> operator to access its members.
+     * Instead, you should use the * operator to dereference the pointer and access the object’s members/*/
 
-   if (currentState == ST_SearchSettings)
-   {
-       for(auto elem = urlInput.begin(); elem < urlInput.end(); elem++)
-       {
-           (*elem)->Destroy();
-       }
+    if (currentState == ST_SearchSettings)
+    {
+        for(auto elem = urlInput.begin(); elem < urlInput.end(); elem++)
+        {
+            (*elem)->Destroy();
+        }
 
-       for(auto elem = keywords1.begin(); elem < keywords1.end(); elem++)
-       {
-           (*elem)->Destroy();
-       }
+        for(auto elem = keywords1.begin(); elem < keywords1.end(); elem++)
+        {
+            (*elem)->Destroy();
+        }
 
-       for(auto elem = keywords2.begin(); elem < keywords2.end(); elem++)
-       {
-           (*elem)->Destroy();
-       }
+        for(auto elem = keywords2.begin(); elem < keywords2.end(); elem++)
+        {
+            (*elem)->Destroy();
+        }
 
-       for(auto elem = keywords3.begin(); elem < keywords3.end(); elem++)
-       {
-           (*elem)->Destroy();
-       }
+        for(auto elem = keywords3.begin(); elem < keywords3.end(); elem++)
+        {
+            (*elem)->Destroy();
+        }
 
-       for(auto elem = keywords4.begin(); elem < keywords4.end(); elem++)
-       {
-           (*elem)->Destroy();
-       }
+        for(auto elem = keywords4.begin(); elem < keywords4.end(); elem++)
+        {
+            (*elem)->Destroy();
+        }
 
-       urlInput.clear();
-       keywords1.clear();
-       keywords2.clear();
-       keywords3.clear();
-       keywords4.clear();
-       confirmButton->Destroy();
-   }
+        urlInput.clear();
+        keywords1.clear();
+        keywords2.clear();
+        keywords3.clear();
+        keywords4.clear();
+        confirmButton->Destroy();
+    }
 
     if (currentState == ST_DatabaseSettings)
     {
@@ -389,54 +389,95 @@ void MainFrame::PressSearchSettings(wxEvent &event)
         confirmButton->Destroy();
     }
 
-   content->SetFont(wxFontInfo(40).FaceName("Helvetica"));
-   wxSize panelSize = content->GetSize();
-   wxSizer *contentSizer = new wxBoxSizer(wxVERTICAL);
+    content->SetFont(wxFontInfo(40).FaceName("Helvetica"));
+    wxSize panelSize = content->GetSize();
+    wxSizer *externalSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxSizer *confirmButtonSizer = new wxBoxSizer(wxHORIZONTAL);
 
-   for (size_t i = 0; i < 5; i++)
-   {
+    std::array<wxBoxSizer*, 5> urlsSizer;
+    std::array<wxBoxSizer*, 5> keywords1Sizer;
+    std::array<wxBoxSizer*, 5> keywords2Sizer;
+    std::array<wxBoxSizer*, 5> keywords3Sizer;
+    std::array<wxBoxSizer*, 5> keywords4Sizer;
 
-       auto *newURL = new wxTextCtrl(content, itID_SearchSettingsURL, "Add url",
-                                        wxPoint(0.1 * panelSize.GetWidth(),
-                                                50 + (i * 100)), wxDefaultSize, 0,
+    wxSizer *urlsSizerHolder = new wxBoxSizer(wxVERTICAL);
+    wxSizer *keywords1SizerHolder = new wxBoxSizer(wxVERTICAL);
+    wxSizer *keywords2SizerHolder = new wxBoxSizer(wxVERTICAL);
+    wxSizer *keywords3SizerHolder = new wxBoxSizer(wxVERTICAL);
+    wxSizer *keywords4SizerHolder = new wxBoxSizer(wxVERTICAL);
+
+    for (size_t i = 0; i < 5; i++)
+    {
+
+        auto *newURL = new wxTextCtrl(content, itID_SearchSettingsURL, "Add url",
+                                      wxDefaultPosition, wxDefaultSize, 0,
+                                      wxDefaultValidator, " ");
+
+        newURL->SetBackgroundColour("#FFFFFF55");
+        urlsSizer[i] = new wxBoxSizer(wxHORIZONTAL);
+        urlsSizer[i]->Add(newURL, 1, wxEXPAND);
+
+        urlInput.push_back(newURL);
+
+        auto *keyword1 = new wxTextCtrl(content, itID_Keyword1, "Keyword",
+                                        wxDefaultPosition, wxDefaultSize, 0,
                                         wxDefaultValidator, " ");
 
-       newURL->SetBackgroundColour("#FFFFFF55");
+        keywords1Sizer[i] = new wxBoxSizer(wxHORIZONTAL);
+        keywords1Sizer[i]->Add(keyword1, 1, wxEXPAND);
 
-       urlInput.push_back(newURL);
+        keywords1.push_back(keyword1);
 
-       auto *keyword1 = new wxTextCtrl(content, itID_Keyword1, "Keyword",
-                                             wxPoint(0.23 * panelSize.GetWidth(),
-                                                     50 + (i * 100)), wxDefaultSize, 0,
-                                             wxDefaultValidator, " ");
+        auto *keyword2 = new wxTextCtrl(content, itID_Keyword1, "keyword",
+                                        wxDefaultPosition, wxDefaultSize, 0,
+                                        wxDefaultValidator, " ");
 
-      keywords1.push_back(keyword1);
+        keywords2Sizer[i] = new wxBoxSizer(wxHORIZONTAL);
+        keywords2Sizer[i]->Add(keyword2, 1, wxEXPAND);
 
-       auto *keyword2 = new wxTextCtrl(content, itID_Keyword1, "keyword",
-                                             wxPoint(0.385 * panelSize.GetWidth(),
-                                                     50 + (i * 100)), wxDefaultSize, 0,
-                                             wxDefaultValidator, " ");
+        keywords2.push_back(keyword2);
 
-       keywords2.push_back(keyword2);
+        auto *keyword3 = new wxTextCtrl(content, itID_Keyword1, "keyword",
+                                        wxDefaultPosition, wxDefaultSize, 0,
+                                        wxDefaultValidator, " ");
 
-       auto *keyword3 = new wxTextCtrl(content, itID_Keyword1, "keyword",
-                                             wxPoint(0.535 * panelSize.GetWidth(),
-                                                     50 + (i * 100)), wxDefaultSize, 0,
-                                             wxDefaultValidator, " ");
+        keywords3Sizer[i] = new wxBoxSizer(wxHORIZONTAL);
+        keywords3Sizer[i]->Add(keyword3, 1, wxEXPAND);
 
-       keywords3.push_back(keyword3);
+        keywords3.push_back(keyword3);
 
-       auto *keyword4 = new wxTextCtrl(content, itID_Keyword1, "keyword",
-                                             wxPoint(0.685 * panelSize.GetWidth(),
-                                                     50 + (i * 100)), wxDefaultSize, 0,
-                                             wxDefaultValidator, " ");
+        auto *keyword4 = new wxTextCtrl(content, itID_Keyword1, "keyword",
+                                        wxDefaultPosition, wxDefaultSize, 0,
+                                        wxDefaultValidator, " ");
 
-       keywords4.push_back(keyword4);
-   }
+        keywords4Sizer[i] = new wxBoxSizer(wxHORIZONTAL);
+        keywords4Sizer[i]->Add(keyword4, 1, wxEXPAND);
+
+        keywords4.push_back(keyword4);
+    }
 
     confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
                                  wxPoint(panelSize.GetWidth() * 0.4, panelSize.GetHeight() * 0.5),
                                  wxDefaultSize, 0, wxDefaultValidator, "");
+
+    confirmButtonSizer->Add(confirmButton, 1, wxEXPAND);
+
+    for (int j = 0; j < 5; j++)
+    {
+        urlsSizerHolder->Add(urlsSizer[j], 1, wxEXPAND);
+        keywords1SizerHolder->Add(keywords1Sizer[j], 1, wxEXPAND);
+        keywords2SizerHolder->Add(keywords2Sizer[j], 1, wxEXPAND);
+        keywords3SizerHolder->Add(keywords3Sizer[j], 1, wxEXPAND);
+        keywords3SizerHolder->Add(keywords4Sizer[j], 1, wxEXPAND);
+    }
+
+    externalSizer->Add(urlsSizerHolder, 1, wxEXPAND);
+    externalSizer->Add(keywords1SizerHolder, 1, wxEXPAND);
+    externalSizer->Add(keywords2SizerHolder, 1, wxEXPAND);
+    externalSizer->Add(keywords3SizerHolder, 1, wxEXPAND);
+    externalSizer->Add(keywords4SizerHolder, 1, wxEXPAND);
+
+    content->SetSizer(externalSizer);
 
     confirmButton->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
 
@@ -509,13 +550,13 @@ void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
                               wxDefaultPosition, wxDefaultSize, wxTE_PASSWORD);
 
     confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
-                                wxDefaultPosition, wxDefaultSize, 0,
-                                wxDefaultValidator, "Confirm");
+                                 wxDefaultPosition, wxDefaultSize, 0,
+                                 wxDefaultValidator, "Confirm");
 
     usernameSizer->Add(username, 1, wxEXPAND|wxLEFT|wxRIGHT,
                        panelSize.GetWidth() * 0.2);
     passwordSizer->Add(password, 1, wxEXPAND|wxLEFT|wxRIGHT,
-                        panelSize.GetWidth() * 0.2);
+                       panelSize.GetWidth() * 0.2);
     confirmButtonSizer->Add(confirmButton, 1, wxEXPAND);
 
 
@@ -543,7 +584,7 @@ void MainFrame::PressRun(wxMouseEvent &event)
 }
 
 AboutWindow::AboutWindow()
-:wxFrame(NULL, wxID_ANY, "About")
+        :wxFrame(NULL, wxID_ANY, "About")
 {
     CreateStatusBar();
     SetStatusText("This is an about window. You will find instructions here.");
