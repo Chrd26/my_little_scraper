@@ -44,11 +44,10 @@ private:
 
 // Search Settings
 private:
-    std::vector<wxTextCtrl*> urlInput;
-    std::vector<wxTextCtrl*> keywords1;
-    std::vector<wxTextCtrl*> keywords2;
-    std::vector<wxTextCtrl*> keywords3;
-    std::vector<wxTextCtrl*> keywords4;
+    std::array<wxTextCtrl*, 5> urlInput;
+    std::array<wxTextCtrl*, 5> keywords1;
+    std::array<wxTextCtrl*, 5> keywords2;
+    std::array<wxTextCtrl*, 5> keywords3;
     wxButton *confirmButton;
     wxButton *addMoreRows;
 
@@ -369,16 +368,14 @@ void MainFrame::PressSearchSettings(wxEvent &event)
             (*elem)->Destroy();
         }
 
-        for(auto elem = keywords4.begin(); elem < keywords4.end(); elem++)
+        for (int i = 0; i < 5; i++)
         {
-            (*elem)->Destroy();
+            delete(urlInput[i]);
+            delete(keywords1[i]);
+            delete(keywords2[i]);
+            delete(keywords3[i]);
         }
 
-        urlInput.clear();
-        keywords1.clear();
-        keywords2.clear();
-        keywords3.clear();
-        keywords4.clear();
         confirmButton->Destroy();
     }
 
@@ -389,97 +386,132 @@ void MainFrame::PressSearchSettings(wxEvent &event)
         confirmButton->Destroy();
     }
 
-    content->SetFont(wxFontInfo(40).FaceName("Helvetica"));
-    wxSize panelSize = content->GetSize();
-    wxSizer *externalSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxSizer *confirmButtonSizer = new wxBoxSizer(wxHORIZONTAL);
+    content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
 
-    std::array<wxBoxSizer*, 5> urlsSizer;
-    std::array<wxBoxSizer*, 5> keywords1Sizer;
-    std::array<wxBoxSizer*, 5> keywords2Sizer;
-    std::array<wxBoxSizer*, 5> keywords3Sizer;
-    std::array<wxBoxSizer*, 5> keywords4Sizer;
+    this->SetSizeHints( wxDefaultSize, wxDefaultSize );
 
-    wxSizer *urlsSizerHolder = new wxBoxSizer(wxVERTICAL);
-    wxSizer *keywords1SizerHolder = new wxBoxSizer(wxVERTICAL);
-    wxSizer *keywords2SizerHolder = new wxBoxSizer(wxVERTICAL);
-    wxSizer *keywords3SizerHolder = new wxBoxSizer(wxVERTICAL);
-    wxSizer *keywords4SizerHolder = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* bSizer1;
+    bSizer1 = new wxBoxSizer( wxVERTICAL );
 
-    for (size_t i = 0; i < 5; i++)
-    {
+    wxBoxSizer* bSizer2;
+    bSizer2 = new wxBoxSizer( wxHORIZONTAL );
 
-        auto *newURL = new wxTextCtrl(content, itID_SearchSettingsURL, "Add url",
-                                      wxDefaultPosition, wxDefaultSize, 0,
-                                      wxDefaultValidator, " ");
+    wxTextCtrl*  url = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer2->Add( url, 1, wxEXPAND|wxALL, 20 );
 
-        newURL->SetBackgroundColour("#FFFFFF55");
-        urlsSizer[i] = new wxBoxSizer(wxHORIZONTAL);
-        urlsSizer[i]->Add(newURL, 1, wxEXPAND);
+    wxTextCtrl*  keyword1 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer2->Add( keyword1, 1, wxEXPAND|wxALL, 20 );
 
-        urlInput.push_back(newURL);
+    wxTextCtrl*  keyword2 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer2->Add( keyword2, 1, wxEXPAND|wxALL, 20 );
 
-        auto *keyword1 = new wxTextCtrl(content, itID_Keyword1, "Keyword",
-                                        wxDefaultPosition, wxDefaultSize, 0,
-                                        wxDefaultValidator, " ");
+    wxTextCtrl* keyword3 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer2->Add( keyword3, 1, wxEXPAND|wxALL, 20 );
 
-        keywords1Sizer[i] = new wxBoxSizer(wxHORIZONTAL);
-        keywords1Sizer[i]->Add(keyword1, 1, wxEXPAND);
+    wxTextCtrl* keyword35 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer2->Add( keyword35, 1, wxEXPAND|wxALL, 20 );
 
-        keywords1.push_back(keyword1);
 
-        auto *keyword2 = new wxTextCtrl(content, itID_Keyword1, "keyword",
-                                        wxDefaultPosition, wxDefaultSize, 0,
-                                        wxDefaultValidator, " ");
+    bSizer1->Add( bSizer2, 0, wxEXPAND|wxTOP|wxRIGHT|wxLEFT, 50|100|100);
 
-        keywords2Sizer[i] = new wxBoxSizer(wxHORIZONTAL);
-        keywords2Sizer[i]->Add(keyword2, 1, wxEXPAND);
+    wxBoxSizer* bSizer21;
+    bSizer21 = new wxBoxSizer( wxHORIZONTAL );
 
-        keywords2.push_back(keyword2);
+    wxTextCtrl* url1 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer21->Add( url1, 1, wxALL, 5 );
 
-        auto *keyword3 = new wxTextCtrl(content, itID_Keyword1, "keyword",
-                                        wxDefaultPosition, wxDefaultSize, 0,
-                                        wxDefaultValidator, " ");
+    wxTextCtrl* keyword11 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer21->Add( keyword11, 1, wxALL, 5 );
 
-        keywords3Sizer[i] = new wxBoxSizer(wxHORIZONTAL);
-        keywords3Sizer[i]->Add(keyword3, 1, wxEXPAND);
+    wxTextCtrl*  keyword21 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer21->Add( keyword21, 1, wxALL, 5 );
 
-        keywords3.push_back(keyword3);
+    wxTextCtrl*  keyword31 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer21->Add( keyword31, 1, wxALL, 5 );
 
-        auto *keyword4 = new wxTextCtrl(content, itID_Keyword1, "keyword",
-                                        wxDefaultPosition, wxDefaultSize, 0,
-                                        wxDefaultValidator, " ");
+    wxTextCtrl* keyword311 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer21->Add( keyword311, 0, wxALL, 5 );
 
-        keywords4Sizer[i] = new wxBoxSizer(wxHORIZONTAL);
-        keywords4Sizer[i]->Add(keyword4, 1, wxEXPAND);
 
-        keywords4.push_back(keyword4);
-    }
+    bSizer1->Add( bSizer21, 0, wxALIGN_CENTER, 1 );
 
-    confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
-                                 wxPoint(panelSize.GetWidth() * 0.4, panelSize.GetHeight() * 0.5),
-                                 wxDefaultSize, 0, wxDefaultValidator, "");
+    wxBoxSizer* bSizer22;
+    bSizer22 = new wxBoxSizer( wxHORIZONTAL );
 
-    confirmButtonSizer->Add(confirmButton, 1, wxEXPAND);
+    wxTextCtrl* url2 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer22->Add( url2, 1, wxALL, 5 );
 
-    for (int j = 0; j < 5; j++)
-    {
-        urlsSizerHolder->Add(urlsSizer[j], 1, wxEXPAND);
-        keywords1SizerHolder->Add(keywords1Sizer[j], 1, wxEXPAND);
-        keywords2SizerHolder->Add(keywords2Sizer[j], 1, wxEXPAND);
-        keywords3SizerHolder->Add(keywords3Sizer[j], 1, wxEXPAND);
-        keywords3SizerHolder->Add(keywords4Sizer[j], 1, wxEXPAND);
-    }
+    wxTextCtrl* keyword12 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer22->Add( keyword12, 1, wxALL, 5 );
 
-    externalSizer->Add(urlsSizerHolder, 1, wxEXPAND);
-    externalSizer->Add(keywords1SizerHolder, 1, wxEXPAND);
-    externalSizer->Add(keywords2SizerHolder, 1, wxEXPAND);
-    externalSizer->Add(keywords3SizerHolder, 1, wxEXPAND);
-    externalSizer->Add(keywords4SizerHolder, 1, wxEXPAND);
+    wxTextCtrl* keyword22 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer22->Add( keyword22, 1, wxALL, 5 );
 
-    content->SetSizer(externalSizer);
+    wxTextCtrl* keyword32 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer22->Add( keyword32, 1, wxALL, 5 );
 
-    confirmButton->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
+    wxTextCtrl* keyword321 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer22->Add( keyword321, 0, wxALL, 5 );
+
+
+    bSizer1->Add( bSizer22, 0, wxALIGN_CENTER, 1 );
+
+    wxBoxSizer* bSizer23;
+    bSizer23 = new wxBoxSizer( wxHORIZONTAL );
+
+    wxTextCtrl*  url3 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer23->Add( url3, 1, wxALL, 5 );
+
+    wxTextCtrl* keyword13 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer23->Add( keyword13, 1, wxALL, 5 );
+
+    wxTextCtrl* keyword23 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer23->Add( keyword23, 1, wxALL, 5 );
+
+    wxTextCtrl* keyword33 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer23->Add( keyword33, 1, wxALL, 5 );
+
+    wxTextCtrl*  keyword131 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer23->Add( keyword131, 0, wxALL, 5 );
+
+
+    bSizer1->Add( bSizer23, 0, wxALIGN_CENTER, 1 );
+
+    wxBoxSizer* bSizer24;
+    bSizer24 = new wxBoxSizer( wxHORIZONTAL );
+
+    wxTextCtrl* url4 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer24->Add( url4, 1, wxALL, 5 );
+
+    wxTextCtrl*  keyword14 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer24->Add( keyword14, 1, wxALL, 5 );
+
+    wxTextCtrl*  keyword24 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer24->Add( keyword24, 1, wxALL, 5 );
+
+    wxTextCtrl* keyword34 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer24->Add( keyword34, 1, wxALL, 5 );
+
+    wxTextCtrl* keyword341 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer24->Add( keyword341, 0, wxALL, 5 );
+
+
+    bSizer1->Add( bSizer24, 0, wxALIGN_CENTER, 1 );
+
+    wxBoxSizer* bSizer16;
+    bSizer16 = new wxBoxSizer( wxVERTICAL );
+
+    wxButton* m_button1 = new wxButton( content, wxID_ANY, wxT("MyButton"), wxDefaultPosition, wxDefaultSize, 0 );
+    bSizer16->Add( m_button1, 0, wxALIGN_CENTER|wxALL|wxTOP, 20 );
+
+
+    bSizer1->Add( bSizer16, 1, wxEXPAND, 5 );
+
+
+    content->SetSizer( bSizer1 );
+    content->Layout();
+
+    //content->Centre( wxBOTH );
 
     currentState = ST_SearchSettings;
 }
@@ -523,16 +555,13 @@ void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
             (*elem)->Destroy();
         }
 
-        for(auto elem = keywords4.begin(); elem < keywords4.end(); elem++)
+        for (int i = 0; i < 5; i++)
         {
-            (*elem)->Destroy();
+            delete(urlInput[i]);
+            delete(keywords1[i]);
+            delete(keywords2[i]);
+            delete(keywords3[i]);
         }
-
-        urlInput.clear();
-        keywords1.clear();
-        keywords2.clear();
-        keywords3.clear();
-        keywords4.clear();
 
         confirmButton->Destroy();
     }
