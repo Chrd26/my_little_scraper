@@ -44,12 +44,24 @@ private:
 
 // Search Settings
 private:
+    // element arrays
     std::array<wxTextCtrl*, 5> urlInput;
     std::array<wxTextCtrl*, 5> keywords1;
     std::array<wxTextCtrl*, 5> keywords2;
     std::array<wxTextCtrl*, 5> keywords3;
+    std::array<wxTextCtrl*, 5> keywords4;
+
+    // Buttons
     wxButton *confirmButton;
-    wxButton *addMoreRows;
+
+    // Sizers
+    wxSizer *mainSizer;
+    wxSizer* firstRow;
+    wxSizer* secondRow;
+    wxSizer* thirdRow;
+    wxSizer* fourthRow;
+    wxSizer* fifthRow;
+    wxSizer* buttonSizer;
 
 // Database Settings
 private:
@@ -334,10 +346,8 @@ void MainFrame::StopHoverRun(wxMouseEvent &event){
 }
 
 // Click Events Functions
-void MainFrame::PressSearchSettings(wxEvent &event)
-{
-    if (currentState == ST_Instructions)
-    {
+void MainFrame::PressSearchSettings(wxEvent &event) {
+    if (currentState == ST_Instructions) {
         instructions->Destroy();
     }
 
@@ -346,41 +356,19 @@ void MainFrame::PressSearchSettings(wxEvent &event)
      * but a pointer to a wxTextCtrl object. Therefore, you cannot use the -> operator to access its members.
      * Instead, you should use the * operator to dereference the pointer and access the object’s members/*/
 
-    if (currentState == ST_SearchSettings)
-    {
-        for(auto elem = urlInput.begin(); elem < urlInput.end(); elem++)
-        {
-            (*elem)->Destroy();
-        }
+    if (currentState == ST_SearchSettings) {
 
-        for(auto elem = keywords1.begin(); elem < keywords1.end(); elem++)
-        {
-            (*elem)->Destroy();
-        }
-
-        for(auto elem = keywords2.begin(); elem < keywords2.end(); elem++)
-        {
-            (*elem)->Destroy();
-        }
-
-        for(auto elem = keywords3.begin(); elem < keywords3.end(); elem++)
-        {
-            (*elem)->Destroy();
-        }
-
-        for (int i = 0; i < 5; i++)
-        {
-            delete(urlInput[i]);
-            delete(keywords1[i]);
-            delete(keywords2[i]);
-            delete(keywords3[i]);
+        for (int i = 0; i < 5; i++) {
+            delete (urlInput[i]);
+            delete (keywords1[i]);
+            delete (keywords2[i]);
+            delete (keywords3[i]);
         }
 
         confirmButton->Destroy();
     }
 
-    if (currentState == ST_DatabaseSettings)
-    {
+    if (currentState == ST_DatabaseSettings) {
         username->Destroy();
         password->Destroy();
         confirmButton->Destroy();
@@ -388,130 +376,80 @@ void MainFrame::PressSearchSettings(wxEvent &event)
 
     content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
 
-    this->SetSizeHints( wxDefaultSize, wxDefaultSize );
+    this->SetSizeHints(wxDefaultSize, wxDefaultSize);
 
-    wxBoxSizer* bSizer1;
-    bSizer1 = new wxBoxSizer( wxVERTICAL );
+    mainSizer = new wxBoxSizer(wxVERTICAL);
+    firstRow = new wxBoxSizer(wxHORIZONTAL);
+    secondRow = new wxBoxSizer(wxHORIZONTAL);
+    thirdRow = new wxBoxSizer(wxHORIZONTAL);
+    fourthRow = new wxBoxSizer(wxHORIZONTAL);
+    fifthRow = new wxBoxSizer(wxHORIZONTAL);
 
-    wxBoxSizer* bSizer2;
-    bSizer2 = new wxBoxSizer( wxHORIZONTAL );
+//    Add Elements to the panel
+    for (int i = 0; i < 5; i++)
+    {
+        urlInput[i] = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+        keywords1[i] = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+        keywords2[i] = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+        keywords3[i] = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+        keywords4[i] = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 
-    wxTextCtrl*  url = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer2->Add( url, 1, wxEXPAND|wxALL, 20 );
+        switch (i)
+        {
+            case 0:
+                firstRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                firstRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                firstRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                firstRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                firstRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                mainSizer->Add( firstRow, 0, wxEXPAND|wxTOP, 50);
+                break;
 
-    wxTextCtrl*  keyword1 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer2->Add( keyword1, 1, wxEXPAND|wxALL, 20 );
+            case 1:
+                secondRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                secondRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                secondRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                secondRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                secondRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                mainSizer->Add( secondRow, 0, wxEXPAND);
+                break;
 
-    wxTextCtrl*  keyword2 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer2->Add( keyword2, 1, wxEXPAND|wxALL, 20 );
+            case 2:
+                thirdRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                thirdRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                thirdRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                thirdRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                thirdRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                mainSizer->Add( thirdRow, 0, wxEXPAND);
+                break;
 
-    wxTextCtrl* keyword3 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer2->Add( keyword3, 1, wxEXPAND|wxALL, 20 );
+            case 3:
+                fourthRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                fourthRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                fourthRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                fourthRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                fourthRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                mainSizer->Add( fourthRow, 0, wxEXPAND);
+                break;
 
-    wxTextCtrl* keyword35 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer2->Add( keyword35, 1, wxEXPAND|wxALL, 20 );
+            case 4:
+                fifthRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                fifthRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                fifthRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                fifthRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                fifthRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
+                mainSizer->Add( fifthRow, 0, wxEXPAND);
+                break;
+        }
+    }
 
+    buttonSizer = new wxBoxSizer( wxVERTICAL );
+    confirmButton = new wxButton( content, wxID_ANY, wxT("Confirm"), wxDefaultPosition, wxDefaultSize, 0 );
+    buttonSizer->Add( confirmButton, 0, wxALIGN_CENTER|wxALL|wxTOP, 20 );
+    mainSizer->Add( buttonSizer, 1, wxEXPAND, 5 );
 
-    bSizer1->Add( bSizer2, 0, wxEXPAND|wxTOP|wxRIGHT|wxLEFT, 50|100|100);
-
-    wxBoxSizer* bSizer21;
-    bSizer21 = new wxBoxSizer( wxHORIZONTAL );
-
-    wxTextCtrl* url1 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer21->Add( url1, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword11 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer21->Add( keyword11, 1, wxALL, 5 );
-
-    wxTextCtrl*  keyword21 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer21->Add( keyword21, 1, wxALL, 5 );
-
-    wxTextCtrl*  keyword31 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer21->Add( keyword31, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword311 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer21->Add( keyword311, 0, wxALL, 5 );
-
-
-    bSizer1->Add( bSizer21, 0, wxALIGN_CENTER, 1 );
-
-    wxBoxSizer* bSizer22;
-    bSizer22 = new wxBoxSizer( wxHORIZONTAL );
-
-    wxTextCtrl* url2 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer22->Add( url2, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword12 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer22->Add( keyword12, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword22 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer22->Add( keyword22, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword32 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer22->Add( keyword32, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword321 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer22->Add( keyword321, 0, wxALL, 5 );
-
-
-    bSizer1->Add( bSizer22, 0, wxALIGN_CENTER, 1 );
-
-    wxBoxSizer* bSizer23;
-    bSizer23 = new wxBoxSizer( wxHORIZONTAL );
-
-    wxTextCtrl*  url3 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer23->Add( url3, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword13 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer23->Add( keyword13, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword23 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer23->Add( keyword23, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword33 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer23->Add( keyword33, 1, wxALL, 5 );
-
-    wxTextCtrl*  keyword131 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer23->Add( keyword131, 0, wxALL, 5 );
-
-
-    bSizer1->Add( bSizer23, 0, wxALIGN_CENTER, 1 );
-
-    wxBoxSizer* bSizer24;
-    bSizer24 = new wxBoxSizer( wxHORIZONTAL );
-
-    wxTextCtrl* url4 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer24->Add( url4, 1, wxALL, 5 );
-
-    wxTextCtrl*  keyword14 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer24->Add( keyword14, 1, wxALL, 5 );
-
-    wxTextCtrl*  keyword24 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer24->Add( keyword24, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword34 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer24->Add( keyword34, 1, wxALL, 5 );
-
-    wxTextCtrl* keyword341 = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer24->Add( keyword341, 0, wxALL, 5 );
-
-
-    bSizer1->Add( bSizer24, 0, wxALIGN_CENTER, 1 );
-
-    wxBoxSizer* bSizer16;
-    bSizer16 = new wxBoxSizer( wxVERTICAL );
-
-    wxButton* m_button1 = new wxButton( content, wxID_ANY, wxT("MyButton"), wxDefaultPosition, wxDefaultSize, 0 );
-    bSizer16->Add( m_button1, 0, wxALIGN_CENTER|wxALL|wxTOP, 20 );
-
-
-    bSizer1->Add( bSizer16, 1, wxEXPAND, 5 );
-
-
-    content->SetSizer( bSizer1 );
+    content->SetSizer( mainSizer );
     content->Layout();
-
-    //content->Centre( wxBOTH );
 
     currentState = ST_SearchSettings;
 }
@@ -535,26 +473,6 @@ void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
 
     if (currentState == ST_SearchSettings)
     {
-        for(auto elem = urlInput.begin(); elem < urlInput.end(); elem++)
-        {
-            (*elem)->Destroy();
-        }
-
-        for(auto elem = keywords1.begin(); elem < keywords1.end(); elem++)
-        {
-            (*elem)->Destroy();
-        }
-
-        for(auto elem = keywords2.begin(); elem < keywords2.end(); elem++)
-        {
-            (*elem)->Destroy();
-        }
-
-        for(auto elem = keywords3.begin(); elem < keywords3.end(); elem++)
-        {
-            (*elem)->Destroy();
-        }
-
         for (int i = 0; i < 5; i++)
         {
             delete(urlInput[i]);

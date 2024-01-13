@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added wxforms builder to help with the wxWidgets, finally some progress with sizers.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="There is something wrong either with the widgets builder either the library. Either way, I figured out how to set it up properly this time.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wxFormsBuilder projects/Keywords and urls/keywirdsandurls.fbp" beforeDir="false" afterPath="$PROJECT_DIR$/wxFormsBuilder projects/Keywords and urls/keywirdsandurls.fbp" afterDir="false" />
@@ -74,25 +74,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/chrisd/Desktop/my_little_scraper&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;dynamic.analysis.tools.valgrind&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CMake Application.scraper.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/chrisd/Desktop/my_little_scraper",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -235,7 +237,11 @@
       <workItem from="1701782058280" duration="3454000" />
       <workItem from="1702469920856" duration="4706000" />
       <workItem from="1703010823710" duration="62000" />
-      <workItem from="1704282317327" duration="5745000" />
+      <workItem from="1704282317327" duration="5836000" />
+      <workItem from="1705168626278" duration="1133000" />
+      <workItem from="1705170267568" duration="19000" />
+      <workItem from="1705170599741" duration="134000" />
+      <workItem from="1705170943695" duration="5250000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -525,17 +531,24 @@
       <option name="project" value="LOCAL" />
       <updated>1701788750386</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="There is something wrong either with the widgets builder either the library. Either way, I figured out how to set it up properly this time.">
+      <option name="closed" value="true" />
+      <created>1704289149493</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1704289149493</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VCPKGProject">
-    <isAutomaticEditVcpkgJson value="false" />
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
-    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -561,7 +574,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed an issue with where the program was unable to get the info from the CSV file. Now the program gets all links and keywords properly." />
     <MESSAGE value="The program now grabs the links from all the CSV file rows and search through them. (Needs to be tested)" />
     <MESSAGE value="Started Implementing Wx Widgets, Made a simple window." />
     <MESSAGE value="About button now opens up a new window. I need to add some forms to handle the CSV file. I should also look for some concepts to get some inspiration on the general design." />
@@ -586,6 +598,11 @@
     <MESSAGE value="Added text control for password and username as well as confirm button." />
     <MESSAGE value="Fixed a problem where the inputs were not getting destroyed correctly. I have run into some problems with the wxButton objects. I need more reseach." />
     <MESSAGE value="Added wxforms builder to help with the wxWidgets, finally some progress with sizers." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added wxforms builder to help with the wxWidgets, finally some progress with sizers." />
+    <MESSAGE value="There is something wrong either with the widgets builder either the library. Either way, I figured out how to set it up properly this time." />
+    <option name="LAST_COMMIT_MESSAGE" value="There is something wrong either with the widgets builder either the library. Either way, I figured out how to set it up properly this time." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
