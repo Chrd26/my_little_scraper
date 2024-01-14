@@ -188,11 +188,9 @@ MainFrame::MainFrame()
     // This is how I managed to make font settings to work. Helvetica Neue indeed changes the font
     // Read more here: https://docs.wxwidgets.org/latest/classwx_font_info.html#a7273ff25fbd808e83ee79103d117ecaf
     top->SetFont(wxFontInfo(65).FaceName("Helvetica Neue").Bold());
-
     title = new wxStaticText(top, eID_Title, "Info Hunter", wxPoint(5,10),
                              wxDefaultSize, 0, "Info Hunter");
     title->SetForegroundColour("#FFFFFFBB");
-
     options = new wxPanel(this, eID_OptionsPanel, wxDefaultPosition, wxDefaultSize);
     options->SetBackgroundColour("#4C6E81");
 
@@ -213,22 +211,18 @@ MainFrame::MainFrame()
                                       wxBitmap("../graphics/Infohunter_Options_Panel_2.png",
                                                wxBITMAP_TYPE_PNG),
                                       wxDefaultPosition, wxDefaultSize);
-
     searchSettings = new wxStaticText(options, eID_SearchSettings, "Search Settings" ,
                                       wxPoint(optionsPanelSize.GetWidth()/2,40),
                                       wxDefaultSize, 0,  "Search Settings");
     searchSettings->SetForegroundColour("#FFFFFFAA");
-
     databaseSettings = new wxStaticText(options, eID_DatabaseSettings, "Database Settings" ,
                                         wxPoint(optionsPanelSize.GetWidth()/2, 140),
                                         wxDefaultSize, 0,  "Database Settings");
     databaseSettings->SetForegroundColour("#FFFFFFAA");
-
     database = new wxStaticText(options, eID_Database, "Database" ,
                                 wxPoint(optionsPanelSize.GetWidth()/2,240),
                                 wxDefaultSize, 0,  "Database");
     database->SetForegroundColour("#FFFFFFAA");
-
     run = new wxStaticText(options, eID_Run, "Run" ,
                            wxPoint(optionsPanelSize.GetWidth()/2,340),
                            wxDefaultSize, 0,  "Run");
@@ -292,7 +286,6 @@ MainFrame::MainFrame()
                            this, eID_DatabaseSettings);
     database->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverDatabase, this, eID_Database);
     run->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverRun, this, eID_Run);
-
     // On Exit hover events
     searchSettings->Bind(wxEVT_LEAVE_WINDOW,&MainFrame::StopHoverSearchSettings,
                          this, eID_SearchSettings);
@@ -300,7 +293,6 @@ MainFrame::MainFrame()
                            this, eID_DatabaseSettings);
     database->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverDatabase, this, eID_Database);
     run->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverRun, this, eID_Run);
-
     // On click events
     searchSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressSearchSettings,
                          this, eID_SearchSettings);
