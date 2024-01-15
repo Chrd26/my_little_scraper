@@ -55,13 +55,14 @@ private:
     wxButton *confirmButton;
 
     // Sizers
-    wxSizer *mainSizer;
+    wxSizer *elementHolder;
     wxSizer* firstRow;
     wxSizer* secondRow;
     wxSizer* thirdRow;
     wxSizer* fourthRow;
     wxSizer* fifthRow;
     wxSizer* buttonSizer;
+    wxSizer* mainSizer;
 
 // Database Settings
 private:
@@ -355,6 +356,7 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
             delete (keywords1[i]);
             delete (keywords2[i]);
             delete (keywords3[i]);
+            delete(keywords4[i]);
         }
 
         confirmButton->Destroy();
@@ -367,10 +369,14 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
     }
 
     content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
+    content->SetSizeHints(wxDefaultSize, wxDefaultSize);
+    contentPanelSize = content->GetSize();
+    const float elementBorder = contentPanelSize.GetWidth() * 0.01f;
+    const float rowBottomBorder = contentPanelSize.GetHeight() * 0.01f;
+    const float mainSizerTopBorder = contentPanelSize.GetHeight() * 0.15f;
 
-    this->SetSizeHints(wxDefaultSize, wxDefaultSize);
-
-    mainSizer = new wxBoxSizer(wxVERTICAL);
+    elementHolder = new wxBoxSizer(wxVERTICAL);
+    mainSizer = new wxBoxSizer(wxHORIZONTAL);
     firstRow = new wxBoxSizer(wxHORIZONTAL);
     secondRow = new wxBoxSizer(wxHORIZONTAL);
     thirdRow = new wxBoxSizer(wxHORIZONTAL);
@@ -380,57 +386,57 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
 //    Add Elements to the panel
     for (int i = 0; i < 5; i++)
     {
-        urlInput[i] = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-        keywords1[i] = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-        keywords2[i] = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-        keywords3[i] = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
-        keywords4[i] = new wxTextCtrl( content, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+        urlInput[i] = new wxTextCtrl( content, itID_SearchSettingsURL, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+        keywords1[i] = new wxTextCtrl( content, itID_Keyword1, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+        keywords2[i] = new wxTextCtrl( content, itID_Keyword2, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+        keywords3[i] = new wxTextCtrl( content, itID_Keyword3, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
+        keywords4[i] = new wxTextCtrl( content, itID_Keyword4, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0 );
 
         switch (i)
         {
             case 0:
-                firstRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                firstRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                firstRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                firstRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                firstRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                mainSizer->Add( firstRow, 0, wxEXPAND|wxTOP, 50);
+                firstRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
+                firstRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
+                firstRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
+                firstRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
+                firstRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
+                elementHolder->Add( firstRow, 0, wxEXPAND|wxBOTTOM,rowBottomBorder);
                 break;
 
             case 1:
-                secondRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                secondRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                secondRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                secondRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                secondRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                mainSizer->Add( secondRow, 0, wxEXPAND);
+                secondRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
+                secondRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
+                secondRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                secondRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                secondRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                elementHolder->Add( secondRow, 0, wxEXPAND|wxBOTTOM, rowBottomBorder);
                 break;
 
             case 2:
-                thirdRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                thirdRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                thirdRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                thirdRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                thirdRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                mainSizer->Add( thirdRow, 0, wxEXPAND);
+                thirdRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                thirdRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                thirdRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                thirdRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                thirdRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                elementHolder->Add( thirdRow, 0, wxEXPAND|wxBOTTOM, rowBottomBorder);
                 break;
 
             case 3:
-                fourthRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                fourthRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                fourthRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                fourthRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                fourthRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                mainSizer->Add( fourthRow, 0, wxEXPAND);
+                fourthRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                fourthRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                fourthRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                fourthRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                fourthRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                elementHolder->Add( fourthRow, 0, wxEXPAND|wxBOTTOM, rowBottomBorder);
                 break;
 
             case 4:
-                fifthRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                fifthRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                fifthRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                fifthRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                fifthRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, 20 );
-                mainSizer->Add( fifthRow, 0, wxEXPAND);
+                fifthRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                fifthRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                fifthRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                fifthRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                fifthRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+                elementHolder->Add( fifthRow, 0, wxEXPAND|wxBOTTOM, rowBottomBorder);
                 break;
         }
     }
@@ -438,7 +444,8 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
     buttonSizer = new wxBoxSizer( wxVERTICAL );
     confirmButton = new wxButton( content, wxID_ANY, wxT("Confirm"), wxDefaultPosition, wxDefaultSize, 0 );
     buttonSizer->Add( confirmButton, 0, wxALIGN_CENTER|wxALL|wxTOP, 20 );
-    mainSizer->Add( buttonSizer, 1, wxEXPAND, 5 );
+    elementHolder->Add( buttonSizer, 1, wxEXPAND, 5 );
+    mainSizer->Add(elementHolder, 1, wxEXPAND|wxTOP, mainSizerTopBorder);
 
     content->SetSizer( mainSizer );
     content->Layout();
@@ -471,6 +478,7 @@ void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
             delete(keywords1[i]);
             delete(keywords2[i]);
             delete(keywords3[i]);
+            delete(keywords4[i]);
         }
 
         confirmButton->Destroy();

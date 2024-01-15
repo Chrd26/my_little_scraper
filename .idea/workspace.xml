@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="I had to refactor the whole code in the search settings part. Now it works fine. It still needs some spacing and it is ready.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Some more refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -241,7 +241,9 @@
       <workItem from="1705170267568" duration="19000" />
       <workItem from="1705170599741" duration="134000" />
       <workItem from="1705170943695" duration="5302000" />
-      <workItem from="1705258224086" duration="71000" />
+      <workItem from="1705258224086" duration="122000" />
+      <workItem from="1705295246466" duration="49000" />
+      <workItem from="1705295375520" duration="2476000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -547,7 +549,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705176685267</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Some more refactoring">
+      <option name="closed" value="true" />
+      <created>1705258305955</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1705258305955</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,7 +592,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Started Implementing Wx Widgets, Made a simple window." />
     <MESSAGE value="About button now opens up a new window. I need to add some forms to handle the CSV file. I should also look for some concepts to get some inspiration on the general design." />
     <MESSAGE value="Started working on options text" />
     <MESSAGE value="Added text to the right panels, I have been unable setting a sizer for them. Need some research." />
@@ -607,7 +616,8 @@
     <MESSAGE value="Added wxforms builder to help with the wxWidgets, finally some progress with sizers." />
     <MESSAGE value="There is something wrong either with the widgets builder either the library. Either way, I figured out how to set it up properly this time." />
     <MESSAGE value="I had to refactor the whole code in the search settings part. Now it works fine. It still needs some spacing and it is ready." />
-    <option name="LAST_COMMIT_MESSAGE" value="I had to refactor the whole code in the search settings part. Now it works fine. It still needs some spacing and it is ready." />
+    <MESSAGE value="Some more refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some more refactoring" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
