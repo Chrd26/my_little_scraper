@@ -167,7 +167,8 @@ bool ScraperApp::OnInit()
     // https://docs.wxwidgets.org/3.2/group__group__funcmacro__gdi.html
     // SetSize: https://docs.wxwidgets.org/3.2/classwx_window.html
     wxSize screenSize = wxGetDisplaySize();
-    wxSize windowSize(screenSize.GetWidth() * 0.98, screenSize.GetHeight() * 0.95);
+    wxSize windowSize(static_cast<int>((float)screenSize.GetWidth() * 0.98f),
+                      static_cast<int>((float)screenSize.GetHeight() * 0.95f));
     frame->SetSize(windowSize);
     frame->SetBackgroundColour(wxColour(0,0,0));
     frame->Center(wxBOTH);
@@ -212,20 +213,28 @@ MainFrame::MainFrame()
                                       wxBitmap("../graphics/Infohunter_Options_Panel_2.png",
                                                wxBITMAP_TYPE_PNG),
                                       wxDefaultPosition, wxDefaultSize);
+
     searchSettings = new wxStaticText(options, eID_SearchSettings, "Search Settings" ,
-                                      wxPoint(optionsPanelSize.GetWidth()/2,40),
+                                      wxPoint(optionsPanelSize.GetWidth()/2,
+                                              static_cast<int>((float)optionsPanelSize.GetHeight() * 1.5f)),
                                       wxDefaultSize, 0,  "Search Settings");
     searchSettings->SetForegroundColour("#FFFFFFAA");
+
     databaseSettings = new wxStaticText(options, eID_DatabaseSettings, "Database Settings" ,
-                                        wxPoint(optionsPanelSize.GetWidth()/2, 140),
+                                        wxPoint(optionsPanelSize.GetWidth()/2,
+                                                static_cast<int>((float)optionsPanelSize.GetHeight() * 6.5f)),
                                         wxDefaultSize, 0,  "Database Settings");
     databaseSettings->SetForegroundColour("#FFFFFFAA");
+
     database = new wxStaticText(options, eID_Database, "Database" ,
-                                wxPoint(optionsPanelSize.GetWidth()/2,240),
+                                wxPoint(optionsPanelSize.GetWidth()/2,
+                                        static_cast<int>((float)optionsPanelSize.GetHeight() * 11.5f)),
                                 wxDefaultSize, 0,  "Database");
     database->SetForegroundColour("#FFFFFFAA");
+
     run = new wxStaticText(options, eID_Run, "Run" ,
-                           wxPoint(optionsPanelSize.GetWidth()/2,340),
+                           wxPoint(optionsPanelSize.GetWidth()/2,
+                                   static_cast<int>((float)optionsPanelSize.GetHeight() * 16.5f)),
                            wxDefaultSize, 0,  "Run");
     run->SetForegroundColour("#FFFFFFAA");
 
@@ -371,9 +380,10 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
     content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
     content->SetSizeHints(wxDefaultSize, wxDefaultSize);
     contentPanelSize = content->GetSize();
-    const float elementBorder = contentPanelSize.GetWidth() * 0.01f;
-    const float rowBottomBorder = contentPanelSize.GetHeight() * 0.01f;
-    const float mainSizerTopBorder = contentPanelSize.GetHeight() * 0.15f;
+    // Make sure to cast to the correct type before operating
+    const int elementBorder = static_cast<int>((float)contentPanelSize.GetWidth() * 0.01f);
+    const int rowBottomBorder = static_cast<int>((float)contentPanelSize.GetHeight() * 0.01f);
+    const int mainSizerTopBorder = static_cast<int>((float)contentPanelSize.GetHeight() * 0.15f);
 
     elementHolder = new wxBoxSizer(wxVERTICAL);
     mainSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -395,7 +405,7 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
         switch (i)
         {
             case 0:
-                firstRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
+                firstRow->Add( urlInput[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
                 firstRow->Add( keywords1[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
                 firstRow->Add( keywords2[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
                 firstRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT,elementBorder);
@@ -437,6 +447,9 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
                 fifthRow->Add( keywords3[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
                 fifthRow->Add( keywords4[i], 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
                 elementHolder->Add( fifthRow, 0, wxEXPAND|wxBOTTOM, rowBottomBorder);
+                break;
+
+            default:
                 break;
         }
     }

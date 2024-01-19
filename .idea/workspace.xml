@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Some more refactoring">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Cleared the code even more. I should try to remove any magic numbers from the code. Now keywords4 array also gets deleted.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -243,7 +243,8 @@
       <workItem from="1705170943695" duration="5302000" />
       <workItem from="1705258224086" duration="122000" />
       <workItem from="1705295246466" duration="49000" />
-      <workItem from="1705295375520" duration="2476000" />
+      <workItem from="1705295375520" duration="2496000" />
+      <workItem from="1705640570569" duration="2503000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -557,7 +558,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705258305955</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Cleared the code even more. I should try to remove any magic numbers from the code. Now keywords4 array also gets deleted.">
+      <option name="closed" value="true" />
+      <created>1705297946244</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1705297946244</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -592,7 +601,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="About button now opens up a new window. I need to add some forms to handle the CSV file. I should also look for some concepts to get some inspiration on the general design." />
     <MESSAGE value="Started working on options text" />
     <MESSAGE value="Added text to the right panels, I have been unable setting a sizer for them. Need some research." />
     <MESSAGE value="Found a way to make the text of a panel bigger" />
@@ -617,7 +625,8 @@
     <MESSAGE value="There is something wrong either with the widgets builder either the library. Either way, I figured out how to set it up properly this time." />
     <MESSAGE value="I had to refactor the whole code in the search settings part. Now it works fine. It still needs some spacing and it is ready." />
     <MESSAGE value="Some more refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some more refactoring" />
+    <MESSAGE value="Cleared the code even more. I should try to remove any magic numbers from the code. Now keywords4 array also gets deleted." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleared the code even more. I should try to remove any magic numbers from the code. Now keywords4 array also gets deleted." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
