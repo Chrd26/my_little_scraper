@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Removed more magic numbers, refactoring">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Removed database settings as it will take too much time to implement it. The database will open a new window and show a csv file where the use will be able to open and read the results.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -247,7 +247,7 @@
       <workItem from="1705640570569" duration="2591000" />
       <workItem from="1705670023515" duration="7000" />
       <workItem from="1706513299577" duration="745000" />
-      <workItem from="1706527383753" duration="2118000" />
+      <workItem from="1706527383753" duration="2304000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -577,7 +577,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705643231023</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Removed database settings as it will take too much time to implement it. The database will open a new window and show a csv file where the use will be able to open and read the results.">
+      <option name="closed" value="true" />
+      <created>1706530386009</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1706530386009</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -612,7 +620,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added text to the right panels, I have been unable setting a sizer for them. Need some research." />
     <MESSAGE value="Found a way to make the text of a panel bigger" />
     <MESSAGE value="Found out how to handle fonts and their styles." />
     <MESSAGE value="Tried to add shadows but failed to do so. It is not very easy, I should create a bitmap with the shape I want for the panel and change the color to the same one that the content panel contains." />
@@ -637,14 +644,15 @@
     <MESSAGE value="Some more refactoring" />
     <MESSAGE value="Cleared the code even more. I should try to remove any magic numbers from the code. Now keywords4 array also gets deleted." />
     <MESSAGE value="Removed more magic numbers, refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed more magic numbers, refactoring" />
+    <MESSAGE value="Removed database settings as it will take too much time to implement it. The database will open a new window and show a csv file where the use will be able to open and read the results." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed database settings as it will take too much time to implement it. The database will open a new window and show a csv file where the use will be able to open and read the results." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>176</line>
+          <line>175</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

@@ -104,7 +104,6 @@ private:
     {
         ST_Instructions = 0,
         ST_SearchSettings,
-        ST_DatabaseSettings,
         ST_Database,
         ST_Run,
         ST_Running
@@ -457,7 +456,7 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
     }
 
     buttonSizer = new wxBoxSizer( wxVERTICAL );
-    confirmButton = new wxButton( content, wxID_ANY, wxT("Confirm"), wxDefaultPosition, wxDefaultSize, 0 );
+    confirmButton = new wxButton( content, eID_ConfirmButton, wxT("Confirm"), wxDefaultPosition, wxDefaultSize, 0 );
     buttonSizer->Add( confirmButton, 0, wxALIGN_CENTER|wxALL|wxTOP, 20 );
     elementHolder->Add( buttonSizer, 1, wxEXPAND, 5 );
     mainSizer->Add(elementHolder, 1, wxEXPAND|wxTOP, mainSizerTopBorder);
