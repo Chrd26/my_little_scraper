@@ -470,6 +470,26 @@ void MainFrame::PressDatabase(wxMouseEvent &event)
 void MainFrame::PressRun(wxMouseEvent &event)
 {
     std::cout << "Pressed Run" << std::endl;
+
+    if (currentState == ST_Instructions)
+    {
+        instructions->Destroy();
+    }
+
+    if (currentState == ST_SearchSettings) {
+
+        for (int i = 0; i < 5; i++) {
+            urlInput[i]->Destroy();
+            keywords1[i]->Destroy();
+            keywords2[i]->Destroy();
+            keywords3[i]->Destroy();
+            keywords4[i]->Destroy();
+        }
+
+        confirmButton->Destroy();
+    }
+
+    currentState = ST_Run;
 }
 
 AboutWindow::AboutWindow()
