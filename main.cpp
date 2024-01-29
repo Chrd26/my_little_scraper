@@ -125,7 +125,6 @@ private:
 // Stop Hovering Event
 private:
     void StopHoverSearchSettings(wxMouseEvent& event);
-    void StopHoverDatabaseSettings(wxMouseEvent& event);
     void StopHoverDatabase(wxMouseEvent& event);
     void StopHoverRun(wxMouseEvent& event);
 
@@ -342,10 +341,6 @@ void MainFrame::StopHoverSearchSettings(wxMouseEvent &event){
     searchSettings->SetForegroundColour("#FFFFFFAA");
 }
 
-void MainFrame::StopHoverDatabaseSettings(wxMouseEvent &event){
-    databaseSettings->SetForegroundColour("#FFFFFFAA");
-}
-
 void MainFrame::StopHoverDatabase(wxMouseEvent &event){
     database->SetForegroundColour("#FFFFFFAA");
 }
@@ -368,11 +363,11 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
     if (currentState == ST_SearchSettings) {
 
         for (int i = 0; i < 5; i++) {
-            delete (urlInput[i]);
-            delete (keywords1[i]);
-            delete (keywords2[i]);
-            delete (keywords3[i]);
-            delete(keywords4[i]);
+            urlInput[i]->Destroy();
+            keywords1[i]->Destroy();
+            keywords2[i]->Destroy();
+            keywords3[i]->Destroy();
+            keywords4[i]->Destroy();
         }
 
         confirmButton->Destroy();
