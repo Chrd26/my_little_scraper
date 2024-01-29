@@ -32,9 +32,15 @@ public:
 // Inserting properties to event functors is not possible
 // Create class properties for easy manipulation
 private:
-    wxStaticText *searchSettings, *databaseSettings,  *database, *run, *title;
-    wxPanel *top, *options, *content;
-    wxStaticBitmap *optionsImage;
+    wxStaticText *searchSettings = nullptr;
+    wxStaticText *databaseSettings= nullptr;
+    wxStaticText *database = nullptr;
+    wxStaticText *run = nullptr;
+    wxStaticText *title = nullptr;
+    wxPanel *top = nullptr;
+    wxPanel *options = nullptr;
+    wxPanel *content = nullptr;
+    wxStaticBitmap *optionsImage = nullptr;
     wxSize contentPanelSize;
     int currentState;
 
@@ -55,18 +61,14 @@ private:
     wxButton *confirmButton;
 
     // Sizers
-    wxSizer *elementHolder;
-    wxSizer* firstRow;
-    wxSizer* secondRow;
-    wxSizer* thirdRow;
-    wxSizer* fourthRow;
-    wxSizer* fifthRow;
-    wxSizer* buttonSizer;
-    wxSizer* mainSizer;
-
-// Database Settings
-private:
-    wxTextCtrl *username, *password;
+    wxSizer *elementHolder = nullptr;
+    wxSizer* firstRow = nullptr;
+    wxSizer* secondRow = nullptr;
+    wxSizer* thirdRow = nullptr;
+    wxSizer* fourthRow = nullptr;
+    wxSizer* fifthRow = nullptr;
+    wxSizer* buttonSizer = nullptr;
+    wxSizer* mainSizer = nullptr;
 
 // States and IDs
 private:
@@ -78,7 +80,6 @@ private:
     enum ElementID
     {
         eID_SearchSettings = 0,
-        eID_DatabaseSettings,
         eID_Title,
         eID_Database,
         eID_Run,
@@ -88,8 +89,6 @@ private:
         eID_ContentPanel,
         eID_ConfirmButton,
         eID_Instructions,
-        eID_Username,
-        eID_Password
     };
 
     enum TextInput
@@ -134,7 +133,6 @@ private:
 // Click Button Events
 private:
     void PressSearchSettings(wxEvent &event);
-    void PressDatabaseSettings(wxMouseEvent& event);
     void PressDatabase(wxMouseEvent& event);
     void PressRun(wxMouseEvent& event);
 
@@ -179,7 +177,7 @@ bool ScraperApp::OnInit()
 MainFrame::MainFrame()
         : wxFrame(nullptr, wxID_ANY, "Info Hunter")
 {
-    // Starting stae
+    // Starting state
     currentState = ST_Instructions;
 
     // Set Font
@@ -220,21 +218,15 @@ MainFrame::MainFrame()
                                       wxDefaultSize, 0,  "Search Settings");
     searchSettings->SetForegroundColour("#FFFFFFAA");
 
-    databaseSettings = new wxStaticText(options, eID_DatabaseSettings, "Database Settings" ,
-                                        wxPoint(optionsPanelSize.GetWidth()/2,
-                                                static_cast<int>((float)optionsPanelSize.GetHeight() * 6.5f)),
-                                        wxDefaultSize, 0,  "Database Settings");
-    databaseSettings->SetForegroundColour("#FFFFFFAA");
-
     database = new wxStaticText(options, eID_Database, "Database" ,
                                 wxPoint(optionsPanelSize.GetWidth()/2,
-                                        static_cast<int>((float)optionsPanelSize.GetHeight() * 11.5f)),
+                                        static_cast<int>((float)optionsPanelSize.GetHeight() * 6.5f)),
                                 wxDefaultSize, 0,  "Database");
     database->SetForegroundColour("#FFFFFFAA");
 
     run = new wxStaticText(options, eID_Run, "Run" ,
                            wxPoint(optionsPanelSize.GetWidth()/2,
-                                   static_cast<int>((float)optionsPanelSize.GetHeight() * 16.5f)),
+                                   static_cast<int>((float)optionsPanelSize.GetHeight() * 11.5f)),
                            wxDefaultSize, 0,  "Run");
     run->SetForegroundColour("#FFFFFFAA");
 
@@ -290,27 +282,43 @@ MainFrame::MainFrame()
     // Read more: https://docs.wxwidgets.org/3.2.3/overview_events.html
 
     // On hover events
-    searchSettings->Bind(wxEVT_ENTER_WINDOW,&MainFrame::HoverSearchSettings,
+    searchSettings->Bind(wxEVT_ENTER_WINDOW,
+                         &MainFrame::HoverSearchSettings,
                          this, eID_SearchSettings);
-    databaseSettings->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverDatabaseSettings,
-                           this, eID_DatabaseSettings);
-    database->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverDatabase, this, eID_Database);
-    run->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverRun, this, eID_Run);
-    // On Exit hover events
-    searchSettings->Bind(wxEVT_LEAVE_WINDOW,&MainFrame::StopHoverSearchSettings,
-                         this, eID_SearchSettings);
-    databaseSettings->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverDatabaseSettings,
-                           this, eID_DatabaseSettings);
-    database->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverDatabase, this, eID_Database);
-    run->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverRun, this, eID_Run);
-    // On click events
-    searchSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressSearchSettings,
-                         this, eID_SearchSettings);
-    databaseSettings->Bind(wxEVT_LEFT_UP, &MainFrame::PressDatabaseSettings,
-                           this, eID_DatabaseSettings);
-    database->Bind(wxEVT_LEFT_UP, &MainFrame::PressDatabase, this,
+    database->Bind(wxEVT_ENTER_WINDOW,
+                   &MainFrame::HoverDatabase,
+                   this,
                    eID_Database);
-    run->Bind(wxEVT_LEFT_UP, &MainFrame::PressRun, this, eID_Run);
+    run->Bind(wxEVT_ENTER_WINDOW,
+              &MainFrame::HoverRun,
+              this,
+              eID_Run);
+
+    // On Exit hover events
+    searchSettings->Bind(wxEVT_LEAVE_WINDOW,
+                         &MainFrame::StopHoverSearchSettings,
+                         this,
+                         eID_SearchSettings);
+    database->Bind(wxEVT_LEAVE_WINDOW,
+                   &MainFrame::StopHoverDatabase,
+                   this,
+                   eID_Database);
+    run->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverRun,
+              this,
+              eID_Run);
+
+    // On click events
+    searchSettings->Bind(wxEVT_LEFT_UP,
+                         &MainFrame::PressSearchSettings,
+                         this,
+                         eID_SearchSettings);
+    database->Bind(wxEVT_LEFT_UP,
+                   &MainFrame::PressDatabase,
+                   this,
+                   eID_Database);
+    run->Bind(wxEVT_LEFT_UP, &MainFrame::PressRun,
+              this,
+              eID_Run);
 }
 
 // Hover Events Functions
@@ -368,12 +376,6 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
             delete(keywords4[i]);
         }
 
-        confirmButton->Destroy();
-    }
-
-    if (currentState == ST_DatabaseSettings) {
-        username->Destroy();
-        password->Destroy();
         confirmButton->Destroy();
     }
 
@@ -464,73 +466,6 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
     content->Layout();
 
     currentState = ST_SearchSettings;
-}
-
-void MainFrame::PressDatabaseSettings(wxMouseEvent &event)
-{
-    wxSize panelSize = content->GetSize();
-    content->SetFont(wxFontInfo(40).FaceName("Helvetica"));
-
-    if (currentState == ST_Instructions)
-    {
-        instructions->Destroy();
-    }
-
-    if (currentState == ST_DatabaseSettings)
-    {
-        username->Destroy();
-        password->Destroy();
-        confirmButton->Destroy();
-    }
-
-    if (currentState == ST_SearchSettings)
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            delete(urlInput[i]);
-            delete(keywords1[i]);
-            delete(keywords2[i]);
-            delete(keywords3[i]);
-            delete(keywords4[i]);
-        }
-
-        confirmButton->Destroy();
-    }
-
-    wxSizer *topSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxSizer *contentHolder = new wxBoxSizer(wxVERTICAL);
-    wxSizer *usernameSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxSizer *passwordSizer = new wxBoxSizer(wxHORIZONTAL);
-    wxSizer *confirmButtonSizer = new wxBoxSizer(wxHORIZONTAL);
-
-    username = new wxTextCtrl(content, eID_Username, "username",
-                              wxDefaultPosition, wxDefaultSize, 0);
-
-    password = new wxTextCtrl(content, eID_Password, "password",
-                              wxDefaultPosition, wxDefaultSize, wxTE_PASSWORD);
-
-    confirmButton = new wxButton(content, eID_ConfirmButton, "Confirm",
-                                 wxDefaultPosition, wxDefaultSize, 0,
-                                 wxDefaultValidator, "Confirm");
-
-    usernameSizer->Add(username, 1, wxEXPAND|wxLEFT|wxRIGHT,
-                       panelSize.GetWidth() * 0.2);
-    passwordSizer->Add(password, 1, wxEXPAND|wxLEFT|wxRIGHT,
-                       panelSize.GetWidth() * 0.2);
-    confirmButtonSizer->Add(confirmButton, 1, wxEXPAND);
-
-
-    contentHolder->Add(usernameSizer, 1, wxEXPAND);
-    contentHolder->Add(passwordSizer, 1, wxEXPAND);
-    contentHolder->Add(confirmButtonSizer, 2, wxEXPAND|wxSHAPED);
-
-    topSizer->Add(contentHolder, 1, wxEXPAND|wxTOP,
-                  panelSize.GetHeight() * 0.08);
-
-    content->SetSizer(topSizer);
-    content->Layout();
-
-    currentState = ST_DatabaseSettings;
 }
 
 void MainFrame::PressDatabase(wxMouseEvent &event)
