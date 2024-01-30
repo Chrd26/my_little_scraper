@@ -69,6 +69,14 @@ private:
     wxSizer* fifthRow = nullptr;
     wxSizer* buttonSizer = nullptr;
     wxSizer* mainSizer = nullptr;
+    wxSizer* titleRow = nullptr;
+
+//    Static Text
+    wxStaticText *urlInputStaticText = nullptr;
+    wxStaticText *keywords1StaticText = nullptr;
+    wxStaticText *keywords2StaticText = nullptr;
+    wxStaticText *keywords3StaticText = nullptr;
+    wxStaticText *keywords4StaticText = nullptr;
 
 // States and IDs
 private:
@@ -104,7 +112,6 @@ private:
     {
         ST_Instructions = 0,
         ST_SearchSettings,
-        ST_Database,
         ST_Run,
         ST_Running
     };
@@ -388,6 +395,54 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
     thirdRow = new wxBoxSizer(wxHORIZONTAL);
     fourthRow = new wxBoxSizer(wxHORIZONTAL);
     fifthRow = new wxBoxSizer(wxHORIZONTAL);
+    titleRow = new wxBoxSizer(wxHORIZONTAL);
+
+//    Added static text to the panel
+    urlInputStaticText = new wxStaticText(content,
+                                          wxID_ANY,
+                                          "URL",
+                                          wxDefaultPosition,
+                                          wxDefaultSize,
+                                          0,
+                                          "URL");
+
+    keywords1StaticText = new wxStaticText(content,
+                                           wxID_ANY,
+                                           "Keyword 1",
+                                           wxDefaultPosition,
+                                           wxDefaultSize,
+                                           0,
+                                           "Keyword 1");
+    keywords2StaticText = new wxStaticText(content,
+                                           wxID_ANY,
+                                           "Keyword 2",
+                                           wxDefaultPosition,
+                                           wxDefaultSize,
+                                           0,
+                                           "Keyword 2");
+
+    keywords3StaticText = new wxStaticText(content,
+                                           wxID_ANY,
+                                           "Keyword 3",
+                                           wxDefaultPosition,
+                                           wxDefaultSize,
+                                           0,
+                                           "Keyword 3");
+
+    keywords4StaticText = new wxStaticText(content,
+                                           wxID_ANY,
+                                           "Keyword 4",
+                                           wxDefaultPosition,
+                                           wxDefaultSize,
+                                           0,
+                                           "Keyword 4");
+
+    titleRow->Add(urlInputStaticText, 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+    titleRow->Add(keywords1StaticText, 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+    titleRow->Add(keywords2StaticText, 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+    titleRow->Add(keywords3StaticText, 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+    titleRow->Add(keywords4StaticText, 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
+    elementHolder->Add(titleRow, 0, wxEXPAND|wxBOTTOM, rowBottomBorder);
 
 //    Add Elements to the panel
     for (int i = 0; i < 5; i++)
