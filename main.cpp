@@ -397,7 +397,7 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
     fifthRow = new wxBoxSizer(wxHORIZONTAL);
     titleRow = new wxBoxSizer(wxHORIZONTAL);
 
-//    Added static text to the panel
+//    Add static text to the panel
     urlInputStaticText = new wxStaticText(content,
                                           wxID_ANY,
                                           "URL",
@@ -411,14 +411,14 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
                                            "Keyword 1",
                                            wxDefaultPosition,
                                            wxDefaultSize,
-                                           0,
+                                           wxBOLD,
                                            "Keyword 1");
     keywords2StaticText = new wxStaticText(content,
                                            wxID_ANY,
                                            "Keyword 2",
                                            wxDefaultPosition,
                                            wxDefaultSize,
-                                           0,
+                                           wxBOLD,
                                            "Keyword 2");
 
     keywords3StaticText = new wxStaticText(content,
@@ -426,7 +426,7 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
                                            "Keyword 3",
                                            wxDefaultPosition,
                                            wxDefaultSize,
-                                           0,
+                                           wxBOLD,
                                            "Keyword 3");
 
     keywords4StaticText = new wxStaticText(content,
@@ -434,7 +434,7 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
                                            "Keyword 4",
                                            wxDefaultPosition,
                                            wxDefaultSize,
-                                           0,
+                                           wxBOLD,
                                            "Keyword 4");
 
     titleRow->Add(urlInputStaticText, 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
