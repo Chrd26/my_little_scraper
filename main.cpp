@@ -401,44 +401,28 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
     titleRow = new wxBoxSizer(wxHORIZONTAL);
 
 //    Add static text to the panel
-    urlInputStaticText = new wxStaticText(content,
-                                          wxID_ANY,
-                                          "URL",
-                                          wxDefaultPosition,
-                                          wxDefaultSize,
-                                          0,
-                                          "URL");
+    urlInputStaticText = new wxStaticText(content, wxID_ANY, "URL",
+                                          wxDefaultPosition, wxDefaultSize,
+                                          0, "URL");
 
-    keywords1StaticText = new wxStaticText(content,
-                                           wxID_ANY,
-                                           "Keyword 1",
-                                           wxDefaultPosition,
-                                           wxDefaultSize,
-                                           wxBOLD,
+    keywords1StaticText = new wxStaticText(content, wxID_ANY,
+                                           "Keyword 1", wxDefaultPosition,
+                                           wxDefaultSize, wxBOLD,
                                            "Keyword 1");
-    keywords2StaticText = new wxStaticText(content,
-                                           wxID_ANY,
-                                           "Keyword 2",
-                                           wxDefaultPosition,
-                                           wxDefaultSize,
-                                           wxBOLD,
+    keywords2StaticText = new wxStaticText(content, wxID_ANY,
+                                           "Keyword 2", wxDefaultPosition,
+                                           wxDefaultSize, wxBOLD,
                                            "Keyword 2");
 
-    keywords3StaticText = new wxStaticText(content,
-                                           wxID_ANY,
-                                           "Keyword 3",
-                                           wxDefaultPosition,
-                                           wxDefaultSize,
-                                           wxBOLD,
+    keywords3StaticText = new wxStaticText(content, wxID_ANY,
+                                           "Keyword 3", wxDefaultPosition,
+                                           wxDefaultSize, wxBOLD,
                                            "Keyword 3");
 
     keywords4StaticText = new wxStaticText(content,
-                                           wxID_ANY,
-                                           "Keyword 4",
-                                           wxDefaultPosition,
-                                           wxDefaultSize,
-                                           wxBOLD,
-                                           "Keyword 4");
+                                           wxID_ANY, "Keyword 4",
+                                           wxDefaultPosition, wxDefaultSize,
+                                           wxBOLD, "Keyword 4");
 
     titleRow->Add(urlInputStaticText, 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
     titleRow->Add(keywords1StaticText, 1, wxEXPAND|wxRIGHT|wxLEFT, elementBorder);
@@ -525,6 +509,12 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
 void MainFrame::PressConfirm(wxMouseEvent &event)
 {
     std::cout << "Pressed Confirm" << std::endl;
+
+    CSV_Handler handler;
+//    Get Value:
+//    https://docs.wxwidgets.org/3.2.4/classwx_text_entry.html#a39335d9009b2053b5daf850c7b9d2974
+    std::string val = std::string(urlInput[0]->GetValue());
+    std::cout << val << std::endl;
 }
 
 void MainFrame::PressDatabase(wxMouseEvent &event)

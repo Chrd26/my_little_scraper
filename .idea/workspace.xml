@@ -20,8 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Some minor refactoring">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added an event that runs when the use presses the confirm button.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -251,7 +252,8 @@
       <workItem from="1706533778106" duration="189000" />
       <workItem from="1706621037579" duration="1132000" />
       <workItem from="1706704800200" duration="433000" />
-      <workItem from="1706796134265" duration="1115000" />
+      <workItem from="1706796134265" duration="2112000" />
+      <workItem from="1706810122191" duration="1369000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -629,7 +631,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706705583632</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Added an event that runs when the use presses the confirm button.">
+      <option name="closed" value="true" />
+      <created>1706797431901</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1706797431901</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,7 +674,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added functions for hover and stop hovering events. Needs to add a change mouse cursor during the event." />
     <MESSAGE value="Tried out buttons but I was unable to make them work the I wanted them to. I reverted back to static text and added enums to handle states with switches to make the application dynamic." />
     <MESSAGE value="At last, I maanged to find a solution for the clickable static text. Making them class property was the answer!" />
     <MESSAGE value="Fixed static text interactivity colors, added background picture to the application." />
@@ -689,7 +698,8 @@
     <MESSAGE value="Push some more stuff" />
     <MESSAGE value="Added text to the inputs." />
     <MESSAGE value="Some minor refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Some minor refactoring" />
+    <MESSAGE value="Added an event that runs when the use presses the confirm button." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an event that runs when the use presses the confirm button." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
