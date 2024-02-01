@@ -97,6 +97,7 @@ private:
         eID_ContentPanel,
         eID_ConfirmButton,
         eID_Instructions,
+        eID_Frame
     };
 
     enum TextInput
@@ -113,6 +114,7 @@ private:
         ST_Instructions = 0,
         ST_SearchSettings,
         ST_Run,
+        ST_PressConfirmButton,
         ST_Running
     };
 
@@ -140,6 +142,7 @@ private:
     void PressSearchSettings(wxEvent &event);
     void PressDatabase(wxMouseEvent& event);
     void PressRun(wxMouseEvent& event);
+    void PressConfirm(wxMouseEvent &event);
 
 // Bools
 private:
@@ -180,7 +183,7 @@ bool ScraperApp::OnInit()
 }
 
 MainFrame::MainFrame()
-        : wxFrame(nullptr, wxID_ANY, "Info Hunter")
+        : wxFrame(nullptr, eID_Frame, "Info Hunter")
 {
     // Starting state
     currentState = ST_Instructions;
@@ -514,7 +517,14 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
     content->SetSizer( mainSizer );
     content->Layout();
 
+    confirmButton->Bind(wxEVT_LEFT_UP, &MainFrame::PressConfirm, this, eID_ConfirmButton);
+
     currentState = ST_SearchSettings;
+}
+
+void MainFrame::PressConfirm(wxMouseEvent &event)
+{
+    std::cout << "Pressed Confirm" << std::endl;
 }
 
 void MainFrame::PressDatabase(wxMouseEvent &event)

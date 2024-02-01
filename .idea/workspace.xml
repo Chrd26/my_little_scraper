@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added text to the inputs.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Some minor refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -250,7 +250,8 @@
       <workItem from="1706527383753" duration="3989000" />
       <workItem from="1706533778106" duration="189000" />
       <workItem from="1706621037579" duration="1132000" />
-      <workItem from="1706704800200" duration="393000" />
+      <workItem from="1706704800200" duration="433000" />
+      <workItem from="1706796134265" duration="1115000" />
     </task>
     <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
       <option name="closed" value="true" />
@@ -620,7 +621,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706622167817</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Some minor refactoring">
+      <option name="closed" value="true" />
+      <created>1706705583632</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1706705583632</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,7 +664,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Elements now work as button. I need to make changes to the cursor as they are hovered." />
     <MESSAGE value="Added functions for hover and stop hovering events. Needs to add a change mouse cursor during the event." />
     <MESSAGE value="Tried out buttons but I was unable to make them work the I wanted them to. I reverted back to static text and added enums to handle states with switches to make the application dynamic." />
     <MESSAGE value="At last, I maanged to find a solution for the clickable static text. Making them class property was the answer!" />
@@ -680,7 +688,8 @@
     <MESSAGE value="Refactoring and clean up, better now!" />
     <MESSAGE value="Push some more stuff" />
     <MESSAGE value="Added text to the inputs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added text to the inputs." />
+    <MESSAGE value="Some minor refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some minor refactoring" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
