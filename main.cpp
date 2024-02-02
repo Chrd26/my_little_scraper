@@ -520,6 +520,13 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
 void MainFrame::PressDatabase(wxMouseEvent &event)
 {
     std::cout << "Pressed Database" << std::endl;
+
+    int systemCode = std::system("cd ../content && open content.csv");
+
+    if (systemCode != 0)
+    {
+        std::cout << "File does not exist" << std::endl;
+    }
 }
 
 void MainFrame::PressRun(wxMouseEvent &event)
