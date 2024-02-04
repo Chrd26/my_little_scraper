@@ -24,7 +24,6 @@ void CSV_Handler::ReadFile()
 
     while(getline(file,column, ','))
     {
-        // std::cout << "Value: " << column << std::endl;
         std::cout << std::regex_match(column, reg) << std::endl;
 
         if (std::regex_match(column,reg))
@@ -49,7 +48,8 @@ void CSV_Handler::WriteSavedSearchOptions(std::string keyword, std::string& url)
     if (!csvfile.is_open())
     {
         std::cout << "Failed to open settings file." << std::endl;
-        exit(-1);
+        std::cout << std::strerror(errno) << std::endl;
+        exit(errno);
     }
 
     std::string csvData = url;
@@ -60,6 +60,9 @@ void CSV_Handler::WriteSavedSearchOptions(std::string keyword, std::string& url)
     csvfile.close();
 }
 
+// Clearing a file quite easy, just open it without setting
+// an input or output mode and clsoe it
+// Source: https://stackoverflow.com/questions/25201131/writing-csv-files-from-c
 void CSV_Handler::ClearPreviousOptions()
 {
     std::ofstream csvFileToClear;
@@ -67,9 +70,26 @@ void CSV_Handler::ClearPreviousOptions()
 
     if (!csvFileToClear.is_open())
     {
-        std::cout << "Failed to open settings file." << std::endl;
-        exit(-1);
+        std::cout << "Failed to save settings." << std::endl;
+        std::cout << std::strerror(errno) << std::endl;
+        exit(errno);
     }
 
     csvFileToClear.close();
+}
+
+void CSV_Handler::WriteNumberOfUrls(int num)
+{
+    std::ofstream urlAmount;
+    urlAmount.open("../settings/url-amount.txt");
+
+    if (!urlAmount.is_open())
+    {
+        std::cout << "Failed to save settings" << std::endl;
+        std::cout << std::strerror(errno) << std::endl;
+        exit(errno);
+    }
+
+    urlAmount << num << std::endl;
+    urlAmount.close();
 }
