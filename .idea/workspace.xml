@@ -20,8 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added an event that runs when the use presses the confirm button.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Now pressing the database button, will open the csv file.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -253,15 +254,9 @@
       <workItem from="1706621037579" duration="1132000" />
       <workItem from="1706704800200" duration="433000" />
       <workItem from="1706796134265" duration="2112000" />
-      <workItem from="1706810122191" duration="1369000" />
-    </task>
-    <task id="LOCAL-00001" summary="Added Lexbor fixed some include issues">
-      <option name="closed" value="true" />
-      <created>1694714439342</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1694714439342</updated>
+      <workItem from="1706810122191" duration="1389000" />
+      <workItem from="1706873598089" duration="2244000" />
+      <workItem from="1707052164104" duration="1731000" />
     </task>
     <task id="LOCAL-00002" summary="Now the application gets the text from the websites!">
       <option name="closed" value="true" />
@@ -639,7 +634,23 @@
       <option name="project" value="LOCAL" />
       <updated>1706797431901</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Found a way to get the values from csv input. Just use the GetValue() method.">
+      <option name="closed" value="true" />
+      <created>1706811898872</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1706811898872</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Now pressing the database button, will open the csv file.">
+      <option name="closed" value="true" />
+      <created>1706874084055</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1706874084056</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -674,8 +685,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tried out buttons but I was unable to make them work the I wanted them to. I reverted back to static text and added enums to handle states with switches to make the application dynamic." />
-    <MESSAGE value="At last, I maanged to find a solution for the clickable static text. Making them class property was the answer!" />
     <MESSAGE value="Fixed static text interactivity colors, added background picture to the application." />
     <MESSAGE value="Cleaned up the code a little, added some needed comments." />
     <MESSAGE value="added confirm button, fixed some sizing issues with the png image as it was too big and made the options panel way to big. The confirm button might need some cetntering." />
@@ -699,7 +708,9 @@
     <MESSAGE value="Added text to the inputs." />
     <MESSAGE value="Some minor refactoring" />
     <MESSAGE value="Added an event that runs when the use presses the confirm button." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added an event that runs when the use presses the confirm button." />
+    <MESSAGE value="Found a way to get the values from csv input. Just use the GetValue() method." />
+    <MESSAGE value="Now pressing the database button, will open the csv file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Now pressing the database button, will open the csv file." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

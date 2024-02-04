@@ -20,5 +20,6 @@ struct CSV_Handler{
     std::vector<std::string> keywords;
     std::vector<std::string> links;
     void ReadFile();
-    void WriteFile(std::vector<std::string> paragraphs, std::string& url);
+    void WriteSavedSearchOptions(std::string keyword, std::string& url);
+    void ClearPreviousOptions();
 };

@@ -508,25 +508,43 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
 
 void MainFrame::PressConfirm(wxMouseEvent &event)
 {
-    std::cout << "Pressed Confirm" << std::endl;
-
     CSV_Handler handler;
+    handler.ClearPreviousOptions();
 //    Get Value:
 //    https://docs.wxwidgets.org/3.2.4/classwx_text_entry.html#a39335d9009b2053b5daf850c7b9d2974
-    std::string val = std::string(urlInput[0]->GetValue());
-    std::cout << val << std::endl;
+
+    for (int i = 0; i < 5; i++)
+    {
+        std::string getUrlValue = std::string(urlInput[i]->GetValue());
+
+        if (getUrlValue.empty())
+        {
+            break;
+        }
+
+        handler.WriteSavedSearchOptions(std::string(keywords1[i]->GetValue()),
+                                        getUrlValue);
+        handler.WriteSavedSearchOptions(std::string(keywords2[i]->GetValue()),
+                                        getUrlValue);
+        handler.WriteSavedSearchOptions(std::string(keywords3[i]->GetValue()),
+                                        getUrlValue);
+        handler.WriteSavedSearchOptions(std::string(keywords4[i]->GetValue()),
+                                        getUrlValue);
+
+    }
 }
 
 void MainFrame::PressDatabase(wxMouseEvent &event)
 {
-    std::cout << "Pressed Database" << std::endl;
-
     int systemCode = std::system("cd ../content && open content.csv");
 
     if (systemCode != 0)
     {
-        std::cout << "File does not exist" << std::endl;
+        wxMessageBox("There is no file to read, make sure to run a search first.",
+                     "",
+                     wxOK|wxICON_EXCLAMATION);
     }
+
 }
 
 void MainFrame::PressRun(wxMouseEvent &event)

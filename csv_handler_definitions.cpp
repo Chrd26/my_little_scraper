@@ -41,16 +41,35 @@ void CSV_Handler::ReadFile()
 }
 
 // Start adding data to the CSV file
-void CSV_Handler::WriteFile(std::vector<std::string> paragraphs, std::string& url) {
+void CSV_Handler::WriteSavedSearchOptions(std::string keyword, std::string& url) {
     std::ofstream csvfile;
-    csvfile.open("../content/content.csv");
+    csvfile.open("../settings/settings.csv",
+                 std::ios::app);
 
-    for (const auto & paragraph : paragraphs)
+    if (!csvfile.is_open())
     {
-        std::string csvData = paragraph;
-        csvData.append(", ");
-        csvData.append(url);
+        std::cout << "Failed to open settings file." << std::endl;
+        exit(-1);
     }
 
+    std::string csvData = url;
+    csvData.append(", ");
+    csvData.append(keyword);
+    csvfile << csvData << std::endl;
+
     csvfile.close();
+}
+
+void CSV_Handler::ClearPreviousOptions()
+{
+    std::ofstream csvFileToClear;
+    csvFileToClear.open("../settings/settings.csv");
+
+    if (!csvFileToClear.is_open())
+    {
+        std::cout << "Failed to open settings file." << std::endl;
+        exit(-1);
+    }
+
+    csvFileToClear.close();
 }
