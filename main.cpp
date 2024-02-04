@@ -533,10 +533,11 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
                                         getUrlValue);
         handler.WriteSavedSearchOptions(std::string(keywords4[i]->GetValue()),
                                         getUrlValue);
-
     }
-
     handler.WriteNumberOfUrls(urlCounter);
+
+    wxMessageBox("You settings have been saved", "",
+                 wxOK|wxICON_ASTERISK);
 }
 
 void MainFrame::PressDatabase(wxMouseEvent &event)

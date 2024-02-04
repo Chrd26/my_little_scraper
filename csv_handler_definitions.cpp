@@ -4,25 +4,27 @@
 #include "csv_handler.h"
 // Read more
 
-void CSV_Handler::ReadFile()
+void CSV_Handler::ReadSettings()
 {
-    std::ifstream file;
+    std::ifstream settingsCSV;
+    std::ifstream urlAmount;
     size_t counter = 0;
-    file.open("/Users/chrisd/Desktop/my_little_scraper/example-csv/example.csv");
+    settingsCSV.open("../settings/settings.csv");
+    urlAmount.open("../settings/url-amount.txt");
     std::regex reg("^www.*|https?.*");
 
-    if(!file.is_open())
+    if(!settingsCSV.is_open() || !urlAmount.is_open())
     {
         std::cout << std::strerror(errno) << std::endl;
-        exit(1);
+        exit(errno);
     }
 
-    std::vector<std::string> fileURLS;
+    std::vector<std::string> getFileURLS;
+    std::vector<std::string> getKeywords;
     std::string column;
     std::string val;
-    getline(file, column, ',');
 
-    while(getline(file,column, ','))
+    while(getline(settingsCSV ,column, '\n'))
     {
         std::cout << std::regex_match(column, reg) << std::endl;
 
@@ -34,9 +36,8 @@ void CSV_Handler::ReadFile()
         }
     }
 
-    file.close();
-    std::cout << "CSV file reading is complete" << std::endl;
-    std::cin.get();
+    settingsCSV.close();
+    urlAmount.close();
 }
 
 // Start adding data to the CSV file

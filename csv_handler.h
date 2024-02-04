@@ -8,7 +8,7 @@
 struct CSV_Handler{
     std::vector<std::string> keywords;
     std::vector<std::string> links;
-    void ReadFile();
+    void ReadSettings();
     void WriteSavedSearchOptions(std::string keyword, std::string& url);
     void WriteNumberOfUrls(int num);
     void ClearPreviousOptions();
