@@ -8,7 +8,6 @@ void CSV_Handler::ReadSettings()
 {
     std::ifstream settingsCSV;
     std::ifstream urlAmount;
-    size_t counter = 0;
     settingsCSV.open("../settings/settings.csv");
     urlAmount.open("../settings/url-amount.txt");
     std::regex reg("^www.*|https?.*");
@@ -23,27 +22,26 @@ void CSV_Handler::ReadSettings()
     std::vector<std::string> getKeywords;
     std::string column;
     std::string val;
+    std::string urlCounter;
 
+    getline(urlAmount, urlCounter, '\n');
+
+    int toInteger = std::stoi(urlCounter);
+    urlCounter.clear();
+
+    std::cout << toInteger << std::endl;
+// Use std::any_of to find the existence of a value in a vector.
+// Compare values in unary predicate
+// Read more: https://stackoverflow.com/questions/60131075/how-to-use-stdany-of-for-a-beginner
     while(getline(settingsCSV ,column, ','))
     {
-        std::cout << std::regex_match(column, reg) << std::endl;
-
-        if (std::regex_match(column,reg))
+        if (std::any_of(getFileURLS.begin(), getFileURLS.end(),
+                        [column](std::string &getUrl) {return column == getUrl;}))
         {
-            links.push_back(column);
-        }else{
-            keywords.push_back(column);
+            std::cout << "Exists" << std::endl;
         }
-    }
 
-    for (std::string link : links)
-    {
-        std::cout << link << std::endl;
-    }
-
-    for (std::string keyword : keywords)
-    {
-        std::cout << keyword << std::endl;
+            std::cout << column << std::endl;
     }
 
     settingsCSV.close();
@@ -64,7 +62,7 @@ void CSV_Handler::WriteSavedSearchOptions(std::string keyword, std::string& url)
     }
 
     std::string csvData = url;
-    csvData.append(", ");
+    csvData.append(",");
     csvData.append(keyword);
     csvfile << csvData << std::endl;
 

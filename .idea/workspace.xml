@@ -20,10 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="I completely changed the code as it didn't make sense as it was. wxstring-&gt;Getvalue().empty() works fine too!">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Made sure that static texts also get cleaned up upon selection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,15 +259,8 @@
       <workItem from="1707105820702" duration="1897000" />
       <workItem from="1707132868638" duration="27000" />
       <workItem from="1707132907581" duration="119000" />
-      <workItem from="1707133051391" duration="2937000" />
-    </task>
-    <task id="LOCAL-00008" summary="Removed somw comments, fixed a problem in the previous commit where it was not possible to replace the anchor tags because the istheSame variable never becomes true after becoming false. This made the anchor tags replacement impossible.">
-      <option name="closed" value="true" />
-      <created>1696769820487</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1696769820487</updated>
+      <workItem from="1707133051391" duration="3052000" />
+      <workItem from="1707155657364" duration="1850000" />
     </task>
     <task id="LOCAL-00009" summary="Working on some fixes with text gathering. It is not perfect yet. I found a solution to not include the same articles. Save the url link and compare it to every new article.">
       <option name="closed" value="true" />
@@ -654,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707134845584</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Made sure that static texts also get cleaned up upon selection">
+      <option name="closed" value="true" />
+      <created>1707137537965</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1707137537965</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,7 +689,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed memory leak issue where re-selecting an option in the options menu caused a crash." />
     <MESSAGE value="Added mongodb driver to the project, started working on the database settings part." />
     <MESSAGE value="Added text control for password and username as well as confirm button." />
     <MESSAGE value="Fixed a problem where the inputs were not getting destroyed correctly. I have run into some problems with the wxButton objects. I need more reseach." />
@@ -714,7 +713,8 @@
     <MESSAGE value="Updated instructions text and readme." />
     <MESSAGE value="Added 2 conditional statements to make sure that no empty keywords are added." />
     <MESSAGE value="I completely changed the code as it didn't make sense as it was. wxstring-&gt;Getvalue().empty() works fine too!" />
-    <option name="LAST_COMMIT_MESSAGE" value="I completely changed the code as it didn't make sense as it was. wxstring-&gt;Getvalue().empty() works fine too!" />
+    <MESSAGE value="Made sure that static texts also get cleaned up upon selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made sure that static texts also get cleaned up upon selection" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
