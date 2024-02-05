@@ -278,11 +278,10 @@ MainFrame::MainFrame()
     content->SetForegroundColour("#FFFFFF");
 
     instructions = new wxStaticText(content, eID_Instructions,
-                                    std::string("How to use the application:\n1. Add urls, keywords and")
-                                    + std::string("set up a timer in the search settings\n")
-                                    + std::string("2. Connect to a database in in the database settings\n")
-                                    + std::string("3. Press run to start scanning\n")
-                                    + std::string("4. Press the database option to see the results"),
+                                    std::string("How to use the application:\n\n1. Add the keywords and the URLs ")
+                                    + std::string("in the search settings.\n")
+                                    + std::string("2. Press the run option to start the search.\n")
+                                    + std::string("3. Press the database option to see the results"),
                                     wxPoint(20, 50), wxDefaultSize, 0, "Instructions");
 
     // Handle events for certain elements in the window

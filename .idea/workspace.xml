@@ -20,11 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Started working on getting the saved settings from the files.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -258,15 +256,8 @@
       <workItem from="1706810122191" duration="1389000" />
       <workItem from="1706873598089" duration="2244000" />
       <workItem from="1707052164104" duration="3884000" />
-      <workItem from="1707060354222" duration="1186000" />
-    </task>
-    <task id="LOCAL-00004" summary="Added code to filter out content, I also need to find a way to get the data and time of the article.">
-      <option name="closed" value="true" />
-      <created>1696403722653</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1696403722654</updated>
+      <workItem from="1707060354222" duration="1242000" />
+      <workItem from="1707105820702" duration="1019000" />
     </task>
     <task id="LOCAL-00005" summary="Added a message at the end of the runtime to know when it ends. Some fixes to the filter, duplicates apear, a simple comparison to a CSV file should make it possible to fix it. Some parts of the text is missing, probably because some of it is inside span tags.">
       <option name="closed" value="true" />
@@ -652,7 +643,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707057535272</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Started working on getting the saved settings from the files.">
+      <option name="closed" value="true" />
+      <created>1707062363855</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1707062363856</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,7 +686,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added confirm button, fixed some sizing issues with the png image as it was too big and made the options panel way to big. The confirm button might need some cetntering." />
     <MESSAGE value="Added control text, there is a strange thing going on with the values of width. I need to investigate a bit further to see what is going and center the options better. I must find a key to introduce multiple rows of inputs(table)/" />
     <MESSAGE value="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs." />
     <MESSAGE value="I found a way to destroy the elements from a panel! Now I can make the GUI dynamic at last!" />
@@ -712,7 +710,8 @@
     <MESSAGE value="Now pressing the database button, will open the csv file." />
     <MESSAGE value="When the user presses the confirm button, the application cleans up the csv file with the previous search settings and applies the new ones." />
     <MESSAGE value="Added a new file to save the number of urs that have been inserted." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a new file to save the number of urs that have been inserted." />
+    <MESSAGE value="Started working on getting the saved settings from the files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Started working on getting the saved settings from the files." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
