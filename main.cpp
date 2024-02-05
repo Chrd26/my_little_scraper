@@ -524,24 +524,34 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
 
         urlCounter++;
 
-        if (keywords1[i]->GetValue().empty() || keywords2[i]->GetValue().empty())
+
+        if (!keywords1[i]->GetValue().empty())
         {
-            continue;
+            handler.WriteSavedSearchOptions(std::string(keywords1[i]->GetValue()),
+                                            getUrlValue);
         }
 
-        if (keywords3[i]->GetValue().empty() || keywords4[i]->GetValue().empty())
+        if (!keywords2[i]->GetValue().empty())
         {
-            continue;
+            handler.WriteSavedSearchOptions(std::string(keywords2[i]->GetValue()),
+                                            getUrlValue);
         }
 
-        handler.WriteSavedSearchOptions(std::string(keywords1[i]->GetValue()),
-                                        getUrlValue);
-        handler.WriteSavedSearchOptions(std::string(keywords2[i]->GetValue()),
-                                        getUrlValue);
-        handler.WriteSavedSearchOptions(std::string(keywords3[i]->GetValue()),
-                                        getUrlValue);
-        handler.WriteSavedSearchOptions(std::string(keywords4[i]->GetValue()),
-                                        getUrlValue);
+        if (!keywords3[i]->GetValue().empty())
+        {
+            handler.WriteSavedSearchOptions(std::string(keywords3[i]->GetValue()),
+                                            getUrlValue);
+        }else
+        {
+            std::cout << "This is empty" << std::endl;
+        }
+
+        if (!keywords4[i]->GetValue().empty())
+        {
+            handler.WriteSavedSearchOptions(std::string(keywords4[i]->GetValue()),
+                                            getUrlValue);
+        }
+
     }
     handler.WriteNumberOfUrls(urlCounter);
 
