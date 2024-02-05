@@ -24,7 +24,7 @@ void CSV_Handler::ReadSettings()
     std::string column;
     std::string val;
 
-    while(getline(settingsCSV ,column, '\n'))
+    while(getline(settingsCSV ,column, ','))
     {
         std::cout << std::regex_match(column, reg) << std::endl;
 
@@ -34,6 +34,16 @@ void CSV_Handler::ReadSettings()
         }else{
             keywords.push_back(column);
         }
+    }
+
+    for (std::string link : links)
+    {
+        std::cout << link << std::endl;
+    }
+
+    for (std::string keyword : keywords)
+    {
+        std::cout << keyword << std::endl;
     }
 
     settingsCSV.close();

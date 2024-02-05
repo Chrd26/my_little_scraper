@@ -379,6 +379,10 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
             keywords4[i]->Destroy();
         }
 
+        keywords1StaticText->Destroy();
+        keywords2StaticText->Destroy();
+        keywords3StaticText->Destroy();
+        keywords4StaticText->Destroy();
         confirmButton->Destroy();
     }
 
@@ -569,7 +573,6 @@ void MainFrame::PressDatabase(wxMouseEvent &event)
                      "",
                      wxOK|wxICON_EXCLAMATION);
     }
-
 }
 
 void MainFrame::PressRun(wxMouseEvent &event)
@@ -591,8 +594,17 @@ void MainFrame::PressRun(wxMouseEvent &event)
             keywords4[i]->Destroy();
         }
 
+        keywords1StaticText->Destroy();
+        keywords2StaticText->Destroy();
+        keywords3StaticText->Destroy();
+        keywords4StaticText->Destroy();
+
         confirmButton->Destroy();
     }
+
+    CSV_Handler handler;
+
+    handler.ReadSettings();
 
     currentState = ST_Run;
 }
