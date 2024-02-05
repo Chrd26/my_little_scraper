@@ -20,9 +20,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Started working on getting the saved settings from the files.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Updated instructions text and readme.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -257,15 +256,10 @@
       <workItem from="1706873598089" duration="2244000" />
       <workItem from="1707052164104" duration="3884000" />
       <workItem from="1707060354222" duration="1242000" />
-      <workItem from="1707105820702" duration="1019000" />
-    </task>
-    <task id="LOCAL-00005" summary="Added a message at the end of the runtime to know when it ends. Some fixes to the filter, duplicates apear, a simple comparison to a CSV file should make it possible to fix it. Some parts of the text is missing, probably because some of it is inside span tags.">
-      <option name="closed" value="true" />
-      <created>1696417879159</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1696417879159</updated>
+      <workItem from="1707105820702" duration="1897000" />
+      <workItem from="1707132868638" duration="27000" />
+      <workItem from="1707132907581" duration="119000" />
+      <workItem from="1707133051391" duration="1223000" />
     </task>
     <task id="LOCAL-00006" summary="Now the application grabs the complete text from the articles! Progress at last. I removed any &lt;strong&gt;&lt;/strong&gt; and &lt;span&gt;&lt;/span&gt; tags to make sure that  lexbor grabs everything properly.">
       <option name="closed" value="true" />
@@ -651,7 +645,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707062363856</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Updated instructions text and readme.">
+      <option name="closed" value="true" />
+      <created>1707107131984</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1707107131984</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -686,7 +688,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added control text, there is a strange thing going on with the values of width. I need to investigate a bit further to see what is going and center the options better. I must find a key to introduce multiple rows of inputs(table)/" />
     <MESSAGE value="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs." />
     <MESSAGE value="I found a way to destroy the elements from a panel! Now I can make the GUI dynamic at last!" />
     <MESSAGE value="Fixed memory leak issue where re-selecting an option in the options menu caused a crash." />
@@ -711,7 +712,8 @@
     <MESSAGE value="When the user presses the confirm button, the application cleans up the csv file with the previous search settings and applies the new ones." />
     <MESSAGE value="Added a new file to save the number of urs that have been inserted." />
     <MESSAGE value="Started working on getting the saved settings from the files." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started working on getting the saved settings from the files." />
+    <MESSAGE value="Updated instructions text and readme." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated instructions text and readme." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
