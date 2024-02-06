@@ -8,7 +8,6 @@ void CSV_Handler::ReadSettings()
 {
     std::ifstream settingsCSV;
     settingsCSV.open("../settings/settings.csv");
-    std::regex reg("^www.*|https?.*");
 
     if(!settingsCSV.is_open())
     {
