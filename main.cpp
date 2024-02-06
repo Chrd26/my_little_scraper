@@ -610,12 +610,50 @@ void MainFrame::PressRun(wxMouseEvent &event)
     {
         int index = line.find(",");
 
-        std::string getKeywordVal = line.substr(index + 1);
-        std::string getUrlVal = line.substr(0, index);
-        std::cout << getUrlVal << std::endl;
-        std::cout << getKeywordVal << std::endl;
+        getSettingsUrl.push_back(line.substr(0, index));
+        getSettingsKeywords.push_back(line.substr(index + 1));
     }
 
+    std::cout << std::count(getSettingsUrl.begin(),
+                            getSettingsUrl.end(),
+                            "in.gr") << std::endl;
+
+    std::vector<std::string> getUrls;
+    std::vector<int> urlCounterHolder;
+    int counter = 1;
+
+    for (const auto &url : getSettingsUrl)
+    {
+        if (getUrls.empty())
+        {
+            getUrls.push_back(url);
+            counter++;
+            continue;
+        }
+
+        if (std::find(getUrls.begin(), getUrls.end(), url) != std::end(getUrls))
+        {
+            std::cout << "Found?" << std::endl;
+            counter++;
+            continue;
+        }
+        else
+        {
+            urlCounterHolder.push_back(counter);
+            counter = 1;
+            getUrls.push_back(url);
+        }
+    }
+
+    for (const auto &urls : getUrls)
+    {
+        std::cout << urls << std::endl;
+    }
+
+    for (const auto counter : urlCounterHolder)
+    {
+        std::cout << counter << std::endl;
+    }
     currentState = ST_Run;
 }
 

@@ -22,11 +22,6 @@ void CSV_Handler::ReadSettings()
         csvLines.push_back(column);
     }
 
-    for (const auto &content : csvLines)
-    {
-        std::cout << "Content: " << content << std::endl;
-    }
-
     settingsCSV.close();
 }
 
