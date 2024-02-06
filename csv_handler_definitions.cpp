@@ -16,14 +16,13 @@ void CSV_Handler::ReadSettings()
     }
 
     std::string column;
-    std::vector<std::string> keywordsAndUrls;
 
     while(getline(settingsCSV ,column, '\n'))
     {
-        keywordsAndUrls.push_back(column);
+        csvLines.push_back(column);
     }
 
-    for (const auto &content : keywordsAndUrls)
+    for (const auto &content : csvLines)
     {
         std::cout << "Content: " << content << std::endl;
     }
