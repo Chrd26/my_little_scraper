@@ -20,10 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Removed regex">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="The settings lines are now being added to a vector.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,15 +262,7 @@
       <workItem from="1707133051391" duration="3052000" />
       <workItem from="1707155657364" duration="1891000" />
       <workItem from="1707193023668" duration="2852000" />
-      <workItem from="1707208633035" duration="647000" />
-    </task>
-    <task id="LOCAL-00014" summary="Started Implementing Wx Widgets, Made a simple window.">
-      <option name="closed" value="true" />
-      <created>1697565019641</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1697565019641</updated>
+      <workItem from="1707208633035" duration="2933000" />
     </task>
     <task id="LOCAL-00015" summary="About button now opens up a new window. I need to add some forms to handle the CSV file. I should also look for some concepts to get some inspiration on the general design.">
       <option name="closed" value="true" />
@@ -657,7 +648,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707199044353</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="The settings lines are now being added to a vector.">
+      <option name="closed" value="true" />
+      <created>1707210112574</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1707210112575</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -692,7 +691,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="I had to refactor the whole code in the search settings part. Now it works fine. It still needs some spacing and it is ready." />
     <MESSAGE value="Some more refactoring" />
     <MESSAGE value="Cleared the code even more. I should try to remove any magic numbers from the code. Now keywords4 array also gets deleted." />
     <MESSAGE value="Removed more magic numbers, refactoring" />
@@ -717,7 +715,8 @@
     <MESSAGE value="Removed uneeded function" />
     <MESSAGE value="removed uneeded comments" />
     <MESSAGE value="Removed regex" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed regex" />
+    <MESSAGE value="The settings lines are now being added to a vector." />
+    <option name="LAST_COMMIT_MESSAGE" value="The settings lines are now being added to a vector." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

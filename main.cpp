@@ -78,6 +78,11 @@ private:
     wxStaticText *keywords3StaticText = nullptr;
     wxStaticText *keywords4StaticText = nullptr;
 
+//    Run
+private:
+    std::vector<std::string> getSettingsUrl;
+    std::vector<std::string> getSettingsKeywords;
+
 // States and IDs
 private:
     enum events
@@ -597,6 +602,19 @@ void MainFrame::PressRun(wxMouseEvent &event)
     CSV_Handler handler;
 
     handler.ReadSettings();
+
+    std::vector<std::string> searchUrls;
+    std::vector<std::string> searchKeywords;
+
+    for (const std::string &line : handler.csvLines)
+    {
+        int index = line.find(",");
+
+        std::string getKeywordVal = line.substr(index + 1);
+        std::string getUrlVal = line.substr(0, index);
+        std::cout << getUrlVal << std::endl;
+        std::cout << getKeywordVal << std::endl;
+    }
 
     currentState = ST_Run;
 }
