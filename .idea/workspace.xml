@@ -20,8 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Urls and keywords are now being separated and will be added to new vectors. There is going to be a need to count how many times a url appears to make sure that only the correct keywords are being used.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Created a loop to remove repeating urls, and a url counter to use it with the keyword holder.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -264,15 +265,9 @@
       <workItem from="1707155657364" duration="1891000" />
       <workItem from="1707193023668" duration="2852000" />
       <workItem from="1707208633035" duration="3161000" />
-      <workItem from="1707218621229" duration="3554000" />
-    </task>
-    <task id="LOCAL-00016" summary="Started working on options text">
-      <option name="closed" value="true" />
-      <created>1698087072821</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1698087072821</updated>
+      <workItem from="1707218621229" duration="4182000" />
+      <workItem from="1707242521678" duration="817000" />
+      <workItem from="1707243449568" duration="2380000" />
     </task>
     <task id="LOCAL-00017" summary="Added text to the right panels, I have been unable setting a sizer for them. Need some research.">
       <option name="closed" value="true" />
@@ -658,7 +653,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707218127158</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Created a loop to remove repeating urls, and a url counter to use it with the keyword holder.">
+      <option name="closed" value="true" />
+      <created>1707226639616</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1707226639617</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -693,7 +696,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cleared the code even more. I should try to remove any magic numbers from the code. Now keywords4 array also gets deleted." />
     <MESSAGE value="Removed more magic numbers, refactoring" />
     <MESSAGE value="Removed database settings as it will take too much time to implement it. The database will open a new window and show a csv file where the use will be able to open and read the results." />
     <MESSAGE value="Some more cleanup" />
@@ -718,7 +720,19 @@
     <MESSAGE value="Removed regex" />
     <MESSAGE value="The settings lines are now being added to a vector." />
     <MESSAGE value="Urls and keywords are now being separated and will be added to new vectors. There is going to be a need to count how many times a url appears to make sure that only the correct keywords are being used." />
-    <option name="LAST_COMMIT_MESSAGE" value="Urls and keywords are now being separated and will be added to new vectors. There is going to be a need to count how many times a url appears to make sure that only the correct keywords are being used." />
+    <MESSAGE value="Created a loop to remove repeating urls, and a url counter to use it with the keyword holder." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a loop to remove repeating urls, and a url counter to use it with the keyword holder." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>654</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

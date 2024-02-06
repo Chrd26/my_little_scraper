@@ -26,10 +26,10 @@ void CSV_Handler::ReadSettings()
 }
 
 // Start adding data to the CSV file
-void CSV_Handler::WriteSavedSearchOptions(std::string keyword, std::string& url) {
+void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url)
+{
     std::ofstream csvfile;
-    csvfile.open("../settings/settings.csv",
-                 std::ios::app);
+    csvfile.open("../settings/settings.csv", std::ios::app);
 
     if (!csvfile.is_open())
     {

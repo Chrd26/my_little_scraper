@@ -533,25 +533,29 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
 
         if (!keywords1[i]->GetValue().empty())
         {
-            handler.WriteSavedSearchOptions(std::string(keywords1[i]->GetValue()),
+            std::string getKeyword = std::string(keywords1[i]->GetValue());
+            handler.WriteSavedSearchOptions(getKeyword,
                                             getUrlValue);
         }
 
         if (!keywords2[i]->GetValue().empty())
         {
-            handler.WriteSavedSearchOptions(std::string(keywords2[i]->GetValue()),
+            std::string getKeyword = std::string(keywords2[i]->GetValue());
+            handler.WriteSavedSearchOptions(getKeyword,
                                             getUrlValue);
         }
 
         if (!keywords3[i]->GetValue().empty())
         {
-            handler.WriteSavedSearchOptions(std::string(keywords3[i]->GetValue()),
+            std::string getKeyword = std::string(keywords3[i]->GetValue());
+            handler.WriteSavedSearchOptions(getKeyword,
                                             getUrlValue);
         }
 
         if (!keywords4[i]->GetValue().empty())
         {
-            handler.WriteSavedSearchOptions(std::string(keywords4[i]->GetValue()),
+            std::string getKeyword = std::string(keywords4[i]->GetValue());
+            handler.WriteSavedSearchOptions(getKeyword,
                                             getUrlValue);
         }
     }
@@ -606,54 +610,60 @@ void MainFrame::PressRun(wxMouseEvent &event)
     std::vector<std::string> searchUrls;
     std::vector<std::string> searchKeywords;
 
+//    Separate urls and keywords
     for (const std::string &line : handler.csvLines)
     {
-        int index = line.find(",");
+        int index = (int)line.find(",");
 
         getSettingsUrl.push_back(line.substr(0, index));
         getSettingsKeywords.push_back(line.substr(index + 1));
     }
 
-    std::cout << std::count(getSettingsUrl.begin(),
-                            getSettingsUrl.end(),
-                            "in.gr") << std::endl;
-
     std::vector<std::string> getUrls;
     std::vector<int> urlCounterHolder;
-    int counter = 1;
+    int counter = 0;
 
+//    count how many keywords each url has
     for (const auto &url : getSettingsUrl)
     {
-        if (getUrls.empty())
+        if (urlCounterHolder.empty())
         {
+            int count = (int)std::count(getSettingsUrl.begin(),
+                                   getSettingsUrl.end(),
+                                   url);
+            urlCounterHolder.push_back((count));
             getUrls.push_back(url);
-            counter++;
-            continue;
         }
 
         if (std::find(getUrls.begin(), getUrls.end(), url) != std::end(getUrls))
         {
-            std::cout << "Found?" << std::endl;
             counter++;
             continue;
         }
         else
         {
             urlCounterHolder.push_back(counter);
-            counter = 1;
+            counter = 0;
             getUrls.push_back(url);
+            counter++;
         }
     }
 
-    for (const auto &urls : getUrls)
+    counter = 0;
+
+//    Start scraping
+    for (int amount : urlCounterHolder)
     {
-        std::cout << urls << std::endl;
+        std::cout << amount << std::endl;
+        for (int j = 0; j < amount; j++)
+        {
+            std::cout << getSettingsKeywords[j] << std::endl;
+            std::cout << getUrls[counter] << std::endl;
+        }
+
+        counter++;
     }
 
-    for (const auto counter : urlCounterHolder)
-    {
-        std::cout << counter << std::endl;
-    }
     currentState = ST_Run;
 }
 
