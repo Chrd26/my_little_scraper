@@ -18,9 +18,7 @@ void CSV_Handler::ReadSettings()
 
     std::string column;
     std::vector<std::string> keywordsAndUrls;
-// Use std::any_of to find the existence of a value in a vector.
-// Compare values in unary predicate
-// Read more: https://stackoverflow.com/questions/60131075/how-to-use-stdany-of-for-a-beginner
+
     while(getline(settingsCSV ,column, '\n'))
     {
         keywordsAndUrls.push_back(column);

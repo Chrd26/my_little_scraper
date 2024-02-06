@@ -20,11 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added an any of in getFileUrls to get each url without duplicating it. It needs a counter.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Removed uneeded function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,23 +261,7 @@
       <workItem from="1707132907581" duration="119000" />
       <workItem from="1707133051391" duration="3052000" />
       <workItem from="1707155657364" duration="1891000" />
-      <workItem from="1707193023668" duration="2093000" />
-    </task>
-    <task id="LOCAL-00010" summary="Started working on converting the web scraper into a more general application for various uses.">
-      <option name="closed" value="true" />
-      <created>1697030166462</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1697030166462</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Created an example CSV file to use its data.">
-      <option name="closed" value="true" />
-      <created>1697197126987</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1697197126987</updated>
+      <workItem from="1707193023668" duration="2682000" />
     </task>
     <task id="LOCAL-00012" summary="Fixed an issue with where the program was unable to get the info from the CSV file. Now the program gets all links and keywords properly.">
       <option name="closed" value="true" />
@@ -657,7 +639,23 @@
       <option name="project" value="LOCAL" />
       <updated>1707157666421</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Fixed an issue where each line was not read correctly, removed url counter as it is not needed anymore.">
+      <option name="closed" value="true" />
+      <created>1707195758581</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1707195758581</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Removed uneeded function">
+      <option name="closed" value="true" />
+      <created>1707198624435</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1707198624436</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -692,8 +690,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added text control for password and username as well as confirm button." />
-    <MESSAGE value="Fixed a problem where the inputs were not getting destroyed correctly. I have run into some problems with the wxButton objects. I need more reseach." />
     <MESSAGE value="Added wxforms builder to help with the wxWidgets, finally some progress with sizers." />
     <MESSAGE value="There is something wrong either with the widgets builder either the library. Either way, I figured out how to set it up properly this time." />
     <MESSAGE value="I had to refactor the whole code in the search settings part. Now it works fine. It still needs some spacing and it is ready." />
@@ -717,18 +713,9 @@
     <MESSAGE value="I completely changed the code as it didn't make sense as it was. wxstring-&gt;Getvalue().empty() works fine too!" />
     <MESSAGE value="Made sure that static texts also get cleaned up upon selection" />
     <MESSAGE value="Added an any of in getFileUrls to get each url without duplicating it. It needs a counter." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added an any of in getFileUrls to get each url without duplicating it. It needs a counter." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/csv_handler_definitions.cpp</url>
-          <line>12</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Fixed an issue where each line was not read correctly, removed url counter as it is not needed anymore." />
+    <MESSAGE value="Removed uneeded function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed uneeded function" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
