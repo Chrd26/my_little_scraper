@@ -513,7 +513,6 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
 {
     CSV_Handler handler;
     handler.ClearPreviousOptions();
-    int urlCounter = 0;
 //    Get Value:
 //    https://docs.wxwidgets.org/3.2.4/classwx_text_entry.html#a39335d9009b2053b5daf850c7b9d2974
 
@@ -525,8 +524,6 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
         {
             break;
         }
-
-        urlCounter++;
 
 
         if (!keywords1[i]->GetValue().empty())
@@ -545,9 +542,6 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
         {
             handler.WriteSavedSearchOptions(std::string(keywords3[i]->GetValue()),
                                             getUrlValue);
-        }else
-        {
-            std::cout << "This is empty" << std::endl;
         }
 
         if (!keywords4[i]->GetValue().empty())
@@ -555,9 +549,7 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
             handler.WriteSavedSearchOptions(std::string(keywords4[i]->GetValue()),
                                             getUrlValue);
         }
-
     }
-    handler.WriteNumberOfUrls(urlCounter);
 
     wxMessageBox("You settings have been saved", "",
                  wxOK|wxICON_ASTERISK);
