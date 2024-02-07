@@ -16,7 +16,6 @@
 typedef struct pageData{
     std::string url;
     std::string content;
-    std::string date;
 }pageData;
 
 // Scraper
@@ -35,8 +34,8 @@ private:
 
 public:
     // This is used to avoid running unneeded code when page analysis is running
-    static std::array<std::string, 7> keywords;
-    static std::string baseURL;
+    static std::vector<std::string> keywords;
+    std::string baseURL;
     static cpr::Response request_info(std::string url);
     lxb_inline void serialize_node(lxb_dom_node_t *node);
     std::vector<std::string> ParseContent(std::string content, char* attributeName, char* value);
@@ -45,8 +44,6 @@ public:
 
 class AnalyzePages : public Scraper
 {
-private:
-    static std::string getDateTime(std::string content);
 public:
     static void analyzeEntry(std::string input);
 };

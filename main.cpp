@@ -607,9 +607,6 @@ void MainFrame::PressRun(wxMouseEvent &event)
 
     handler.ReadSettings();
 
-    std::vector<std::string> searchUrls;
-    std::vector<std::string> searchKeywords;
-
 //    Separate urls and keywords
     for (const std::string &line : handler.csvLines)
     {
@@ -649,9 +646,13 @@ void MainFrame::PressRun(wxMouseEvent &event)
         }
     }
 
+    getSettingsUrl.clear();
     counter = 0;
 
 //    Start scraping
+    Scraper scraper;
+    AnalyzePages pageAnalyzer;
+
     for (int amount : urlCounterHolder)
     {
         std::cout << amount << std::endl;
@@ -659,7 +660,25 @@ void MainFrame::PressRun(wxMouseEvent &event)
         {
             std::cout << getSettingsKeywords[j] << std::endl;
             std::cout << getUrls[counter] << std::endl;
+
+            // Get info from website
+            scraper.baseURL = getUrls[counter];
+            cpr::Response r = scraper.request_info(scraper.baseURL);
+
+            // Parse it
+            std::vector<std::string> urls = scraper.ParseContent(r.text,
+                                                                 (char *) "href",
+                                                                 (char *) "/");
+
+            // Iterate through them
+            for (const std::string &item: urls) {
+                std::cout << item << std::endl;
+                cpr::Response res = pageAnalyzer.request_info(item);
+                pageAnalyzer.analyzeEntry(item);
+
+            }
         }
+
 
         counter++;
     }
@@ -704,20 +723,6 @@ void AboutWindow::OnExit(wxCommandEvent &event)
 
 /*
 int main(){
-    CSV_Handler csv;
-    // std::vector<std::string> startingURLS;
-
-    csv.ReadFile();
-
-    // Create scraper object
-    Scraper scraper;
-    AnalyzePages pageAnalyzer;
-
-    //urls vector
-    std::vector<std::string> urls;
-
-    // Page data data structure
-    std::vector<pageData> data;
 
     for (std::string& url : csv.links) {
         // Get info from website

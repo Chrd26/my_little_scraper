@@ -8,6 +8,6 @@
 struct CSV_Handler{
     std::vector<std::string> csvLines;
     void ReadSettings();
-    void WriteSavedSearchOptions(std::string &keyword, std::string &url);
-    void ClearPreviousOptions();
+    static void WriteSavedSearchOptions(std::string &keyword, std::string &url);
+    static void ClearPreviousOptions();
 };
