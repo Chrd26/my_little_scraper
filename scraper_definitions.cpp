@@ -60,8 +60,6 @@ void Scraper::getUrls(char* data)
    char dataFirstChar = getData.at(0);
    if (dataFirstChar == symbol)
    {
-       // std::cout << "true1" << std::endl;
-       // std::cout << createUrl + getData << std::endl;
        urls.push_back(baseURL + getData);
    }
 }

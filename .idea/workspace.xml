@@ -20,7 +20,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions. Working with static functions is a bit weird.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -266,15 +269,8 @@
       <workItem from="1707242521678" duration="817000" />
       <workItem from="1707243449568" duration="2555000" />
       <workItem from="1707294848411" duration="1823000" />
-      <workItem from="1707330012113" duration="1230000" />
-    </task>
-    <task id="LOCAL-00019" summary="Found out how to handle fonts and their styles.">
-      <option name="closed" value="true" />
-      <created>1698204666793</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1698204666793</updated>
+      <workItem from="1707330012113" duration="1316000" />
+      <workItem from="1707378134976" duration="856000" />
     </task>
     <task id="LOCAL-00020" summary="Tried to add shadows but failed to do so. It is not very easy, I should create a bitmap with the shape I want for the panel and change the color to the same one that the content panel contains.">
       <option name="closed" value="true" />
@@ -660,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707332264498</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions. Working with static functions is a bit weird.">
+      <option name="closed" value="true" />
+      <created>1707332340406</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1707332340406</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,7 +699,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some more cleanup" />
     <MESSAGE value="Refactoring and clean up, better now!" />
     <MESSAGE value="Push some more stuff" />
     <MESSAGE value="Added text to the inputs." />
@@ -720,7 +723,8 @@
     <MESSAGE value="Created a loop to remove repeating urls, and a url counter to use it with the keyword holder." />
     <MESSAGE value="Loop in a loop! I wonder if it is possible to create a better alternative. The outer loop is used to iterate through the urls, and the inner one is used to iterate through the keywords. This means that the inner loop runs until all the keywords of the url have been used." />
     <MESSAGE value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions." />
+    <MESSAGE value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions. Working with static functions is a bit weird." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions. Working with static functions is a bit weird." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

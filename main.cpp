@@ -650,8 +650,7 @@ void MainFrame::PressRun(wxMouseEvent &event)
     counter = 0;
 
 //    Start scraping
-    Scraper scraper;
-    AnalyzePages pageAnalyzer;
+    std::vector<std::string> scraperKeywords;
 
     for (int amount : urlCounterHolder)
     {
@@ -659,26 +658,30 @@ void MainFrame::PressRun(wxMouseEvent &event)
         for (int j = 0; j < amount; j++)
         {
             std::cout << getSettingsKeywords[j] << std::endl;
-            std::cout << getUrls[counter] << std::endl;
-
-            // Get info from website
-            scraper.baseURL = getUrls[counter];
-            cpr::Response r = scraper.request_info(scraper.baseURL);
-
-            // Parse it
-            std::vector<std::string> urls = scraper.ParseContent(r.text,
-                                                                 (char *) "href",
-                                                                 (char *) "/");
-
-            // Iterate through them
-            for (const std::string &item: urls) {
-                std::cout << item << std::endl;
-                cpr::Response res = pageAnalyzer.request_info(item);
-                pageAnalyzer.analyzeEntry(item);
-
-            }
+            scraperKeywords.push_back(getSettingsKeywords[j]);
         }
 
+        std::cout << getUrls[counter] << std::endl;
+
+        Scraper scraper(getSettingsKeywords, getUrls[counter]);
+        AnalyzePages pageAnalyzer;
+
+        // Get info from website
+        scraper.baseURL = getUrls[counter];
+        cpr::Response r = scraper.request_info(scraper.baseURL);
+
+        // Parse it
+        std::vector<std::string> urls = scraper.ParseContent(r.text,
+                                                             (char *) "href",
+                                                             (char *) "/");
+
+        // Iterate through them
+        for (const std::string &item: urls) {
+            std::cout << item << std::endl;
+            cpr::Response res = pageAnalyzer.request_info(item);
+            pageAnalyzer.analyzeEntry(item);
+
+        }
 
         counter++;
     }
