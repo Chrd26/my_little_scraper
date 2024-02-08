@@ -1,4 +1,13 @@
 #include "scraping-handler.h"
+std::string Scraper::baseURL;
+std::vector<std::string> Scraper::keywords = {"Hello"};
+
+void Scraper::SetupScraper(std::vector<std::string> inputKeywords, std::string url)
+{
+    keywords.clear();
+    baseURL = url;
+    keywords = inputKeywords;
+}
 
 // You need to define static variables to use them, a declaration is not enough
 std::vector<std::string> Scraper::urls;
@@ -180,11 +189,11 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
     return output;
 }
 
-void AnalyzePages::analyzeEntry(std::string input)
+void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grabKeywords, Scraper scraper)
 {
-    analysis = true;
+    scraper.analysis = true;
     bool keywordsFound = false;
-    cpr::Response getRes = request_info(input);
+    cpr::Response getRes = scraper.request_info(input);
     lxb_status_t status;
     lxb_dom_element_t* elem = nullptr;
     lxb_html_document_t* document = nullptr;
@@ -304,7 +313,7 @@ void AnalyzePages::analyzeEntry(std::string input)
 
     size_t html_len = sizeof(html) - 1;
 
-    document = Parse(html, html_len);
+    document = scraper.Parse(html, html_len);
     collection = lxb_dom_collection_make(&document->dom_document, 128);
 
     if (collection == nullptr)
@@ -340,7 +349,7 @@ void AnalyzePages::analyzeEntry(std::string input)
             // https://stackoverflow.com/questions/17746688/convert-unsigned-char-to-stdstring
             std::string toString(reinterpret_cast<char*>(getData));
 
-            for (std::string& keyword : keywords)
+            for (std::string& keyword : grabKeywords)
             {
                 if (toString.find(keyword) != std::string::npos)
                 {
@@ -365,5 +374,5 @@ void AnalyzePages::analyzeEntry(std::string input)
     lxb_dom_collection_destroy(collection, true);
     lxb_html_document_destroy(document);
 
-    analysis = false;
+    scraper.analysis = false;
 }

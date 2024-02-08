@@ -21,31 +21,28 @@ typedef struct pageData{
 // Scraper
 class Scraper
 {
-protected:
-    static bool analysis;
 private:
     static std::vector<std::string> urls;
     // static function can only call other static functions
     // lxb_inline makes a function static!!!
     // See this-> #define lxb_inline static inline
     // Source: https://stackoverflow.com/questions/15687638/c-cannot-call-member-function-inside-the-class
-    void getUrls(char* data);
+    static void getUrls(char* data);
     lxb_inline lxb_status_t serializer_callback(const lxb_char_t *data, size_t len, void *ctx);
 
 public:
-    // This is used to avoid running unneeded code when page analysis is running
-    std::vector<std::string> keywords;
-    std::string baseURL;
+    static bool analysis;
+    static std::vector<std::string> keywords;
+    static std::string baseURL;
     static cpr::Response request_info(std::string url);
     lxb_inline void serialize_node(lxb_dom_node_t *node);
     std::vector<std::string> ParseContent(std::string content, char* attributeName, char* value);
     lxb_inline lxb_html_document_t* Parse(const lxb_char_t* html, size_t html_len);
-    Scraper(std::vector<std::string> keywords, std::string url): keywords(keywords), baseURL(url){};
+    static void SetupScraper(std::vector<std::string> inputKeywords, std::string url);
 };
 
-class AnalyzePages : public Scraper
+class AnalyzePages
 {
 public:
-    static void analyzeEntry(std::string input);
-    AnalyzePages();
+    static void analyzeEntry(std::string input, std::vector<std::string> grabKeywords, Scraper scraper);
 };

@@ -625,8 +625,7 @@ void MainFrame::PressRun(wxMouseEvent &event)
     {
         if (urlCounterHolder.empty())
         {
-            int count = (int)std::count(getSettingsUrl.begin(),
-                                   getSettingsUrl.end(),
+            int count = (int)std::count(getSettingsUrl.begin(), getSettingsUrl.end(),
                                    url);
             urlCounterHolder.push_back((count));
             getUrls.push_back(url);
@@ -663,11 +662,11 @@ void MainFrame::PressRun(wxMouseEvent &event)
 
         std::cout << getUrls[counter] << std::endl;
 
-        Scraper scraper(getSettingsKeywords, getUrls[counter]);
+        Scraper scraper;
+        scraper.SetupScraper(scraperKeywords, getUrls[counter]);
         AnalyzePages pageAnalyzer;
 
         // Get info from website
-        scraper.baseURL = getUrls[counter];
         cpr::Response r = scraper.request_info(scraper.baseURL);
 
         // Parse it
@@ -678,8 +677,7 @@ void MainFrame::PressRun(wxMouseEvent &event)
         // Iterate through them
         for (const std::string &item: urls) {
             std::cout << item << std::endl;
-            cpr::Response res = pageAnalyzer.request_info(item);
-            pageAnalyzer.analyzeEntry(item);
+            pageAnalyzer.analyzeEntry(item, scraperKeywords, scraper);
 
         }
 
