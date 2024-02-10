@@ -20,11 +20,64 @@ public:
 
 wxIMPLEMENT_APP(ScraperApp);
 
+// This frame should run without being affected by the
+// scraping process
+class PleaseWaitFrame : public wxFrame
+{
+public:
+    PleaseWaitFrame();
+    ~PleaseWaitFrame();
+
+//    Frame Elements
+private:
+    wxStaticText *waitFrameText = nullptr;
+    wxButton *stopButton = nullptr;
+    wxPanel *mainPanel = nullptr;
+    wxSizer *mainSizer = nullptr;
+    wxSizer *textHolder = nullptr;
+
+//    States
+private:
+    enum elements
+    {
+        eID_Panel = 0,
+        eId_StopButton,
+        eID_FrameText,
+        eID_Frame
+    };
+
+//    Methods
+private:
+    void OnExit(wxCommandEvent &event);
+};
+
+void PleaseWaitFrame::OnExit(wxCommandEvent &event)
+{
+    close(true);
+}
+
+PleaseWaitFrame::PleaseWaitFrame(): wxFrame(nullptr, eID_Frame, "Please wait")
+{
+    mainSizer = new wxBoxSizer(wxHORIZONTAL);
+    textHolder = new wxBoxSizer(wxVERTICAL);
+    mainPanel = new wxPanel(this, eID_Panel, wxDefaultPosition);
+    waitFrameText = new wxStaticText(mainPanel, eID_FrameText, "Please wait while it runs",
+                                     wxDefaultPosition, wxDefaultSize, 0);
+    textHolder->Add(waitFrameText, 1, wxEXPAND);
+    mainSizer->Add(textHolder, 0 , wxEXPAND);
+    mainPanel->SetSizerAndFit(mainSizer, true);
+}
+
+PleaseWaitFrame::~PleaseWaitFrame()
+{
+    waitFrameText->Destroy();
+    mainPanel->Destroy();
+}
+
 // the public keyword is needed, otherwise the inherited code will be considered as
 // private member
 class MainFrame : public wxFrame
 {
-
 public:
     MainFrame();
 
@@ -33,7 +86,6 @@ public:
 // Create class properties for easy manipulation
 private:
     wxStaticText *searchSettings = nullptr;
-    wxStaticText *databaseSettings= nullptr;
     wxStaticText *database = nullptr;
     wxStaticText *run = nullptr;
     wxStaticText *title = nullptr;
@@ -123,6 +175,10 @@ private:
         ST_Running
     };
 
+//    Please wait Frame
+private:
+    PleaseWaitFrame *waitFrame = new PleaseWaitFrame();
+
 // Window Events
 private:
     void OnExit(wxCommandEvent& event);
@@ -132,7 +188,6 @@ private:
 // Hover Events
 private:
     void HoverSearchSettings(wxMouseEvent& event);
-    void HoverDatabaseSettings(wxMouseEvent& event);
     void HoverDatabase(wxMouseEvent& event);
     void HoverRun(wxMouseEvent& event);
 
@@ -148,10 +203,6 @@ private:
     void PressDatabase(wxMouseEvent& event);
     void PressRun(wxMouseEvent& event);
     void PressConfirm(wxMouseEvent &event);
-
-// Bools
-private:
-    bool isMouseHovering = false;
 };
 
 class AboutWindow: public wxFrame
@@ -294,52 +345,39 @@ MainFrame::MainFrame()
     // Read more: https://docs.wxwidgets.org/3.2.3/overview_events.html
 
     // On hover events
-    searchSettings->Bind(wxEVT_ENTER_WINDOW,
-                         &MainFrame::HoverSearchSettings,
+    searchSettings->Bind(wxEVT_ENTER_WINDOW, &MainFrame::HoverSearchSettings,
                          this, eID_SearchSettings);
     database->Bind(wxEVT_ENTER_WINDOW,
-                   &MainFrame::HoverDatabase,
-                   this,
+                   &MainFrame::HoverDatabase, this,
                    eID_Database);
     run->Bind(wxEVT_ENTER_WINDOW,
-              &MainFrame::HoverRun,
-              this,
+              &MainFrame::HoverRun, this,
               eID_Run);
 
     // On Exit hover events
     searchSettings->Bind(wxEVT_LEAVE_WINDOW,
-                         &MainFrame::StopHoverSearchSettings,
-                         this,
+                         &MainFrame::StopHoverSearchSettings, this,
                          eID_SearchSettings);
     database->Bind(wxEVT_LEAVE_WINDOW,
-                   &MainFrame::StopHoverDatabase,
-                   this,
+                   &MainFrame::StopHoverDatabase, this,
                    eID_Database);
-    run->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverRun,
-              this,
+    run->Bind(wxEVT_LEAVE_WINDOW, &MainFrame::StopHoverRun, this,
               eID_Run);
 
     // On click events
     searchSettings->Bind(wxEVT_LEFT_UP,
-                         &MainFrame::PressSearchSettings,
-                         this,
+                         &MainFrame::PressSearchSettings, this,
                          eID_SearchSettings);
     database->Bind(wxEVT_LEFT_UP,
-                   &MainFrame::PressDatabase,
-                   this,
+                   &MainFrame::PressDatabase, this,
                    eID_Database);
-    run->Bind(wxEVT_LEFT_UP, &MainFrame::PressRun,
-              this,
+    run->Bind(wxEVT_LEFT_UP, &MainFrame::PressRun, this,
               eID_Run);
 }
 
 // Hover Events Functions
 void MainFrame::HoverSearchSettings(wxMouseEvent &event){
     searchSettings->SetForegroundColour("#FFFFFFFF");
-}
-
-void MainFrame::HoverDatabaseSettings(wxMouseEvent &event){
-    databaseSettings->SetForegroundColour("#FFFFFFFF");
 }
 
 void MainFrame::HoverDatabase(wxMouseEvent &event){
@@ -530,7 +568,6 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
             break;
         }
 
-
         if (!keywords1[i]->GetValue().empty())
         {
             std::string getKeyword = std::string(keywords1[i]->GetValue());
@@ -566,6 +603,11 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
 
 void MainFrame::PressDatabase(wxMouseEvent &event)
 {
+    auto getDisplaySize = wxGetDisplaySize();
+    waitFrame->SetSize(getDisplaySize.GetWidth() * 0.1f,
+                       getDisplaySize.GetHeight() * 0.1f);
+    waitFrame->Show(true);
+
     int systemCode = std::system("cd ../content && open content.csv");
 
     if (systemCode != 0)
@@ -578,7 +620,6 @@ void MainFrame::PressDatabase(wxMouseEvent &event)
 
 void MainFrame::PressRun(wxMouseEvent &event)
 {
-    std::cout << "Pressed Run" << std::endl;
 
     if (currentState == ST_Instructions)
     {
@@ -660,8 +701,6 @@ void MainFrame::PressRun(wxMouseEvent &event)
             scraperKeywords.push_back(getSettingsKeywords[j]);
         }
 
-        std::cout << getUrls[counter] << std::endl;
-
         Scraper scraper;
         scraper.SetupScraper(scraperKeywords, getUrls[counter]);
         AnalyzePages pageAnalyzer;
@@ -678,7 +717,6 @@ void MainFrame::PressRun(wxMouseEvent &event)
         for (const std::string &item: urls) {
             std::cout << item << std::endl;
             pageAnalyzer.analyzeEntry(item, scraperKeywords, scraper);
-
         }
 
         counter++;
@@ -694,12 +732,17 @@ AboutWindow::AboutWindow()
     SetStatusText("This is an about window. You will find instructions here.");
 
     wxSize screen = wxGetDisplaySize();
-    wxSize windowSize(screen.GetWidth() * 0.4, screen.GetHeight() * 0.4);
+    wxSize windowSize(screen.GetWidth() * 0.1, screen.GetHeight() * 0.1);
     SetSize(windowSize);
 }
 
 void MainFrame::OnExit(wxCommandEvent &event)
 {
+    if (waitFrame != nullptr)
+    {
+        waitFrame->Destroy();
+    }
+
     close(true);
 }
 
@@ -721,29 +764,3 @@ void AboutWindow::OnExit(wxCommandEvent &event)
 {
     close(true);
 }
-
-/*
-int main(){
-
-    for (std::string& url : csv.links) {
-        // Get info from website
-        scraper.baseURL = url;
-        cpr::Response r = scraper.request_info(scraper.baseURL);
-
-        // Parse it
-        urls = scraper.ParseContent(r.text, (char *) "href", (char *) "/");
-
-        // Iterate through them
-        for (const std::string &item: urls) {
-            std::cout << item << std::endl;
-            cpr::Response res = pageAnalyzer.request_info(item);
-            pageAnalyzer.analyzeEntry(item);
-
-        }
-    }
-
-    std::cout << "Done press enter to complete.";
-    std::cin.get();
-    return 0;
-}
-*/

@@ -20,10 +20,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed some issues where it was not possible to assign values to the Scraper object with the use of constructors.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +77,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.scraper.executor": "Run",
+    "CMake Application.scraper.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -271,15 +271,10 @@
       <workItem from="1707294848411" duration="1823000" />
       <workItem from="1707330012113" duration="1316000" />
       <workItem from="1707378134976" duration="920000" />
-      <workItem from="1707391689531" duration="3245000" />
-    </task>
-    <task id="LOCAL-00021" summary="Found out how to use events with various elements. Read more on the source.">
-      <option name="closed" value="true" />
-      <created>1698667648719</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1698667648719</updated>
+      <workItem from="1707391689531" duration="3387000" />
+      <workItem from="1707413550586" duration="1923000" />
+      <workItem from="1707583126715" duration="4124000" />
+      <workItem from="1707587639648" duration="2149000" />
     </task>
     <task id="LOCAL-00022" summary="Elements now work as button. I need to make changes to the cursor as they are hovered.">
       <option name="closed" value="true" />
@@ -665,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707379045498</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete.">
+      <option name="closed" value="true" />
+      <created>1707395431928</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1707395431929</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,7 +703,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Push some more stuff" />
     <MESSAGE value="Added text to the inputs." />
     <MESSAGE value="Some minor refactoring" />
     <MESSAGE value="Added an event that runs when the use presses the confirm button." />
@@ -725,7 +727,19 @@
     <MESSAGE value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions." />
     <MESSAGE value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions. Working with static functions is a bit weird." />
     <MESSAGE value="Fixed some issues where it was not possible to assign values to the Scraper object with the use of constructors." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some issues where it was not possible to assign values to the Scraper object with the use of constructors." />
+    <MESSAGE value="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>70</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

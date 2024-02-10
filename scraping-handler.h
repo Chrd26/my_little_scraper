@@ -9,7 +9,6 @@
 #include <lexbor/dom/dom.h>
 #include <lexbor/dom/interfaces/document.h>
 #include <string>
-#include <strings.h>
 #include <vector>
 
 // Get Data
