@@ -24,8 +24,15 @@ wxIMPLEMENT_APP(ScraperApp);
 // private member
 class MainFrame : public wxFrame
 {
+//    Constructor
 public:
     MainFrame();
+
+//    Methods
+private:
+    static void StartScraping(int amount, int counter,
+                              std::vector<std::string> keywords,
+                              std::vector<std::string> getUrls);
 
 // Class Properties
 // Inserting properties to event functors is not possible
@@ -117,7 +124,6 @@ private:
         ST_Instructions = 0,
         ST_SearchSettings,
         ST_Run,
-        ST_PressConfirmButton,
         ST_Running
     };
 
@@ -317,6 +323,33 @@ MainFrame::MainFrame()
               eID_Run);
 }
 
+// Start Scraping function
+void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> keywords,
+                              std::vector<std::string> getUrls)
+{
+    std::vector<std::string> scraperKeywords;
+    for (int j = 0; j < amount; j++)
+    {
+        scraperKeywords.push_back(keywords[j]);
+    }
+
+    Scraper scraper;
+    scraper.SetupScraper(scraperKeywords, getUrls[counter]);
+    AnalyzePages pageAnalyzer;
+
+    // Get info from website
+    cpr::Response r = scraper.request_info(scraper.baseURL);
+
+    // Parse it
+    std::vector<std::string> urls = scraper.ParseContent(r.text,
+                                                         (char *) "href",
+                                                         (char *) "/");
+
+    // Iterate through them
+    for (const std::string &item: urls) {
+       pageAnalyzer.analyzeEntry(item, scraperKeywords, scraper);
+    }
+}
 // Hover Events Functions
 void MainFrame::HoverSearchSettings(wxMouseEvent &event){
     searchSettings->SetForegroundColour("#FFFFFFFF");
@@ -581,6 +614,8 @@ void MainFrame::PressRun(wxMouseEvent &event)
         confirmButton->Destroy();
     }
 
+    currentState = ST_Run;
+
     CSV_Handler handler;
 
     handler.ReadSettings();
@@ -626,43 +661,21 @@ void MainFrame::PressRun(wxMouseEvent &event)
     getSettingsUrl.clear();
     counter = 0;
 
-//    Start scraping
-    std::vector<std::string> scraperKeywords;
-
     for (int amount : urlCounterHolder)
     {
-        for (int j = 0; j < amount; j++)
+//      It is not possible to pass by reference when using threads
+//      More information here:
+//      https://www.reddit.com/r/cpp_questions/comments/kurtkw/error_attempt_to_use_a_deleted_function/
+        std::thread t(StartScraping,amount, counter, getSettingsKeywords, getUrls);
+
+        if (t.joinable())
         {
-            scraperKeywords.push_back(getSettingsKeywords[j]);
-        }
-
-        Scraper scraper;
-        scraper.SetupScraper(scraperKeywords, getUrls[counter]);
-        AnalyzePages pageAnalyzer;
-
-        // Get info from website
-        cpr::Response r = scraper.request_info(scraper.baseURL);
-
-        // Parse it
-        std::vector<std::string> urls = scraper.ParseContent(r.text,
-                                                             (char *) "href",
-                                                             (char *) "/");
-
-        // Iterate through them
-        for (const std::string &item: urls) {
-            std::cout << item << std::endl;
-            std::thread t(pageAnalyzer.analyzeEntry,item, scraperKeywords, scraper);
-
-            if (t.joinable())
-            {
-                t.detach();
-            }
+            t.detach();
         }
 
         counter++;
     }
 
-    currentState = ST_Run;
 }
 
 AboutWindow::AboutWindow()
