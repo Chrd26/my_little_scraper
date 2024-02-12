@@ -663,6 +663,7 @@ void MainFrame::PressRun(wxMouseEvent &event)
 
     for (int amount : urlCounterHolder)
     {
+
 //      It is not possible to pass by reference when using threads
 //      More information here:
 //      https://www.reddit.com/r/cpp_questions/comments/kurtkw/error_attempt_to_use_a_deleted_function/

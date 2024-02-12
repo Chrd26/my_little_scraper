@@ -20,10 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Removed wait frame">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Creatd a new method to run the whole process in a different thread.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,12 +75,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.scraper.executor": "Run",
+    "CMake Application.scraper.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "WebServerToolWindowFactoryState": "false",
+    "cf.advertisement.text.has.clang-format": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
@@ -276,15 +276,7 @@
       <workItem from="1707587639648" duration="2354000" />
       <workItem from="1707592778592" duration="412000" />
       <workItem from="1707725614836" duration="26000" />
-      <workItem from="1707725663203" duration="3299000" />
-    </task>
-    <task id="LOCAL-00024" summary="Tried out buttons but I was unable to make them work the I wanted them to. I reverted back to static text and added enums to handle states with switches to make the application dynamic.">
-      <option name="closed" value="true" />
-      <created>1698954181295</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1698954181295</updated>
+      <workItem from="1707725663203" duration="5816000" />
     </task>
     <task id="LOCAL-00025" summary="At last, I maanged to find a solution for the clickable static text. Making them class property was the answer!">
       <option name="closed" value="true" />
@@ -670,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707727862036</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Creatd a new method to run the whole process in a different thread.">
+      <option name="closed" value="true" />
+      <created>1707729251044</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1707729251045</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,7 +705,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added an event that runs when the use presses the confirm button." />
     <MESSAGE value="Found a way to get the values from csv input. Just use the GetValue() method." />
     <MESSAGE value="Now pressing the database button, will open the csv file." />
     <MESSAGE value="When the user presses the confirm button, the application cleans up the csv file with the previous search settings and applies the new ones." />
@@ -730,7 +729,8 @@
     <MESSAGE value="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete." />
     <MESSAGE value="Tried to create a frame to inform the user that they should wait while a scan runs but didn't work. After a bit of research, I think I need to implement the search in a different processor thread because the GUI stops working until the search is complete. From my understanding, multithreading should let the application start or stop a search at will and search for connectivity." />
     <MESSAGE value="Removed wait frame" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed wait frame" />
+    <MESSAGE value="Creatd a new method to run the whole process in a different thread." />
+    <option name="LAST_COMMIT_MESSAGE" value="Creatd a new method to run the whole process in a different thread." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
