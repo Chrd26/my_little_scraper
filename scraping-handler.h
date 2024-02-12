@@ -10,6 +10,9 @@
 #include <lexbor/dom/interfaces/document.h>
 #include <string>
 #include <vector>
+#include <thread>
+#include <future>
+
 
 // Get Data
 typedef struct pageData{
@@ -35,7 +38,7 @@ public:
     static std::string baseURL;
     static cpr::Response request_info(std::string url);
     lxb_inline void serialize_node(lxb_dom_node_t *node);
-    std::vector<std::string> ParseContent(std::string content, char* attributeName, char* value);
+    static std::vector<std::string> ParseContent(std::string content, char* attributeName, char* value);
     lxb_inline lxb_html_document_t* Parse(const lxb_char_t* html, size_t html_len);
     static void SetupScraper(std::vector<std::string> inputKeywords, std::string url);
 };

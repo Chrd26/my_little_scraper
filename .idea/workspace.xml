@@ -20,9 +20,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Tried to create a frame to inform the user that they should wait while a scan runs but didn't work. After a bit of research, I think I need to implement the search in a different processor thread because the GUI stops working until the search is complete. From my understanding, multithreading should let the application start or stop a search at will and search for connectivity.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
@@ -77,7 +76,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.scraper.executor": "Debug",
+    "CMake Application.scraper.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -274,15 +273,10 @@
       <workItem from="1707391689531" duration="3387000" />
       <workItem from="1707413550586" duration="1923000" />
       <workItem from="1707583126715" duration="4124000" />
-      <workItem from="1707587639648" duration="2149000" />
-    </task>
-    <task id="LOCAL-00022" summary="Elements now work as button. I need to make changes to the cursor as they are hovered.">
-      <option name="closed" value="true" />
-      <created>1698674201001</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1698674201001</updated>
+      <workItem from="1707587639648" duration="2354000" />
+      <workItem from="1707592778592" duration="412000" />
+      <workItem from="1707725614836" duration="26000" />
+      <workItem from="1707725663203" duration="2023000" />
     </task>
     <task id="LOCAL-00023" summary="Added functions for hover and stop hovering events. Needs to add a change mouse cursor during the event.">
       <option name="closed" value="true" />
@@ -668,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707395431929</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Tried to create a frame to inform the user that they should wait while a scan runs but didn't work. After a bit of research, I think I need to implement the search in a different processor thread because the GUI stops working until the search is complete. From my understanding, multithreading should let the application start or stop a search at will and search for connectivity.">
+      <option name="closed" value="true" />
+      <created>1707590023883</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1707590023884</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -703,7 +705,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added text to the inputs." />
     <MESSAGE value="Some minor refactoring" />
     <MESSAGE value="Added an event that runs when the use presses the confirm button." />
     <MESSAGE value="Found a way to get the values from csv input. Just use the GetValue() method." />
@@ -728,18 +729,8 @@
     <MESSAGE value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions. Working with static functions is a bit weird." />
     <MESSAGE value="Fixed some issues where it was not possible to assign values to the Scraper object with the use of constructors." />
     <MESSAGE value="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>70</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Tried to create a frame to inform the user that they should wait while a scan runs but didn't work. After a bit of research, I think I need to implement the search in a different processor thread because the GUI stops working until the search is complete. From my understanding, multithreading should let the application start or stop a search at will and search for connectivity." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tried to create a frame to inform the user that they should wait while a scan runs but didn't work. After a bit of research, I think I need to implement the search in a different processor thread because the GUI stops working until the search is complete. From my understanding, multithreading should let the application start or stop a search at will and search for connectivity." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

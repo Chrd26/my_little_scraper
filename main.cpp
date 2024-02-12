@@ -20,60 +20,6 @@ public:
 
 wxIMPLEMENT_APP(ScraperApp);
 
-// This frame should run without being affected by the
-// scraping process
-class PleaseWaitFrame : public wxFrame
-{
-public:
-    PleaseWaitFrame();
-    ~PleaseWaitFrame();
-
-//    Frame Elements
-private:
-    wxStaticText *waitFrameText = nullptr;
-    wxButton *stopButton = nullptr;
-    wxPanel *mainPanel = nullptr;
-    wxSizer *mainSizer = nullptr;
-    wxSizer *textHolder = nullptr;
-
-//    States
-private:
-    enum elements
-    {
-        eID_Panel = 0,
-        eId_StopButton,
-        eID_FrameText,
-        eID_Frame
-    };
-
-//    Methods
-private:
-    void OnExit(wxCommandEvent &event);
-};
-
-void PleaseWaitFrame::OnExit(wxCommandEvent &event)
-{
-    close(true);
-}
-
-PleaseWaitFrame::PleaseWaitFrame(): wxFrame(nullptr, eID_Frame, "Please wait")
-{
-    mainSizer = new wxBoxSizer(wxHORIZONTAL);
-    textHolder = new wxBoxSizer(wxVERTICAL);
-    mainPanel = new wxPanel(this, eID_Panel, wxDefaultPosition);
-    waitFrameText = new wxStaticText(mainPanel, eID_FrameText, "Please wait while it runs",
-                                     wxDefaultPosition, wxDefaultSize, 0);
-    textHolder->Add(waitFrameText, 1, wxEXPAND);
-    mainSizer->Add(textHolder, 0 , wxEXPAND);
-    mainPanel->SetSizerAndFit(mainSizer, true);
-}
-
-PleaseWaitFrame::~PleaseWaitFrame()
-{
-    waitFrameText->Destroy();
-    mainPanel->Destroy();
-}
-
 // the public keyword is needed, otherwise the inherited code will be considered as
 // private member
 class MainFrame : public wxFrame
@@ -174,10 +120,6 @@ private:
         ST_PressConfirmButton,
         ST_Running
     };
-
-//    Please wait Frame
-private:
-    PleaseWaitFrame *waitFrame = new PleaseWaitFrame();
 
 // Window Events
 private:
@@ -603,11 +545,6 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
 
 void MainFrame::PressDatabase(wxMouseEvent &event)
 {
-    auto getDisplaySize = wxGetDisplaySize();
-    waitFrame->SetSize(getDisplaySize.GetWidth() * 0.1f,
-                       getDisplaySize.GetHeight() * 0.1f);
-    waitFrame->Show(true);
-
     int systemCode = std::system("cd ../content && open content.csv");
 
     if (systemCode != 0)
@@ -694,10 +631,8 @@ void MainFrame::PressRun(wxMouseEvent &event)
 
     for (int amount : urlCounterHolder)
     {
-        std::cout << amount << std::endl;
         for (int j = 0; j < amount; j++)
         {
-            std::cout << getSettingsKeywords[j] << std::endl;
             scraperKeywords.push_back(getSettingsKeywords[j]);
         }
 
@@ -716,7 +651,12 @@ void MainFrame::PressRun(wxMouseEvent &event)
         // Iterate through them
         for (const std::string &item: urls) {
             std::cout << item << std::endl;
-            pageAnalyzer.analyzeEntry(item, scraperKeywords, scraper);
+            std::thread t(pageAnalyzer.analyzeEntry,item, scraperKeywords, scraper);
+
+            if (t.joinable())
+            {
+                t.detach();
+            }
         }
 
         counter++;
@@ -738,11 +678,6 @@ AboutWindow::AboutWindow()
 
 void MainFrame::OnExit(wxCommandEvent &event)
 {
-    if (waitFrame != nullptr)
-    {
-        waitFrame->Destroy();
-    }
-
     close(true);
 }
 
