@@ -20,8 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Multithreading causes a bad access error. This needs investigation.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Making some progress, setting up the lxb_char_t html the same size as the content.length() + 1 causes a bad access crash. Using any integer instead of content.length() doesn't cause this issue.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +76,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.scraper.executor": "Debug",
+    "CMake Application.scraper.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -276,15 +277,7 @@
       <workItem from="1707587639648" duration="2354000" />
       <workItem from="1707592778592" duration="412000" />
       <workItem from="1707725614836" duration="26000" />
-      <workItem from="1707725663203" duration="8313000" />
-    </task>
-    <task id="LOCAL-00026" summary="Fixed static text interactivity colors, added background picture to the application.">
-      <option name="closed" value="true" />
-      <created>1699121369794</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1699121369794</updated>
+      <workItem from="1707725663203" duration="10770000" />
     </task>
     <task id="LOCAL-00027" summary="Cleaned up the code a little, added some needed comments.">
       <option name="closed" value="true" />
@@ -670,7 +663,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707732900762</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Making some progress, setting up the lxb_char_t html the same size as the content.length() + 1 causes a bad access crash. Using any integer instead of content.length() doesn't cause this issue.">
+      <option name="closed" value="true" />
+      <created>1707739102325</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1707739102325</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,7 +706,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Now pressing the database button, will open the csv file." />
     <MESSAGE value="When the user presses the confirm button, the application cleans up the csv file with the previous search settings and applies the new ones." />
     <MESSAGE value="Added a new file to save the number of urs that have been inserted." />
     <MESSAGE value="Started working on getting the saved settings from the files." />
@@ -730,7 +730,19 @@
     <MESSAGE value="Removed wait frame" />
     <MESSAGE value="Creatd a new method to run the whole process in a different thread." />
     <MESSAGE value="Multithreading causes a bad access error. This needs investigation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Multithreading causes a bad access error. This needs investigation." />
+    <MESSAGE value="Making some progress, setting up the lxb_char_t html the same size as the content.length() + 1 causes a bad access crash. Using any integer instead of content.length() doesn't cause this issue." />
+    <option name="LAST_COMMIT_MESSAGE" value="Making some progress, setting up the lxb_char_t html the same size as the content.length() + 1 causes a bad access crash. Using any integer instead of content.length() doesn't cause this issue." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/scraper_definitions.cpp</url>
+          <line>137</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

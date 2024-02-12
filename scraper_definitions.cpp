@@ -127,14 +127,14 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
     // Create an empty array of lxb_char_t
     // memset and then iterate through the content and
     // assign to the html variable
-    lxb_char_t html[content.length() + 1];
-    std::memset(html, 0, content.length() + 1);
+    lxb_char_t *html = new lxb_char_t[content.size() + 1];
+//    std::memset(html, 0, content.size() + 1);
 
     for (int i = 0; i < content.length(); i++) {
         html[i] = content[i];
     }
 
-    size_t html_len = sizeof(html) - 1;
+    size_t html_len = content.length() + 1;
     document = lxb_html_parse(parser, html, html_len);
 
     if (document == nullptr) {
@@ -184,6 +184,7 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
     // Destroy objects to avoid memory leaks
     lxb_dom_collection_destroy(collection, true);
     lxb_html_document_destroy(document);
+    delete [] html;
 
     return output;
 }

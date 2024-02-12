@@ -340,6 +340,8 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     // Get info from website
     cpr::Response r = scraper.request_info(scraper.baseURL);
 
+//    std::cout << r.text << std::endl;
+
     // Parse it
     std::vector<std::string> urls = scraper.ParseContent(r.text,
                                                          (char *) "href",
@@ -347,6 +349,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 
     // Iterate through them
     for (const std::string &item: urls) {
+        std::cout << item << std::endl;
        pageAnalyzer.analyzeEntry(item, scraperKeywords, scraper);
     }
 }
