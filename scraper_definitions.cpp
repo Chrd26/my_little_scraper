@@ -127,7 +127,6 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
     // Create an empty array of lxb_char_t
     // memset and then iterate through the content and
     // assign to the html variable
-
     lxb_char_t html[content.length() + 1];
     std::memset(html, 0, content.length() + 1);
 

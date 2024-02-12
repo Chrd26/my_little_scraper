@@ -20,9 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Creatd a new method to run the whole process in a different thread.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Multithreading causes a bad access error. This needs investigation.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,15 +276,7 @@
       <workItem from="1707587639648" duration="2354000" />
       <workItem from="1707592778592" duration="412000" />
       <workItem from="1707725614836" duration="26000" />
-      <workItem from="1707725663203" duration="5816000" />
-    </task>
-    <task id="LOCAL-00025" summary="At last, I maanged to find a solution for the clickable static text. Making them class property was the answer!">
-      <option name="closed" value="true" />
-      <created>1699115596039</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1699115596039</updated>
+      <workItem from="1707725663203" duration="8313000" />
     </task>
     <task id="LOCAL-00026" summary="Fixed static text interactivity colors, added background picture to the application.">
       <option name="closed" value="true" />
@@ -670,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707729251045</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Multithreading causes a bad access error. This needs investigation.">
+      <option name="closed" value="true" />
+      <created>1707732900762</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1707732900762</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,7 +705,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Found a way to get the values from csv input. Just use the GetValue() method." />
     <MESSAGE value="Now pressing the database button, will open the csv file." />
     <MESSAGE value="When the user presses the confirm button, the application cleans up the csv file with the previous search settings and applies the new ones." />
     <MESSAGE value="Added a new file to save the number of urs that have been inserted." />
@@ -730,7 +729,8 @@
     <MESSAGE value="Tried to create a frame to inform the user that they should wait while a scan runs but didn't work. After a bit of research, I think I need to implement the search in a different processor thread because the GUI stops working until the search is complete. From my understanding, multithreading should let the application start or stop a search at will and search for connectivity." />
     <MESSAGE value="Removed wait frame" />
     <MESSAGE value="Creatd a new method to run the whole process in a different thread." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creatd a new method to run the whole process in a different thread." />
+    <MESSAGE value="Multithreading causes a bad access error. This needs investigation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Multithreading causes a bad access error. This needs investigation." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
