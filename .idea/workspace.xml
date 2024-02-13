@@ -20,9 +20,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed an issue where parse content was causing a crash.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Another part of the code was causing crashes for the same reasons. Scraping has stopped working alltogether now for some reason">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -280,15 +279,8 @@
       <workItem from="1707725663203" duration="11053000" />
       <workItem from="1707809492211" duration="1337000" />
       <workItem from="1707819868545" duration="3208000" />
-      <workItem from="1707826133332" duration="3000" />
-    </task>
-    <task id="LOCAL-00028" summary="added confirm button, fixed some sizing issues with the png image as it was too big and made the options panel way to big. The confirm button might need some cetntering.">
-      <option name="closed" value="true" />
-      <created>1699298251862</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1699298251862</updated>
+      <workItem from="1707826133332" duration="430000" />
+      <workItem from="1707849267434" duration="310000" />
     </task>
     <task id="LOCAL-00029" summary="Added control text, there is a strange thing going on with the values of width. I need to investigate a bit further to see what is going and center the options better. I must find a key to introduce multiple rows of inputs(table)/">
       <option name="closed" value="true" />
@@ -674,7 +666,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707746405695</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Another part of the code was causing crashes for the same reasons. Scraping has stopped working alltogether now for some reason">
+      <option name="closed" value="true" />
+      <created>1707826578194</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1707826578195</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -709,7 +709,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added a new file to save the number of urs that have been inserted." />
     <MESSAGE value="Started working on getting the saved settings from the files." />
     <MESSAGE value="Updated instructions text and readme." />
     <MESSAGE value="Added 2 conditional statements to make sure that no empty keywords are added." />
@@ -734,15 +733,16 @@
     <MESSAGE value="Multithreading causes a bad access error. This needs investigation." />
     <MESSAGE value="Making some progress, setting up the lxb_char_t html the same size as the content.length() + 1 causes a bad access crash. Using any integer instead of content.length() doesn't cause this issue." />
     <MESSAGE value="Fixed an issue where parse content was causing a crash." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue where parse content was causing a crash." />
+    <MESSAGE value="Another part of the code was causing crashes for the same reasons. Scraping has stopped working alltogether now for some reason" />
+    <option name="LAST_COMMIT_MESSAGE" value="Another part of the code was causing crashes for the same reasons. Scraping has stopped working alltogether now for some reason" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/scraper_definitions.cpp</url>
-          <line>203</line>
-          <option name="timeStamp" value="7" />
+          <line>351</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

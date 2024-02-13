@@ -309,7 +309,7 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
     }
 
      std::cout << html << std::endl;
-     std::cin.get();
+//     std::cin.get();
 
     size_t html_len = sizeof(html) - 1;
 
