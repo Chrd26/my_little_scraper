@@ -200,8 +200,8 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
     lxb_dom_collection_t* collection = nullptr;
     lxb_dom_node_t* node = nullptr;
     lxb_dom_character_data_t *ch_data = nullptr;
-    lxb_char_t html[getRes.text.length() + 1];
-    std::memset(html, 0, getRes.text.length() + 1);
+
+    lxb_char_t *html = new lxb_char_t[getRes.text.size() + 1];
     // Check for string, span and a tags, if a tags are found, then replace them with paragraph tags
     for (int i = 0; i < getRes.text.length();) {
         // This might need a refactor but I am unable to find a way to do so
@@ -308,8 +308,8 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
         i++;
     }
 
-    // std::cout << html << std::endl;
-    // std::cin.get();
+     std::cout << html << std::endl;
+     std::cin.get();
 
     size_t html_len = sizeof(html) - 1;
 
@@ -330,7 +330,6 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
         exit(EXIT_FAILURE);
     }
 
-    std::cout << std::endl;
     for (size_t i = 0; i < lxb_dom_collection_length(collection); i++)
     {
         // Get the text from any paragraphs
@@ -359,12 +358,12 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
             }
 
             //  Output the text
-            //  std::cout << (int) ch_data->data.length << (const char *) ch_data->data.data << std::endl;
+//              std::cout << (int) ch_data->data.length << (const char *) ch_data->data.data << std::endl;
 
             // Output
             if (keywordsFound)
             {
-                std::cout << toString << std::endl;
+                std::cout << "Found: " << toString << std::endl;
                 keywordsFound = false;
             }
 
@@ -373,6 +372,7 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
 
     lxb_dom_collection_destroy(collection, true);
     lxb_html_document_destroy(document);
+    delete [] html;
 
     scraper.analysis = false;
 }

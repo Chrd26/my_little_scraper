@@ -349,9 +349,10 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 
     // Iterate through them
     for (const std::string &item: urls) {
-        std::cout << item << std::endl;
-       pageAnalyzer.analyzeEntry(item, scraperKeywords, scraper);
+        pageAnalyzer.analyzeEntry(item, scraperKeywords, scraper);
     }
+
+    std::cout << "done" << std::endl;
 }
 // Hover Events Functions
 void MainFrame::HoverSearchSettings(wxMouseEvent &event){
