@@ -308,10 +308,16 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
         i++;
     }
 
-     std::cout << html << std::endl;
+//    std::cout << html << std::endl;
 //     std::cin.get();
+    std::string getHTML;
 
-    size_t html_len = sizeof(html) - 1;
+    for (int i = 0; html[i] != '\0'; i++)
+    {
+        getHTML.push_back(html[i]);
+    }
+
+    size_t html_len = getHTML.length() - 1;
 
     document = scraper.Parse(html, html_len);
     collection = lxb_dom_collection_make(&document->dom_document, 128);
@@ -329,6 +335,9 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
     {
         exit(EXIT_FAILURE);
     }
+
+//    this is 0
+    std::cout << lxb_dom_collection_length(collection) << std::endl;
 
     for (size_t i = 0; i < lxb_dom_collection_length(collection); i++)
     {

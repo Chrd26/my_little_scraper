@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Another part of the code was causing crashes for the same reasons. Scraping has stopped working alltogether now for some reason">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="This took me a bit but I found where the problem lies. I need to search why it doesn't work.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
     </list>
@@ -75,7 +75,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;CMake Application.scraper.executor&quot;: &quot;Debug&quot;,
+    &quot;CMake Application.scraper.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
@@ -280,15 +280,10 @@
       <workItem from="1707809492211" duration="1337000" />
       <workItem from="1707819868545" duration="3208000" />
       <workItem from="1707826133332" duration="430000" />
-      <workItem from="1707849267434" duration="310000" />
-    </task>
-    <task id="LOCAL-00029" summary="Added control text, there is a strange thing going on with the values of width. I need to investigate a bit further to see what is going and center the options better. I must find a key to introduce multiple rows of inputs(table)/">
-      <option name="closed" value="true" />
-      <created>1699384230355</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1699384230355</updated>
+      <workItem from="1707849267434" duration="1283000" />
+      <workItem from="1707898722245" duration="41000" />
+      <workItem from="1707898873815" duration="1571000" />
+      <workItem from="1707939731928" duration="2000" />
     </task>
     <task id="LOCAL-00030" summary="Added Add more button, added all buttons tot he center, fix the font on the buttons and on text control inputs.">
       <option name="closed" value="true" />
@@ -674,7 +669,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707826578195</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="This took me a bit but I found where the problem lies. I need to search why it doesn't work.">
+      <option name="closed" value="true" />
+      <created>1707849838417</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1707849838418</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -709,7 +712,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Started working on getting the saved settings from the files." />
     <MESSAGE value="Updated instructions text and readme." />
     <MESSAGE value="Added 2 conditional statements to make sure that no empty keywords are added." />
     <MESSAGE value="I completely changed the code as it didn't make sense as it was. wxstring-&gt;Getvalue().empty() works fine too!" />
@@ -734,18 +736,8 @@
     <MESSAGE value="Making some progress, setting up the lxb_char_t html the same size as the content.length() + 1 causes a bad access crash. Using any integer instead of content.length() doesn't cause this issue." />
     <MESSAGE value="Fixed an issue where parse content was causing a crash." />
     <MESSAGE value="Another part of the code was causing crashes for the same reasons. Scraping has stopped working alltogether now for some reason" />
-    <option name="LAST_COMMIT_MESSAGE" value="Another part of the code was causing crashes for the same reasons. Scraping has stopped working alltogether now for some reason" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/scraper_definitions.cpp</url>
-          <line>351</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="This took me a bit but I found where the problem lies. I need to search why it doesn't work." />
+    <option name="LAST_COMMIT_MESSAGE" value="This took me a bit but I found where the problem lies. I need to search why it doesn't work." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
