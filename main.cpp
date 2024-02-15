@@ -327,15 +327,21 @@ MainFrame::MainFrame()
 void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> keywords,
                               std::vector<std::string> getUrls)
 {
+    Scraper scraper;
     std::vector<std::string> scraperKeywords;
     for (int j = 0; j < amount; j++)
     {
         scraperKeywords.push_back(keywords[j]);
     }
 
-    Scraper scraper;
     scraper.SetupScraper(scraperKeywords, getUrls[counter]);
     AnalyzePages pageAnalyzer;
+
+//    check if online
+    if (!scraper.CheckForConnection())
+    {
+       return;
+    }
 
     // Get info from website
     cpr::Response r = scraper.request_info(scraper.baseURL);
@@ -643,7 +649,7 @@ void MainFrame::PressRun(wxMouseEvent &event)
         if (urlCounterHolder.empty())
         {
             int count = (int)std::count(getSettingsUrl.begin(), getSettingsUrl.end(),
-                                   url);
+                                        url);
             urlCounterHolder.push_back((count));
             getUrls.push_back(url);
         }

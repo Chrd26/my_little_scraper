@@ -2,6 +2,19 @@
 std::string Scraper::baseURL;
 std::vector<std::string> Scraper::keywords = {"Hello"};
 
+bool Scraper::CheckForConnection()
+{
+    std::string createCommand = "ping www.google.com -c1";
+    int getVal = std::system(createCommand.c_str());
+
+    if (getVal != 0)
+    {
+        return false;
+    }
+
+    return true;
+}
+
 void Scraper::SetupScraper(std::vector<std::string> inputKeywords, std::string url)
 {
     keywords.clear();
@@ -191,6 +204,12 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
 
 void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grabKeywords, Scraper scraper)
 {
+//    Check for connection first
+    if (!scraper.CheckForConnection())
+    {
+        return;
+    }
+
     scraper.analysis = true;
     bool keywordsFound = false;
     cpr::Response getRes = scraper.request_info(input);
