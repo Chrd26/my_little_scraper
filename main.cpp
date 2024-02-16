@@ -87,6 +87,14 @@ private:
 private:
     std::vector<std::string> getSettingsUrl;
     std::vector<std::string> getSettingsKeywords;
+    wxStaticText *runInstructions = nullptr;
+    wxButton *startButton = nullptr;
+    wxButton *stopButton = nullptr;
+    wxSizer *runContentHolder = nullptr;
+    wxSizer *runInstructionsholder = nullptr;
+    wxSizer *startButtonHolder = nullptr;
+    wxSizer *stopButtonHolder = nullptr;
+    wxSizer *buttonsHolder = nullptr;
 
 // States and IDs
 private:
@@ -107,7 +115,9 @@ private:
         eID_ContentPanel,
         eID_ConfirmButton,
         eID_Instructions,
-        eID_Frame
+        eID_Frame,
+        eID_StartButton,
+        eID_StopButton
     };
 
     enum TextInput
@@ -624,8 +634,56 @@ void MainFrame::PressRun(wxMouseEvent &event)
         confirmButton->Destroy();
     }
 
-    currentState = ST_Run;
+//    wxStaticText *runInstructions = nullptr;
+//    wxButton *startButton = nullptr;
+//    wxButton *stopButton = nullptr;
+//    wxSizer *contentHolder = nullptr;
+//    wxSizer *runInstructionsholder = nullptr;
+//    wxSizer *startButtonHolder = nullptr;
+//    wxSizer *stopButtonHolder = nullptr;
+//    wxSizer *buttonsHolder = nullptr;
 
+    content->SetFont(wxFontInfo(35).FaceName("Helvetica Neue").Bold());
+    wxSize getPanelSize = content->GetSize();
+
+    runContentHolder = new wxBoxSizer(wxVERTICAL);
+    runInstructionsholder = new wxBoxSizer(wxVERTICAL);
+    buttonsHolder = new wxBoxSizer(wxHORIZONTAL);
+    startButtonHolder = new wxBoxSizer(wxVERTICAL);
+    stopButtonHolder = new wxBoxSizer(wxVERTICAL);
+
+    std::string instructionsText = std::string("Press start the scraping operation.\n") +
+                                    std::string("Press stop to cancel the scraping operation.");
+
+    runInstructions = new wxStaticText(content, eID_Instructions, instructionsText,
+                                       wxDefaultPosition, wxDefaultSize, 0);
+    runInstructionsholder->Add(runInstructions, 1, wxCENTER);
+
+    content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica Neue").Bold());
+
+    startButton = new wxButton(content, eID_StartButton, "Start", wxDefaultPosition, wxDefaultSize,
+                                     0, wxDefaultValidator);
+    startButtonHolder->Add(startButton, 1, wxEXPAND|wxCENTER|wxALL,
+                           getPanelSize.GetWidth() * 0.012);
+    stopButton = new wxButton(content, eID_StartButton, "Stop", wxDefaultPosition, wxDefaultSize,
+                               0, wxDefaultValidator);
+    stopButtonHolder->Add(stopButton, 1, wxEXPAND|wxCENTER|wxALL,
+                          getPanelSize.GetWidth() * 0.012);
+
+    buttonsHolder->Add(startButtonHolder, 1, wxALIGN_TOP|wxTOP,
+                       getPanelSize.GetHeight() * 0.05);
+    buttonsHolder->Add(stopButtonHolder, 1, wxALIGN_TOP|wxTOP,
+                       getPanelSize.GetHeight() * 0.05);
+
+    runContentHolder->Add(runInstructionsholder, 0, wxEXPAND|wxTOP,
+                          getPanelSize.GetHeight() * 0.065);
+    runContentHolder->Add(buttonsHolder, 1, wxCENTER);
+
+    content->SetSizer(runContentHolder);
+    content->Layout();
+
+    currentState = ST_Run;
+/*
     CSV_Handler handler;
 
     handler.ReadSettings();
@@ -686,7 +744,7 @@ void MainFrame::PressRun(wxMouseEvent &event)
 
         counter++;
     }
-
+*/
 }
 
 AboutWindow::AboutWindow()

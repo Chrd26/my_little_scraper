@@ -385,9 +385,6 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
                 }
             }
 
-            //  Output the text
-//              std::cout << (int) ch_data->data.length << (const char *) ch_data->data.data << std::endl;
-
             // Output
             if (keywordsFound)
             {
