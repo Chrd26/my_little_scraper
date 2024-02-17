@@ -30,10 +30,10 @@ public:
 
 //    Methods
 private:
-    void StartScraping(int amount, int counter,
+    static void StartScraping(int amount, int counter,
                        std::vector<std::string> keywords,
                        std::vector<std::string> getUrls);
-    Scraper scraper;
+    static Scraper scraper;
 
 // Class Properties
 // Inserting properties to event functors is not possible
@@ -96,8 +96,8 @@ private:
     wxSizer *startButtonHolder = nullptr;
     wxSizer *stopButtonHolder = nullptr;
     wxSizer *buttonsHolder = nullptr;
-    void startOperation(wxMouseEvent &event);
-    void stopOperation(wxMouseEvent &event);
+    void StartOperation(wxMouseEvent &event);
+    void StopOperation(wxMouseEvent &event);
 
 // States and IDs
 private:
@@ -340,10 +340,9 @@ MainFrame::MainFrame()
 void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> keywords,
                               std::vector<std::string> getUrls)
 {
-//    Scraper scraper;
     std::vector<std::string> scraperKeywords;
     scraperKeywords.reserve(amount);
-for (int j = 0; j < amount; j++)
+    for (int j = 0; j < amount; j++)
     {
         scraperKeywords.push_back(keywords[j]);
     }
@@ -354,7 +353,7 @@ for (int j = 0; j < amount; j++)
 //    check if online
     if (!Scraper::CheckForConnection())
     {
-       return;
+        return;
     }
 
     // Get info from website
@@ -364,8 +363,8 @@ for (int j = 0; j < amount; j++)
 
     // Parse it
     std::vector<std::string> urls = Scraper::ParseContent(r.text,
-                                                         (char *) "href",
-                                                         (char *) "/");
+                                                          (char *) "href",
+                                                          (char *) "/");
 
     // Iterate through them
     for (const std::string &item: urls) {
@@ -374,6 +373,79 @@ for (int j = 0; j < amount; j++)
 
     std::cout << "done" << std::endl;
 }
+
+// Start Scraping button
+void MainFrame::StartOperation(wxMouseEvent &event)
+{
+    CSV_Handler handler;
+    Scraper::isCanceled = false;
+
+    handler.ReadSettings();
+
+//    Separate urls and keywords
+    for (const std::string &line : handler.csvLines)
+    {
+        int index = (int)line.find(",");
+
+        getSettingsUrl.push_back(line.substr(0, index));
+        getSettingsKeywords.push_back(line.substr(index + 1));
+    }
+
+    std::vector<std::string> getUrls;
+    std::vector<int> urlCounterHolder;
+    int counter = 0;
+
+//    count how many keywords each url has
+    for (const auto &url : getSettingsUrl)
+    {
+        if (urlCounterHolder.empty())
+        {
+            int count = (int)std::count(getSettingsUrl.begin(), getSettingsUrl.end(),
+                                        url);
+            urlCounterHolder.push_back((count));
+            getUrls.push_back(url);
+        }
+
+        if (std::find(getUrls.begin(), getUrls.end(), url) != std::end(getUrls))
+        {
+            counter++;
+            continue;
+        }
+        else
+        {
+            urlCounterHolder.push_back(counter);
+            counter = 0;
+            getUrls.push_back(url);
+            counter++;
+        }
+    }
+
+    getSettingsUrl.clear();
+    counter = 0;
+
+    for (int amount : urlCounterHolder)
+    {
+
+//      It is not possible to pass by reference when using threads
+//      More information here:
+//      https://www.reddit.com/r/cpp_questions/comments/kurtkw/error_attempt_to_use_a_deleted_function/
+        std::thread t(StartScraping,amount, counter, getSettingsKeywords, getUrls);
+
+        if (t.joinable())
+        {
+            t.detach();
+        }
+
+        counter++;
+    }
+}
+
+// Cancel Scraping button
+void MainFrame::StopOperation(wxMouseEvent &event)
+{
+    Scraper::isCanceled = true;
+}
+
 // Hover Events Functions
 void MainFrame::HoverSearchSettings(wxMouseEvent &event){
     searchSettings->SetForegroundColour("#FFFFFFFF");
@@ -426,6 +498,13 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
         keywords3StaticText->Destroy();
         keywords4StaticText->Destroy();
         confirmButton->Destroy();
+    }
+
+    if (currentState == ST_Run)
+    {
+        runInstructions->Destroy();
+        startButton->Destroy();
+        stopButton->Destroy();
     }
 
     content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
@@ -643,7 +722,6 @@ void MainFrame::PressRun(wxMouseEvent &event)
         runInstructions->Destroy();
         startButton->Destroy();
         stopButton->Destroy();
-
     }
 
 
@@ -668,20 +746,25 @@ void MainFrame::PressRun(wxMouseEvent &event)
     startButton = new wxButton(content, eID_StartButton, "Start", wxDefaultPosition, wxDefaultSize,
                                      0, wxDefaultValidator);
     startButtonHolder->Add(startButton, 1, wxEXPAND|wxCENTER|wxALL,
-                           getPanelSize.GetWidth() * 0.012);
-    stopButton = new wxButton(content, eID_StartButton, "Stop", wxDefaultPosition, wxDefaultSize,
+                           static_cast<int>(getPanelSize.GetWidth() * 0.012));
+    stopButton = new wxButton(content, eID_StopButton, "Stop", wxDefaultPosition, wxDefaultSize,
                                0, wxDefaultValidator);
     stopButtonHolder->Add(stopButton, 1, wxEXPAND|wxCENTER|wxALL,
-                          getPanelSize.GetWidth() * 0.012);
+                          static_cast<int>(getPanelSize.GetWidth() * 0.012));
 
     buttonsHolder->Add(startButtonHolder, 1, wxALIGN_TOP|wxTOP,
-                       getPanelSize.GetHeight() * 0.05);
+                       static_cast<int>(getPanelSize.GetHeight() * 0.05));
     buttonsHolder->Add(stopButtonHolder, 1, wxALIGN_TOP|wxTOP,
-                       getPanelSize.GetHeight() * 0.05);
+                       static_cast<int>(getPanelSize.GetHeight() * 0.05));
 
     runContentHolder->Add(runInstructionsholder, 0, wxEXPAND|wxTOP,
-                          getPanelSize.GetHeight() * 0.065);
+                          static_cast<int>(getPanelSize.GetHeight() * 0.065));
     runContentHolder->Add(buttonsHolder, 1, wxCENTER);
+
+    startButton->Bind(wxEVT_LEFT_UP, &MainFrame::StartOperation,
+                      this, eID_StartButton);
+    stopButton->Bind(wxEVT_LEFT_UP, &MainFrame::StopOperation,
+                     this, eID_StopButton);
 
     content->SetSizer(runContentHolder);
     content->Layout();

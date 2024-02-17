@@ -206,14 +206,14 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
 void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grabKeywords, Scraper scraper)
 {
 //    Check for connection first
-    if (!scraper.CheckForConnection())
+    if (!Scraper::CheckForConnection() || Scraper::isCanceled)
     {
         return;
     }
 
-    scraper.analysis = true;
+    Scraper::analysis = true;
     bool keywordsFound = false;
-    cpr::Response getRes = scraper.request_info(input);
+    cpr::Response getRes = Scraper::request_info(input);
     lxb_status_t status;
     lxb_dom_element_t* elem = nullptr;
     lxb_html_document_t* document = nullptr;

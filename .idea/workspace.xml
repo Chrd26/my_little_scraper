@@ -20,11 +20,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added Buttons to the run panel.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Created start and stop functions, created a global scraper object to handle it throughout the applicaiton.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,15 +290,7 @@
       <workItem from="1708082237456" duration="4520000" />
       <workItem from="1708113862160" duration="774000" />
       <workItem from="1708195946111" duration="221000" />
-      <workItem from="1708196343225" duration="600000" />
-    </task>
-    <task id="LOCAL-00033" summary="Added mongodb driver to the project, started working on the database settings part.">
-      <option name="closed" value="true" />
-      <created>1700662199352</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1700662199352</updated>
+      <workItem from="1708196343225" duration="1769000" />
     </task>
     <task id="LOCAL-00034" summary="Added text control for password and username as well as confirm button.">
       <option name="closed" value="true" />
@@ -685,7 +676,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708089420992</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Created start and stop functions, created a global scraper object to handle it throughout the applicaiton.">
+      <option name="closed" value="true" />
+      <created>1708197465570</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1708197465571</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -720,7 +719,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Made sure that static texts also get cleaned up upon selection" />
     <MESSAGE value="Added an any of in getFileUrls to get each url without duplicating it. It needs a counter." />
     <MESSAGE value="Fixed an issue where each line was not read correctly, removed url counter as it is not needed anymore." />
     <MESSAGE value="Removed uneeded function" />
@@ -745,7 +743,8 @@
     <MESSAGE value="Fixed it!" />
     <MESSAGE value="Now the application checks for connection when tries to access a webpage." />
     <MESSAGE value="Added Buttons to the run panel." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Buttons to the run panel." />
+    <MESSAGE value="Created start and stop functions, created a global scraper object to handle it throughout the applicaiton." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created start and stop functions, created a global scraper object to handle it throughout the applicaiton." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
