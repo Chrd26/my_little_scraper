@@ -30,9 +30,10 @@ public:
 
 //    Methods
 private:
-    static void StartScraping(int amount, int counter,
-                              std::vector<std::string> keywords,
-                              std::vector<std::string> getUrls);
+    void StartScraping(int amount, int counter,
+                       std::vector<std::string> keywords,
+                       std::vector<std::string> getUrls);
+    Scraper scraper;
 
 // Class Properties
 // Inserting properties to event functors is not possible
@@ -83,7 +84,7 @@ private:
     wxStaticText *keywords3StaticText = nullptr;
     wxStaticText *keywords4StaticText = nullptr;
 
-//    Run
+//    Run Elements
 private:
     std::vector<std::string> getSettingsUrl;
     std::vector<std::string> getSettingsKeywords;
@@ -95,6 +96,8 @@ private:
     wxSizer *startButtonHolder = nullptr;
     wxSizer *stopButtonHolder = nullptr;
     wxSizer *buttonsHolder = nullptr;
+    void startOperation(wxMouseEvent &event);
+    void stopOperation(wxMouseEvent &event);
 
 // States and IDs
 private:
@@ -337,35 +340,36 @@ MainFrame::MainFrame()
 void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> keywords,
                               std::vector<std::string> getUrls)
 {
-    Scraper scraper;
+//    Scraper scraper;
     std::vector<std::string> scraperKeywords;
-    for (int j = 0; j < amount; j++)
+    scraperKeywords.reserve(amount);
+for (int j = 0; j < amount; j++)
     {
         scraperKeywords.push_back(keywords[j]);
     }
 
-    scraper.SetupScraper(scraperKeywords, getUrls[counter]);
+    Scraper::SetupScraper(scraperKeywords, getUrls[counter]);
     AnalyzePages pageAnalyzer;
 
 //    check if online
-    if (!scraper.CheckForConnection())
+    if (!Scraper::CheckForConnection())
     {
        return;
     }
 
     // Get info from website
-    cpr::Response r = scraper.request_info(scraper.baseURL);
+    cpr::Response r = Scraper::request_info(Scraper::baseURL);
 
 //    std::cout << r.text << std::endl;
 
     // Parse it
-    std::vector<std::string> urls = scraper.ParseContent(r.text,
+    std::vector<std::string> urls = Scraper::ParseContent(r.text,
                                                          (char *) "href",
                                                          (char *) "/");
 
     // Iterate through them
     for (const std::string &item: urls) {
-        pageAnalyzer.analyzeEntry(item, scraperKeywords, scraper);
+        AnalyzePages::analyzeEntry(item, scraperKeywords, scraper);
     }
 
     std::cout << "done" << std::endl;
@@ -634,16 +638,16 @@ void MainFrame::PressRun(wxMouseEvent &event)
         confirmButton->Destroy();
     }
 
-//    wxStaticText *runInstructions = nullptr;
-//    wxButton *startButton = nullptr;
-//    wxButton *stopButton = nullptr;
-//    wxSizer *contentHolder = nullptr;
-//    wxSizer *runInstructionsholder = nullptr;
-//    wxSizer *startButtonHolder = nullptr;
-//    wxSizer *stopButtonHolder = nullptr;
-//    wxSizer *buttonsHolder = nullptr;
+    if (currentState == ST_Run)
+    {
+        runInstructions->Destroy();
+        startButton->Destroy();
+        stopButton->Destroy();
 
-    content->SetFont(wxFontInfo(35).FaceName("Helvetica Neue").Bold());
+    }
+
+
+    content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
     wxSize getPanelSize = content->GetSize();
 
     runContentHolder = new wxBoxSizer(wxVERTICAL);
@@ -652,8 +656,8 @@ void MainFrame::PressRun(wxMouseEvent &event)
     startButtonHolder = new wxBoxSizer(wxVERTICAL);
     stopButtonHolder = new wxBoxSizer(wxVERTICAL);
 
-    std::string instructionsText = std::string("Press start the scraping operation.\n") +
-                                    std::string("Press stop to cancel the scraping operation.");
+    std::string instructionsText = std::string("Press start to begin the scraping operation.\n") +
+                                    std::string("Press stop to cancel the current operation.");
 
     runInstructions = new wxStaticText(content, eID_Instructions, instructionsText,
                                        wxDefaultPosition, wxDefaultSize, 0);

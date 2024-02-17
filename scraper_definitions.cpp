@@ -1,6 +1,7 @@
 #include "scraping-handler.h"
 std::string Scraper::baseURL;
 std::vector<std::string> Scraper::keywords = {"Hello"};
+bool Scraper::isCanceled = false;
 
 bool Scraper::CheckForConnection()
 {

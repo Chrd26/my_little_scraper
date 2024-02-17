@@ -33,6 +33,7 @@ private:
 
 public:
     static bool analysis;
+    static bool isCanceled;
     static std::vector<std::string> keywords;
     static std::string baseURL;
     static cpr::Response request_info(std::string url);
