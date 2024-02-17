@@ -20,10 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Created start and stop functions, created a global scraper object to handle it throughout the applicaiton.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="The application now starts and stops at will. I think, it checks for connection way too many times.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,15 +289,7 @@
       <workItem from="1708082237456" duration="4520000" />
       <workItem from="1708113862160" duration="774000" />
       <workItem from="1708195946111" duration="221000" />
-      <workItem from="1708196343225" duration="1769000" />
-    </task>
-    <task id="LOCAL-00034" summary="Added text control for password and username as well as confirm button.">
-      <option name="closed" value="true" />
-      <created>1700666251638</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1700666251638</updated>
+      <workItem from="1708196343225" duration="2208000" />
     </task>
     <task id="LOCAL-00035" summary="Fixed a problem where the inputs were not getting destroyed correctly. I have run into some problems with the wxButton objects. I need more reseach.">
       <option name="closed" value="true" />
@@ -684,7 +675,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708197465571</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="The application now starts and stops at will. I think, it checks for connection way too many times.">
+      <option name="closed" value="true" />
+      <created>1708198613252</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1708198613252</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -719,7 +718,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added an any of in getFileUrls to get each url without duplicating it. It needs a counter." />
     <MESSAGE value="Fixed an issue where each line was not read correctly, removed url counter as it is not needed anymore." />
     <MESSAGE value="Removed uneeded function" />
     <MESSAGE value="removed uneeded comments" />
@@ -744,7 +742,8 @@
     <MESSAGE value="Now the application checks for connection when tries to access a webpage." />
     <MESSAGE value="Added Buttons to the run panel." />
     <MESSAGE value="Created start and stop functions, created a global scraper object to handle it throughout the applicaiton." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created start and stop functions, created a global scraper object to handle it throughout the applicaiton." />
+    <MESSAGE value="The application now starts and stops at will. I think, it checks for connection way too many times." />
+    <option name="LAST_COMMIT_MESSAGE" value="The application now starts and stops at will. I think, it checks for connection way too many times." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -12,13 +12,6 @@
 #include <vector>
 #include <thread>
 
-
-// Get Data
-typedef struct pageData{
-    std::string url;
-    std::string content;
-}pageData;
-
 // Scraper
 class Scraper
 {
