@@ -20,11 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Removed unnecessary code">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added message boxes to inform the user what is going when they press a button.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +75,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.scraper.executor": "Run",
+    "CMake Application.scraper.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -292,15 +290,7 @@
       <workItem from="1708113862160" duration="774000" />
       <workItem from="1708195946111" duration="221000" />
       <workItem from="1708196343225" duration="2636000" />
-      <workItem from="1708250510366" duration="4620000" />
-    </task>
-    <task id="LOCAL-00036" summary="Added wxforms builder to help with the wxWidgets, finally some progress with sizers.">
-      <option name="closed" value="true" />
-      <created>1701788750386</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1701788750386</updated>
+      <workItem from="1708250510366" duration="6548000" />
     </task>
     <task id="LOCAL-00037" summary="There is something wrong either with the widgets builder either the library. Either way, I figured out how to set it up properly this time.">
       <option name="closed" value="true" />
@@ -686,7 +676,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708199037305</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Added message boxes to inform the user what is going when they press a button.">
+      <option name="closed" value="true" />
+      <created>1708255683235</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1708255683235</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -721,7 +719,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed uneeded function" />
     <MESSAGE value="removed uneeded comments" />
     <MESSAGE value="Removed regex" />
     <MESSAGE value="The settings lines are now being added to a vector." />
@@ -746,7 +743,19 @@
     <MESSAGE value="Created start and stop functions, created a global scraper object to handle it throughout the applicaiton." />
     <MESSAGE value="The application now starts and stops at will. I think, it checks for connection way too many times." />
     <MESSAGE value="Removed unnecessary code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary code" />
+    <MESSAGE value="Added message boxes to inform the user what is going when they press a button." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added message boxes to inform the user what is going when they press a button." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>742</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

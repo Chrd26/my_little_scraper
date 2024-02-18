@@ -50,7 +50,7 @@ private:
     wxStaticText *title = nullptr;
     wxPanel *top = nullptr;
     wxPanel *options = nullptr;
-    wxPanel *content = nullptr;
+    static wxPanel *content;
     wxStaticBitmap *optionsImage = nullptr;
     wxSize contentPanelSize;
 
@@ -95,13 +95,16 @@ private:
     wxStaticText *runInstructions = nullptr;
     wxButton *startButton = nullptr;
     wxButton *stopButton = nullptr;
-    wxSizer *runContentHolder = nullptr;
+    static wxSizer *runContentHolder;
     wxSizer *runInstructionsholder = nullptr;
     wxSizer *startButtonHolder = nullptr;
     wxSizer *stopButtonHolder = nullptr;
     wxSizer *buttonsHolder = nullptr;
     void StartOperation(wxMouseEvent &event);
     void StopOperation(wxMouseEvent &event);
+
+    static wxSizer *scrapingInfoSizer;
+    static wxStaticText *scrapingInfoText;
 
 // States and IDs
 private:
@@ -188,6 +191,11 @@ private:
 // Setup default states for application states
 int MainFrame::currentState = ST_Instructions;
 int MainFrame::scrapingState = SST_Waiting;
+wxSizer *MainFrame::scrapingInfoSizer = new wxBoxSizer(wxHORIZONTAL);
+wxSizer *MainFrame::runContentHolder = new wxBoxSizer(wxVERTICAL);
+wxStaticText *MainFrame::scrapingInfoText = nullptr;
+wxPanel *MainFrame::content = nullptr;
+
 
 //Define
 bool ScraperApp::OnInit()
@@ -367,17 +375,22 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     }
 
     Scraper::SetupScraper(scraperKeywords, getUrls[counter]);
+    scrapingInfoText = new wxStaticText(MainFrame::content, wxID_ANY,
+                                        std::string("Currently checking: ") +
+                                        std::string(getUrls[counter]),
+                                        wxDefaultPosition, wxDefaultSize);
+
+    scrapingInfoSizer->Add(scrapingInfoText, 1, wxEXPAND);
+    runContentHolder->Add(scrapingInfoSizer, 1, wxCENTER);
 
     // Get info from website
     cpr::Response r = Scraper::request_info(Scraper::baseURL);
 
     // Parse it
-    std::vector<std::string> urls = Scraper::ParseContent(r.text,
-                                                          (char *) "href",
+    std::vector<std::string> urls = Scraper::ParseContent(r.text, (char *) "href",
                                                           (char *) "/");
 
-    // Iterate through them
-
+    // Iterate through the urls
     for (const std::string &item: urls) {
         if (!Scraper::CheckForConnection())
         {
@@ -398,6 +411,8 @@ void MainFrame::StartOperation(wxMouseEvent &event)
 {
     CSV_Handler handler;
     Scraper::isCanceled = false;
+
+    wxMessageBox("The operation has started.", "", wxOK);
 
     if (scrapingState == SST_Waiting)
     {
@@ -454,7 +469,6 @@ void MainFrame::StartOperation(wxMouseEvent &event)
 
     for (int amount : urlCounterHolder)
     {
-
 //      It is not possible to pass by reference when using threads
 //      More information here:
 //      https://www.reddit.com/r/cpp_questions/comments/kurtkw/error_attempt_to_use_a_deleted_function/
@@ -726,7 +740,8 @@ void MainFrame::PressDatabase(wxMouseEvent &event)
     }
 }
 
-void MainFrame::PressRun(wxMouseEvent &event) {
+void MainFrame::PressRun(wxMouseEvent &event)
+{
 
     if (currentState == ST_Instructions) {
         instructions->Destroy();
@@ -760,7 +775,6 @@ void MainFrame::PressRun(wxMouseEvent &event) {
     content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
     wxSize getPanelSize = content->GetSize();
 
-    runContentHolder = new wxBoxSizer(wxVERTICAL);
     runInstructionsholder = new wxBoxSizer(wxVERTICAL);
     buttonsHolder = new wxBoxSizer(wxHORIZONTAL);
     startButtonHolder = new wxBoxSizer(wxVERTICAL);
