@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="I found that there is a crash due to the runContentHolder variable which leads to a bad access error.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed crash. A sizer gets deleted after being used, it needs to be assigned something each time it is used.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -291,15 +291,7 @@
       <workItem from="1708195946111" duration="221000" />
       <workItem from="1708196343225" duration="2636000" />
       <workItem from="1708250510366" duration="6875000" />
-      <workItem from="1708258674434" duration="240000" />
-    </task>
-    <task id="LOCAL-00038" summary="I had to refactor the whole code in the search settings part. Now it works fine. It still needs some spacing and it is ready.">
-      <option name="closed" value="true" />
-      <created>1705176685267</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1705176685267</updated>
+      <workItem from="1708258674434" duration="5001000" />
     </task>
     <task id="LOCAL-00039" summary="Some more refactoring">
       <option name="closed" value="true" />
@@ -685,7 +677,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708257702969</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Fixed crash. A sizer gets deleted after being used, it needs to be assigned something each time it is used.">
+      <option name="closed" value="true" />
+      <created>1708259019845</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1708259019846</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -720,7 +720,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed regex" />
     <MESSAGE value="The settings lines are now being added to a vector." />
     <MESSAGE value="Urls and keywords are now being separated and will be added to new vectors. There is going to be a need to count how many times a url appears to make sure that only the correct keywords are being used." />
     <MESSAGE value="Created a loop to remove repeating urls, and a url counter to use it with the keyword holder." />
@@ -745,7 +744,8 @@
     <MESSAGE value="Removed unnecessary code" />
     <MESSAGE value="Added message boxes to inform the user what is going when they press a button." />
     <MESSAGE value="I found that there is a crash due to the runContentHolder variable which leads to a bad access error." />
-    <option name="LAST_COMMIT_MESSAGE" value="I found that there is a crash due to the runContentHolder variable which leads to a bad access error." />
+    <MESSAGE value="Fixed crash. A sizer gets deleted after being used, it needs to be assigned something each time it is used." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed crash. A sizer gets deleted after being used, it needs to be assigned something each time it is used." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -191,7 +191,7 @@ private:
 // Setup default states for application states
 int MainFrame::currentState = ST_Instructions;
 int MainFrame::scrapingState = SST_Waiting;
-wxSizer *MainFrame::scrapingInfoSizer = new wxBoxSizer(wxHORIZONTAL);
+wxSizer *MainFrame::scrapingInfoSizer = nullptr;
 wxSizer *MainFrame::runContentHolder = nullptr;
 wxStaticText *MainFrame::scrapingInfoText = nullptr;
 wxPanel *MainFrame::content = nullptr;
@@ -374,14 +374,18 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         scraperKeywords.push_back(keywords[j]);
     }
 
+    content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
     Scraper::SetupScraper(scraperKeywords, getUrls[counter]);
     scrapingInfoText = new wxStaticText(MainFrame::content, wxID_ANY,
                                         std::string("Currently checking: ") +
                                         std::string(getUrls[counter]),
                                         wxDefaultPosition, wxDefaultSize);
 
-    scrapingInfoSizer->Add(scrapingInfoText, 1, wxEXPAND);
-    runContentHolder->Add(scrapingInfoSizer, 1, wxCENTER);
+    scrapingInfoSizer = new wxBoxSizer(wxVERTICAL);
+    scrapingInfoSizer->Add(scrapingInfoText, 1, wxCENTER);
+    runContentHolder->Add(scrapingInfoSizer, 1, wxEXPAND);
+    content->SetSizer(runContentHolder);
+    content->Layout();
 
     // Get info from website
     cpr::Response r = Scraper::request_info(Scraper::baseURL);
@@ -402,7 +406,16 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         AnalyzePages::analyzeEntry(item, scraperKeywords, scraper);
     }
 
-    wxMessageBox("Operation has been completed.", "",wxOK);
+    if (Scraper::isCanceled)
+    {
+        wxMessageBox("Operation has been canceled.", "",wxOK);
+    }
+    else
+    {
+        wxMessageBox("Operation has been completed.", "", wxOK);
+    }
+
+    scrapingInfoText->Destroy();
     scrapingState = SST_Waiting;
 }
 
@@ -491,6 +504,16 @@ void MainFrame::StopOperation(wxMouseEvent &event)
         wxMessageBox("There are no operations running", "", wxOK);
         return;
     }
+
+    content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
+    scrapingInfoText->Destroy();
+    scrapingInfoText = new wxStaticText(content, wxID_ANY, "Please wait while the operation is stopping",
+                                        wxDefaultPosition, wxDefaultSize);
+    scrapingInfoSizer = new wxBoxSizer(wxVERTICAL);
+    scrapingInfoSizer->Add(scrapingInfoText, 1, wxCENTER);
+    runContentHolder->Add(scrapingInfoSizer, 1, wxEXPAND);
+    content->SetSizer(runContentHolder);
+    content->Layout();
 
     Scraper::isCanceled = true;
     scrapingState = SST_Waiting;
@@ -792,21 +815,21 @@ void MainFrame::PressRun(wxMouseEvent &event)
 
     startButton = new wxButton(content, eID_StartButton, "Start", wxDefaultPosition, wxDefaultSize,
                                0, wxDefaultValidator);
-    startButtonHolder->Add(startButton, 1, wxEXPAND | wxCENTER | wxALL,
+    startButtonHolder->Add(startButton, 1, wxCENTER | wxALL,
                            static_cast<int>(getPanelSize.GetWidth() * 0.012));
     stopButton = new wxButton(content, eID_StopButton, "Stop", wxDefaultPosition, wxDefaultSize,
                               0, wxDefaultValidator);
-    stopButtonHolder->Add(stopButton, 1, wxEXPAND | wxCENTER | wxALL,
+    stopButtonHolder->Add(stopButton, 1, wxCENTER | wxALL,
                           static_cast<int>(getPanelSize.GetWidth() * 0.012));
 
-    buttonsHolder->Add(startButtonHolder, 1, wxALIGN_TOP | wxTOP,
+    buttonsHolder->Add(startButtonHolder, 1, wxTOP,
                        static_cast<int>(getPanelSize.GetHeight() * 0.05));
-    buttonsHolder->Add(stopButtonHolder, 1, wxALIGN_TOP | wxTOP,
+    buttonsHolder->Add(stopButtonHolder, 1, wxTOP,
                        static_cast<int>(getPanelSize.GetHeight() * 0.05));
 
     runContentHolder->Add(runInstructionsholder, 0, wxEXPAND | wxTOP,
                           static_cast<int>(getPanelSize.GetHeight() * 0.065));
-    runContentHolder->Add(buttonsHolder, 1, wxCENTER);
+    runContentHolder->Add(buttonsHolder, 0, wxCENTER);
 
     startButton->Bind(wxEVT_LEFT_UP, &MainFrame::StartOperation,
                       this, eID_StartButton);
