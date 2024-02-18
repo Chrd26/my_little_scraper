@@ -192,7 +192,7 @@ private:
 int MainFrame::currentState = ST_Instructions;
 int MainFrame::scrapingState = SST_Waiting;
 wxSizer *MainFrame::scrapingInfoSizer = new wxBoxSizer(wxHORIZONTAL);
-wxSizer *MainFrame::runContentHolder = new wxBoxSizer(wxVERTICAL);
+wxSizer *MainFrame::runContentHolder = nullptr;
 wxStaticText *MainFrame::scrapingInfoText = nullptr;
 wxPanel *MainFrame::content = nullptr;
 
@@ -779,6 +779,7 @@ void MainFrame::PressRun(wxMouseEvent &event)
     buttonsHolder = new wxBoxSizer(wxHORIZONTAL);
     startButtonHolder = new wxBoxSizer(wxVERTICAL);
     stopButtonHolder = new wxBoxSizer(wxVERTICAL);
+    runContentHolder = new wxBoxSizer(wxVERTICAL);
 
     std::string instructionsText = std::string("Press start to begin the scraping operation.\n") +
                                    std::string("Press stop to cancel the current operation.");
