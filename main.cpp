@@ -425,10 +425,9 @@ void MainFrame::StartOperation(wxMouseEvent &event)
     CSV_Handler handler;
     Scraper::isCanceled = false;
 
-    wxMessageBox("The operation has started.", "", wxOK);
-
     if (scrapingState == SST_Waiting)
     {
+        wxMessageBox("The operation has started.", "", wxOK);
         scrapingState = SST_Running;
     }
     else
