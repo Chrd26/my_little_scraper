@@ -184,7 +184,6 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
     // Print out results
     for (size_t i = 0; i < get_collection_length; i++)
     {
-        //std::cout << i << std::endl;
         gather_collection = lxb_dom_collection_element(collection, i);
         serialize_node(lxb_dom_interface_node(gather_collection));
     }
@@ -206,7 +205,7 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
 void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grabKeywords, Scraper scraper)
 {
 //    Check for connection first
-    if (!Scraper::CheckForConnection() || Scraper::isCanceled)
+    if (Scraper::isCanceled)
     {
         return;
     }

@@ -12,6 +12,11 @@
 
 // Wx Widgets Initialization
 // Source: https://docs.wxwidgets.org/3.2/overview_helloworld.html
+
+// For later
+// System command safety, use execvp()
+// https://www.digitalocean.com/community/tutorials/execvp-function-c-plus-plus
+// https://developers.redhat.com/articles/2023/03/29/4-essentials-prevent-os-command-injection-attacks#how_os_command_injection_works
 class ScraperApp : public wxApp
 {
 public:
@@ -48,7 +53,6 @@ private:
     wxPanel *content = nullptr;
     wxStaticBitmap *optionsImage = nullptr;
     wxSize contentPanelSize;
-    int currentState;
 
 // Starting Content
 private:
@@ -101,6 +105,8 @@ private:
 
 // States and IDs
 private:
+    static int currentState;
+    static int scrapingState;
     enum events
     {
         ID_Start = 1,
@@ -137,7 +143,12 @@ private:
         ST_Instructions = 0,
         ST_SearchSettings,
         ST_Run,
-        ST_Running
+    };
+
+    enum scrapingState
+    {
+        SST_Waiting = 0,
+        SST_Running,
     };
 
 // Window Events
@@ -174,6 +185,10 @@ private:
     void OnExit(wxCommandEvent& event);
 };
 
+// Setup default states for application states
+int MainFrame::currentState = ST_Instructions;
+int MainFrame::scrapingState = SST_Waiting;
+
 //Define
 bool ScraperApp::OnInit()
 {
@@ -202,9 +217,6 @@ bool ScraperApp::OnInit()
 MainFrame::MainFrame()
         : wxFrame(nullptr, eID_Frame, "Info Hunter")
 {
-    // Starting state
-    currentState = ST_Instructions;
-
     // Set Font
     // Frame Layout
     top = new wxPanel(this, eID_TopPanel, wxDefaultPosition, wxSize(200,100));
@@ -291,7 +303,7 @@ MainFrame::MainFrame()
     Bind(wxEVT_MENU, &MainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &MainFrame::OnExit, this, wxID_EXIT);
 
-    content->SetFont(wxFontInfo(35).FaceName("Helvetica"));
+    content->SetFont(wxFontInfo(35).FaceName("Helvetica").Bold());
     content->SetForegroundColour("#FFFFFF");
 
     instructions = new wxStaticText(content, eID_Instructions,
@@ -340,6 +352,13 @@ MainFrame::MainFrame()
 void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> keywords,
                               std::vector<std::string> getUrls)
 {
+    if (!Scraper::CheckForConnection())
+    {
+        wxMessageBox("You have been disconnected from the internet",
+                     "", wxOK);
+        return;
+    }
+
     std::vector<std::string> scraperKeywords;
     scraperKeywords.reserve(amount);
     for (int j = 0; j < amount; j++)
@@ -348,18 +367,9 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     }
 
     Scraper::SetupScraper(scraperKeywords, getUrls[counter]);
-    AnalyzePages pageAnalyzer;
-
-//    check if online
-    if (!Scraper::CheckForConnection())
-    {
-        return;
-    }
 
     // Get info from website
     cpr::Response r = Scraper::request_info(Scraper::baseURL);
-
-//    std::cout << r.text << std::endl;
 
     // Parse it
     std::vector<std::string> urls = Scraper::ParseContent(r.text,
@@ -367,11 +377,20 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
                                                           (char *) "/");
 
     // Iterate through them
+
     for (const std::string &item: urls) {
+        if (!Scraper::CheckForConnection())
+        {
+            wxMessageBox("You have been disconnected from the internet", "",
+                         wxOK);
+            scrapingState = SST_Waiting;
+            return;
+        }
         AnalyzePages::analyzeEntry(item, scraperKeywords, scraper);
     }
 
-    std::cout << "done" << std::endl;
+    wxMessageBox("Operation has been completed.", "",wxOK);
+    scrapingState = SST_Waiting;
 }
 
 // Start Scraping button
@@ -379,6 +398,16 @@ void MainFrame::StartOperation(wxMouseEvent &event)
 {
     CSV_Handler handler;
     Scraper::isCanceled = false;
+
+    if (scrapingState == SST_Waiting)
+    {
+        scrapingState = SST_Running;
+    }
+    else
+    {
+        wxMessageBox("An operation is already running","" ,wxOK);
+        return;
+    }
 
     handler.ReadSettings();
 
@@ -443,7 +472,14 @@ void MainFrame::StartOperation(wxMouseEvent &event)
 // Cancel Scraping button
 void MainFrame::StopOperation(wxMouseEvent &event)
 {
+    if (scrapingState == SST_Waiting)
+    {
+        wxMessageBox("There are no operations running", "", wxOK);
+        return;
+    }
+
     Scraper::isCanceled = true;
+    scrapingState = SST_Waiting;
 }
 
 // Hover Events Functions
@@ -493,6 +529,7 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
             keywords4[i]->Destroy();
         }
 
+        urlInputStaticText->Destroy();
         keywords1StaticText->Destroy();
         keywords2StaticText->Destroy();
         keywords3StaticText->Destroy();
@@ -507,7 +544,7 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
         stopButton->Destroy();
     }
 
-    content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica"));
+    content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica").Bold());
     content->SetSizeHints(wxDefaultSize, wxDefaultSize);
     contentPanelSize = content->GetSize();
     // Make sure to cast to the correct type before operating
@@ -633,7 +670,7 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
 void MainFrame::PressConfirm(wxMouseEvent &event)
 {
     CSV_Handler handler;
-    handler.ClearPreviousOptions();
+    CSV_Handler::ClearPreviousOptions();
 //    Get Value:
 //    https://docs.wxwidgets.org/3.2.4/classwx_text_entry.html#a39335d9009b2053b5daf850c7b9d2974
 
@@ -675,8 +712,7 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
         }
     }
 
-    wxMessageBox("You settings have been saved", "",
-                 wxOK|wxICON_ASTERISK);
+    wxMessageBox("Your settings have been saved", "", wxOK);
 }
 
 void MainFrame::PressDatabase(wxMouseEvent &event)
@@ -686,16 +722,13 @@ void MainFrame::PressDatabase(wxMouseEvent &event)
     if (systemCode != 0)
     {
         wxMessageBox("There is no file to read, make sure to run a search first.",
-                     "",
-                     wxOK|wxICON_EXCLAMATION);
+                     "", wxOK);
     }
 }
 
-void MainFrame::PressRun(wxMouseEvent &event)
-{
+void MainFrame::PressRun(wxMouseEvent &event) {
 
-    if (currentState == ST_Instructions)
-    {
+    if (currentState == ST_Instructions) {
         instructions->Destroy();
     }
 
@@ -709,6 +742,7 @@ void MainFrame::PressRun(wxMouseEvent &event)
             keywords4[i]->Destroy();
         }
 
+        urlInputStaticText->Destroy();
         keywords1StaticText->Destroy();
         keywords2StaticText->Destroy();
         keywords3StaticText->Destroy();
@@ -717,13 +751,11 @@ void MainFrame::PressRun(wxMouseEvent &event)
         confirmButton->Destroy();
     }
 
-    if (currentState == ST_Run)
-    {
+    if (currentState == ST_Run) {
         runInstructions->Destroy();
         startButton->Destroy();
         stopButton->Destroy();
     }
-
 
     content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
     wxSize getPanelSize = content->GetSize();
@@ -735,7 +767,7 @@ void MainFrame::PressRun(wxMouseEvent &event)
     stopButtonHolder = new wxBoxSizer(wxVERTICAL);
 
     std::string instructionsText = std::string("Press start to begin the scraping operation.\n") +
-                                    std::string("Press stop to cancel the current operation.");
+                                   std::string("Press stop to cancel the current operation.");
 
     runInstructions = new wxStaticText(content, eID_Instructions, instructionsText,
                                        wxDefaultPosition, wxDefaultSize, 0);
@@ -744,20 +776,20 @@ void MainFrame::PressRun(wxMouseEvent &event)
     content->SetFont(wxFontInfo(wxDefaultSize).FaceName("Helvetica Neue").Bold());
 
     startButton = new wxButton(content, eID_StartButton, "Start", wxDefaultPosition, wxDefaultSize,
-                                     0, wxDefaultValidator);
-    startButtonHolder->Add(startButton, 1, wxEXPAND|wxCENTER|wxALL,
+                               0, wxDefaultValidator);
+    startButtonHolder->Add(startButton, 1, wxEXPAND | wxCENTER | wxALL,
                            static_cast<int>(getPanelSize.GetWidth() * 0.012));
     stopButton = new wxButton(content, eID_StopButton, "Stop", wxDefaultPosition, wxDefaultSize,
-                               0, wxDefaultValidator);
-    stopButtonHolder->Add(stopButton, 1, wxEXPAND|wxCENTER|wxALL,
+                              0, wxDefaultValidator);
+    stopButtonHolder->Add(stopButton, 1, wxEXPAND | wxCENTER | wxALL,
                           static_cast<int>(getPanelSize.GetWidth() * 0.012));
 
-    buttonsHolder->Add(startButtonHolder, 1, wxALIGN_TOP|wxTOP,
+    buttonsHolder->Add(startButtonHolder, 1, wxALIGN_TOP | wxTOP,
                        static_cast<int>(getPanelSize.GetHeight() * 0.05));
-    buttonsHolder->Add(stopButtonHolder, 1, wxALIGN_TOP|wxTOP,
+    buttonsHolder->Add(stopButtonHolder, 1, wxALIGN_TOP | wxTOP,
                        static_cast<int>(getPanelSize.GetHeight() * 0.05));
 
-    runContentHolder->Add(runInstructionsholder, 0, wxEXPAND|wxTOP,
+    runContentHolder->Add(runInstructionsholder, 0, wxEXPAND | wxTOP,
                           static_cast<int>(getPanelSize.GetHeight() * 0.065));
     runContentHolder->Add(buttonsHolder, 1, wxCENTER);
 
@@ -770,68 +802,6 @@ void MainFrame::PressRun(wxMouseEvent &event)
     content->Layout();
 
     currentState = ST_Run;
-/*
-    CSV_Handler handler;
-
-    handler.ReadSettings();
-
-//    Separate urls and keywords
-    for (const std::string &line : handler.csvLines)
-    {
-        int index = (int)line.find(",");
-
-        getSettingsUrl.push_back(line.substr(0, index));
-        getSettingsKeywords.push_back(line.substr(index + 1));
-    }
-
-    std::vector<std::string> getUrls;
-    std::vector<int> urlCounterHolder;
-    int counter = 0;
-
-//    count how many keywords each url has
-    for (const auto &url : getSettingsUrl)
-    {
-        if (urlCounterHolder.empty())
-        {
-            int count = (int)std::count(getSettingsUrl.begin(), getSettingsUrl.end(),
-                                        url);
-            urlCounterHolder.push_back((count));
-            getUrls.push_back(url);
-        }
-
-        if (std::find(getUrls.begin(), getUrls.end(), url) != std::end(getUrls))
-        {
-            counter++;
-            continue;
-        }
-        else
-        {
-            urlCounterHolder.push_back(counter);
-            counter = 0;
-            getUrls.push_back(url);
-            counter++;
-        }
-    }
-
-    getSettingsUrl.clear();
-    counter = 0;
-
-    for (int amount : urlCounterHolder)
-    {
-
-//      It is not possible to pass by reference when using threads
-//      More information here:
-//      https://www.reddit.com/r/cpp_questions/comments/kurtkw/error_attempt_to_use_a_deleted_function/
-        std::thread t(StartScraping,amount, counter, getSettingsKeywords, getUrls);
-
-        if (t.joinable())
-        {
-            t.detach();
-        }
-
-        counter++;
-    }
-*/
 }
 
 AboutWindow::AboutWindow()
@@ -861,7 +831,7 @@ void MainFrame::OnAbout(wxCommandEvent &event)
 
 void MainFrame::OnStart(wxCommandEvent &event)
 {
-    wxMessageBox("The app should start running now!", "", wxOK|wxICON_INFORMATION);
+    wxMessageBox("The app should start running now!", "", wxOK);
 }
 
 void AboutWindow::OnExit(wxCommandEvent &event)

@@ -35,6 +35,7 @@ public:
     lxb_inline lxb_html_document_t* Parse(const lxb_char_t* html, size_t html_len);
     static void SetupScraper(std::vector<std::string> inputKeywords, std::string url);
     static bool CheckForConnection();
+
 };
 
 class AnalyzePages
