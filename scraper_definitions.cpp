@@ -210,6 +210,17 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
         return;
     }
 
+    std::ofstream contentFile;
+    contentFile.open("../content/content.txt");
+
+    if (!contentFile.is_open())
+    {
+        std::cout << "Failed to open file" << std::endl;
+        std::cout << std::strerror(errno) << std::endl;
+        exit(errno);
+    }
+
+    contentFile << input << std::endl;
     Scraper::analysis = true;
     bool keywordsFound = false;
     cpr::Response getRes = Scraper::request_info(input);
@@ -385,10 +396,12 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
                 }
             }
 
+
             // Output
             if (keywordsFound)
             {
-                std::cout << "Found: " << toString << std::endl;
+//                std::cout << "Found: " << toString << std::endl;
+                contentFile << toString << std::endl;
                 keywordsFound = false;
             }
 
@@ -398,6 +411,7 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
     lxb_dom_collection_destroy(collection, true);
     lxb_html_document_destroy(document);
     delete [] html;
+    contentFile.close();
 
     scraper.analysis = false;
 }

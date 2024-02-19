@@ -753,7 +753,7 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
 
 void MainFrame::PressDatabase(wxMouseEvent &event)
 {
-    int systemCode = std::system("cd ../content && open content.csv");
+    int systemCode = std::system("cd ../content && open content.txt");
 
     if (systemCode != 0)
     {
