@@ -102,6 +102,7 @@ private:
     wxSizer *buttonsHolder = nullptr;
     void StartOperation(wxMouseEvent &event);
     void StopOperation(wxMouseEvent &event);
+    static std::vector<std::thread> threads;
 
     static wxSizer *scrapingInfoSizer;
     static wxStaticText *scrapingInfoText;
@@ -188,13 +189,14 @@ private:
     void OnExit(wxCommandEvent& event);
 };
 
-// Setup default states for application states
+// Static Initialisation
 int MainFrame::currentState = ST_Instructions;
 int MainFrame::scrapingState = SST_Waiting;
 wxSizer *MainFrame::scrapingInfoSizer = nullptr;
 wxSizer *MainFrame::runContentHolder = nullptr;
 wxStaticText *MainFrame::scrapingInfoText = nullptr;
 wxPanel *MainFrame::content = nullptr;
+std::vector<std::thread> MainFrame::threads;
 
 
 //Define
@@ -364,6 +366,18 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     {
         wxMessageBox("You have been disconnected from the internet",
                      "", wxOK);
+        Scraper::isCanceled = true;
+
+        if (scrapingInfoText != nullptr)
+        {
+            scrapingInfoText->Destroy();
+        }
+
+        if (!threads.empty())
+        {
+            threads.clear();
+        }
+
         return;
     }
 
@@ -374,6 +388,11 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         scraperKeywords.push_back(keywords[j]);
     }
 
+    if (scrapingInfoText != nullptr)
+    {
+        scrapingInfoText->Destroy();
+    }
+
     content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
     Scraper::SetupScraper(scraperKeywords, getUrls[counter]);
     scrapingInfoText = new wxStaticText(MainFrame::content, wxID_ANY,
@@ -382,7 +401,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
                                         wxDefaultPosition, wxDefaultSize);
 
     scrapingInfoSizer = new wxBoxSizer(wxVERTICAL);
-    scrapingInfoSizer->Add(scrapingInfoText, 1, wxCENTER);
+    scrapingInfoSizer->Add(scrapingInfoText, 0, wxCENTER);
     runContentHolder->Add(scrapingInfoSizer, 1, wxEXPAND);
     content->SetSizer(runContentHolder);
     content->Layout();
@@ -409,9 +428,19 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     if (Scraper::isCanceled)
     {
         wxMessageBox("Operation has been canceled.", "",wxOK);
+
+        if (!threads.empty())
+        {
+            threads.clear();
+        }
     }
     else
     {
+        if (!threads.empty())
+        {
+            threads.clear();
+        }
+
         wxMessageBox("Operation has been completed.", "", wxOK);
     }
 
@@ -484,14 +513,24 @@ void MainFrame::StartOperation(wxMouseEvent &event)
 //      It is not possible to pass by reference when using threads
 //      More information here:
 //      https://www.reddit.com/r/cpp_questions/comments/kurtkw/error_attempt_to_use_a_deleted_function/
-        std::thread t(StartScraping,amount, counter, getSettingsKeywords, getUrls);
+//        std::thread t(StartScraping,amount, counter, getSettingsKeywords, getUrls);
+        threads.push_back(std::thread(StartScraping,amount, counter, getSettingsKeywords, getUrls));
 
+//        if (threads[threadCounter].joinable())
+//        {
+//            t.detach();
+//            threads[threadCounter].detach();
+//        }
+
+        counter++;
+    }
+
+    for (auto &t : threads)
+    {
         if (t.joinable())
         {
             t.detach();
         }
-
-        counter++;
     }
 }
 
@@ -509,12 +548,17 @@ void MainFrame::StopOperation(wxMouseEvent &event)
     scrapingInfoText = new wxStaticText(content, wxID_ANY, "Please wait while the operation is stopping",
                                         wxDefaultPosition, wxDefaultSize);
     scrapingInfoSizer = new wxBoxSizer(wxVERTICAL);
-    scrapingInfoSizer->Add(scrapingInfoText, 1, wxCENTER);
+    scrapingInfoSizer->Add(scrapingInfoText, 0, wxCENTER);
     runContentHolder->Add(scrapingInfoSizer, 1, wxEXPAND);
     content->SetSizer(runContentHolder);
     content->Layout();
 
-    Scraper::isCanceled = true;
+    if (!threads.empty())
+    {
+        threads.clear();
+    }
+
+    Scraper::isCanceled = false;
     scrapingState = SST_Waiting;
 }
 

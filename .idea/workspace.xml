@@ -20,9 +20,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Now, the operation writes the results in file">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Results are now being written to a text file.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-csv/example.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
     </list>
@@ -298,15 +297,9 @@
       <workItem from="1708266780774" duration="86000" />
       <workItem from="1708330720220" duration="163000" />
       <workItem from="1708330935655" duration="891000" />
-      <workItem from="1708372322341" duration="2000" />
-    </task>
-    <task id="LOCAL-00041" summary="Removed more magic numbers, refactoring">
-      <option name="closed" value="true" />
-      <created>1705643231023</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1705643231023</updated>
+      <workItem from="1708372322341" duration="374000" />
+      <workItem from="1708439452854" duration="1717000" />
+      <workItem from="1708514466975" duration="2542000" />
     </task>
     <task id="LOCAL-00042" summary="Removed database settings as it will take too much time to implement it. The database will open a new window and show a csv file where the use will be able to open and read the results.">
       <option name="closed" value="true" />
@@ -692,7 +685,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708265634864</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Results are now being written to a text file.">
+      <option name="closed" value="true" />
+      <created>1708372344036</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1708372344037</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -727,7 +728,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Created a loop to remove repeating urls, and a url counter to use it with the keyword holder." />
     <MESSAGE value="Loop in a loop! I wonder if it is possible to create a better alternative. The outer loop is used to iterate through the urls, and the inner one is used to iterate through the keywords. This means that the inner loop runs until all the keywords of the url have been used." />
     <MESSAGE value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions." />
     <MESSAGE value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions. Working with static functions is a bit weird." />
@@ -752,7 +752,8 @@
     <MESSAGE value="Fixed crash. A sizer gets deleted after being used, it needs to be assigned something each time it is used." />
     <MESSAGE value="Fixed an issue where the current state text of the scraping operation was too low on the panel. Added a new wxFormBuilder project." />
     <MESSAGE value="Moved &quot;The operation has started&quot; to an if statement." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved &quot;The operation has started&quot; to an if statement." />
+    <MESSAGE value="Results are now being written to a text file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Results are now being written to a text file." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

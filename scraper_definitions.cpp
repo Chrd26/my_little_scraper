@@ -204,9 +204,9 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
 
 void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grabKeywords, Scraper scraper)
 {
-//    Check for connection first
-    if (Scraper::isCanceled)
+    if (Scraper::isCanceled||!Scraper::CheckForConnection())
     {
+        Scraper::isCanceled = true;
         return;
     }
 
@@ -220,7 +220,6 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
         exit(errno);
     }
 
-    contentFile << input << std::endl;
     Scraper::analysis = true;
     bool keywordsFound = false;
     cpr::Response getRes = Scraper::request_info(input);
@@ -316,7 +315,6 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
             isTheSame = true;
         }
 
-
         for (int o = 0; o < keyword6.length(); o++) {
             if (getRes.text[i + o] != keyword6[o]) {
                 isTheSame = false;
@@ -338,8 +336,6 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
         i++;
     }
 
-//    std::cout << html << std::endl;
-//     std::cin.get();
     std::string getHTML;
 
     for (int i = 0; html[i] != '\0'; i++)
@@ -396,11 +392,10 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
                 }
             }
 
-
             // Output
             if (keywordsFound)
             {
-//                std::cout << "Found: " << toString << std::endl;
+                contentFile << input << std::endl;
                 contentFile << toString << std::endl;
                 keywordsFound = false;
             }
