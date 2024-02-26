@@ -2,6 +2,7 @@
 #include <wx/wx.h>
 #include <wx/stattext.h>
 #include "csv_handler.h"
+#include <mutex>
 
 // More info and understanding
 // https://brightdata.com/blog/how-tos/web-scraping-in-c-plus-plus
@@ -103,9 +104,12 @@ private:
     void StartOperation(wxMouseEvent &event);
     void StopOperation(wxMouseEvent &event);
     static std::vector<std::thread> threads;
+    static std::mutex m;
 
     static wxSizer *scrapingInfoSizer;
     static wxStaticText *scrapingInfoText;
+    static int operationCounter;
+    static int operationSize;
 
 // States and IDs
 private:
@@ -197,6 +201,9 @@ wxSizer *MainFrame::runContentHolder = nullptr;
 wxStaticText *MainFrame::scrapingInfoText = nullptr;
 wxPanel *MainFrame::content = nullptr;
 std::vector<std::thread> MainFrame::threads;
+std::mutex MainFrame::m;
+int MainFrame::operationCounter = 0;
+int MainFrame::operationSize = 0;
 
 
 //Define
@@ -366,11 +373,12 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     {
         wxMessageBox("You have been disconnected from the internet",
                      "", wxOK);
-        Scraper::isCanceled = true;
+        Scraper::isCanceled = false;
 
         if (scrapingInfoText != nullptr)
         {
             scrapingInfoText->Destroy();
+            scrapingInfoText = nullptr;
         }
 
         if (!threads.empty())
@@ -380,6 +388,13 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 
         return;
     }
+
+    if (Scraper::isCanceled)
+    {
+        return;
+    }
+
+    m.lock();
 
     std::vector<std::string> scraperKeywords;
     scraperKeywords.reserve(amount);
@@ -391,6 +406,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     if (scrapingInfoText != nullptr)
     {
         scrapingInfoText->Destroy();
+        scrapingInfoText = nullptr;
     }
 
     content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
@@ -419,13 +435,23 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         {
             wxMessageBox("You have been disconnected from the internet", "",
                          wxOK);
+
+            if (scrapingInfoText != nullptr)
+            {
+                scrapingInfoText->Destroy();
+                scrapingInfoText = nullptr;
+            }
+
             scrapingState = SST_Waiting;
+            m.unlock();
             return;
         }
         AnalyzePages::analyzeEntry(item, scraperKeywords, scraper);
     }
 
-    if (Scraper::isCanceled)
+    m.unlock();
+
+    if (Scraper::isCanceled && operationCounter == operationSize)
     {
         wxMessageBox("Operation has been canceled.", "",wxOK);
 
@@ -434,17 +460,27 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             threads.clear();
         }
     }
-    else
+    else if (operationCounter == operationSize)
     {
         if (!threads.empty())
         {
             threads.clear();
         }
 
+        operationCounter = 0;
+        operationSize = 0;
         wxMessageBox("Operation has been completed.", "", wxOK);
+    } else
+    {
+        operationCounter++;
     }
 
-    scrapingInfoText->Destroy();
+    if (scrapingInfoText != nullptr)
+    {
+        scrapingInfoText->Destroy();
+        scrapingInfoText = nullptr;
+    }
+
     scrapingState = SST_Waiting;
 }
 
@@ -507,20 +543,17 @@ void MainFrame::StartOperation(wxMouseEvent &event)
 
     getSettingsUrl.clear();
     counter = 0;
+    operationSize = urlCounterHolder.size();
+    std::cout << operationSize << std::endl;
+//    std::cin.get();
 
     for (int amount : urlCounterHolder)
     {
 //      It is not possible to pass by reference when using threads
 //      More information here:
 //      https://www.reddit.com/r/cpp_questions/comments/kurtkw/error_attempt_to_use_a_deleted_function/
-//        std::thread t(StartScraping,amount, counter, getSettingsKeywords, getUrls);
-        threads.push_back(std::thread(StartScraping,amount, counter, getSettingsKeywords, getUrls));
-
-//        if (threads[threadCounter].joinable())
-//        {
-//            t.detach();
-//            threads[threadCounter].detach();
-//        }
+        std::thread t(StartScraping,amount, counter, getSettingsKeywords, getUrls);
+        threads.emplace_back(std::move(t));
 
         counter++;
     }
@@ -541,10 +574,15 @@ void MainFrame::StopOperation(wxMouseEvent &event)
     {
         wxMessageBox("There are no operations running", "", wxOK);
         return;
+
     }
 
-    content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
-    scrapingInfoText->Destroy();
+//    content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
+    if (scrapingInfoText != nullptr)
+    {
+        scrapingInfoText->Destroy();
+    }
+
     scrapingInfoText = new wxStaticText(content, wxID_ANY, "Please wait while the operation is stopping",
                                         wxDefaultPosition, wxDefaultSize);
     scrapingInfoSizer = new wxBoxSizer(wxVERTICAL);
@@ -558,7 +596,7 @@ void MainFrame::StopOperation(wxMouseEvent &event)
         threads.clear();
     }
 
-    Scraper::isCanceled = false;
+    Scraper::isCanceled = true;
     scrapingState = SST_Waiting;
 }
 
@@ -874,10 +912,8 @@ void MainFrame::PressRun(wxMouseEvent &event)
                           static_cast<int>(getPanelSize.GetHeight() * 0.065));
     runContentHolder->Add(buttonsHolder, 0, wxCENTER);
 
-    startButton->Bind(wxEVT_LEFT_UP, &MainFrame::StartOperation,
-                      this, eID_StartButton);
-    stopButton->Bind(wxEVT_LEFT_UP, &MainFrame::StopOperation,
-                     this, eID_StopButton);
+    startButton->Bind(wxEVT_LEFT_UP, &MainFrame::StartOperation, this, eID_StartButton);
+    stopButton->Bind(wxEVT_LEFT_UP, &MainFrame::StopOperation, this, eID_StopButton);
 
     content->SetSizer(runContentHolder);
     content->Layout();

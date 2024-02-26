@@ -204,7 +204,7 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
 
 void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grabKeywords, Scraper scraper)
 {
-    if (Scraper::isCanceled||!Scraper::CheckForConnection())
+    if (Scraper::isCanceled)
     {
         Scraper::isCanceled = true;
         return;
@@ -361,9 +361,6 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
     {
         exit(EXIT_FAILURE);
     }
-
-//    this is 0
-    std::cout << lxb_dom_collection_length(collection) << std::endl;
 
     for (size_t i = 0; i < lxb_dom_collection_length(collection); i++)
     {
