@@ -20,10 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="I tried to fix the problem with a vector but the problem appears to be more complicated than I thought it was">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added mutex, added counters to control the message boxes the general flow of the progran.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,15 +299,7 @@
       <workItem from="1708372322341" duration="374000" />
       <workItem from="1708439452854" duration="1717000" />
       <workItem from="1708514466975" duration="2648000" />
-      <workItem from="1708941198823" duration="4771000" />
-    </task>
-    <task id="LOCAL-00043" summary="Some more cleanup">
-      <option name="closed" value="true" />
-      <created>1706530729665</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1706530729665</updated>
+      <workItem from="1708941198823" duration="6714000" />
     </task>
     <task id="LOCAL-00044" summary="Refactoring and clean up, better now!">
       <option name="closed" value="true" />
@@ -694,7 +685,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708518922237</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Added mutex, added counters to control the message boxes the general flow of the progran.">
+      <option name="closed" value="true" />
+      <created>1708949624391</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1708949624392</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +728,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions." />
     <MESSAGE value="Cleaned scraper definitions a little bit, I kind of have forgoten what happens in scraper_definitions. Working with static functions is a bit weird." />
     <MESSAGE value="Fixed some issues where it was not possible to assign values to the Scraper object with the use of constructors." />
     <MESSAGE value="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete." />
@@ -754,7 +752,8 @@
     <MESSAGE value="Moved &quot;The operation has started&quot; to an if statement." />
     <MESSAGE value="Results are now being written to a text file." />
     <MESSAGE value="I tried to fix the problem with a vector but the problem appears to be more complicated than I thought it was" />
-    <option name="LAST_COMMIT_MESSAGE" value="I tried to fix the problem with a vector but the problem appears to be more complicated than I thought it was" />
+    <MESSAGE value="Added mutex, added counters to control the message boxes the general flow of the progran." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added mutex, added counters to control the message boxes the general flow of the progran." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

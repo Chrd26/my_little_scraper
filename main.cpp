@@ -369,11 +369,17 @@ MainFrame::MainFrame()
 void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> keywords,
                               std::vector<std::string> getUrls)
 {
+
+    if (Scraper::isCanceled)
+    {
+        return;
+    }
+
     if (!Scraper::CheckForConnection())
     {
         wxMessageBox("You have been disconnected from the internet",
                      "", wxOK);
-        Scraper::isCanceled = false;
+        Scraper::isCanceled = true;
 
         if (scrapingInfoText != nullptr)
         {
@@ -386,11 +392,6 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             threads.clear();
         }
 
-        return;
-    }
-
-    if (Scraper::isCanceled)
-    {
         return;
     }
 
@@ -449,6 +450,12 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         AnalyzePages::analyzeEntry(item, scraperKeywords, scraper);
     }
 
+    if (scrapingInfoText != nullptr)
+    {
+        scrapingInfoText->Destroy();
+        scrapingInfoText = nullptr;
+    }
+
     m.unlock();
 
     if (Scraper::isCanceled && operationCounter == operationSize)
@@ -469,19 +476,19 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 
         operationCounter = 0;
         operationSize = 0;
+
+        if (scrapingInfoText != nullptr)
+        {
+            scrapingInfoText->Destroy();
+            scrapingInfoText = nullptr;
+        }
+
+        scrapingState = SST_Waiting;
         wxMessageBox("Operation has been completed.", "", wxOK);
     } else
     {
         operationCounter++;
     }
-
-    if (scrapingInfoText != nullptr)
-    {
-        scrapingInfoText->Destroy();
-        scrapingInfoText = nullptr;
-    }
-
-    scrapingState = SST_Waiting;
 }
 
 // Start Scraping button
@@ -544,8 +551,6 @@ void MainFrame::StartOperation(wxMouseEvent &event)
     getSettingsUrl.clear();
     counter = 0;
     operationSize = urlCounterHolder.size();
-    std::cout << operationSize << std::endl;
-//    std::cin.get();
 
     for (int amount : urlCounterHolder)
     {
