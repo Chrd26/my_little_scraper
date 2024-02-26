@@ -372,6 +372,11 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 
     if (Scraper::isCanceled)
     {
+        if (!threads.empty())
+        {
+            threads.clear();
+        }
+
         return;
     }
 
@@ -461,6 +466,9 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     if (Scraper::isCanceled && operationCounter == operationSize)
     {
         wxMessageBox("Operation has been canceled.", "",wxOK);
+
+        operationCounter = 0;
+        operationSize = 0;
 
         if (!threads.empty())
         {
