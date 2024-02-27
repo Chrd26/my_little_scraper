@@ -370,6 +370,8 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
                               std::vector<std::string> getUrls)
 {
 
+    m.lock();
+
     if (Scraper::isCanceled)
     {
         if (!threads.empty())
@@ -377,6 +379,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             threads.clear();
         }
 
+        m.unlock();
         return;
     }
 
@@ -397,10 +400,10 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             threads.clear();
         }
 
+        m.unlock();
         return;
     }
 
-    m.lock();
 
     std::vector<std::string> scraperKeywords;
     scraperKeywords.reserve(amount);
@@ -484,12 +487,6 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 
         operationCounter = 0;
         operationSize = 0;
-
-        if (scrapingInfoText != nullptr)
-        {
-            scrapingInfoText->Destroy();
-            scrapingInfoText = nullptr;
-        }
 
         scrapingState = SST_Waiting;
         wxMessageBox("Operation has been completed.", "", wxOK);
