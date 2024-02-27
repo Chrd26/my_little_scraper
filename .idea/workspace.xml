@@ -20,7 +20,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed an issue where stopping the operation didn't stop the second thread.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Some minor changes, added some unlock commands.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -300,15 +300,7 @@
       <workItem from="1708439452854" duration="1717000" />
       <workItem from="1708514466975" duration="2648000" />
       <workItem from="1708941198823" duration="6902000" />
-      <workItem from="1709010850287" duration="676000" />
-    </task>
-    <task id="LOCAL-00046" summary="Added text to the inputs.">
-      <option name="closed" value="true" />
-      <created>1706622167817</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1706622167817</updated>
+      <workItem from="1709010850287" duration="1834000" />
     </task>
     <task id="LOCAL-00047" summary="Some minor refactoring">
       <option name="closed" value="true" />
@@ -694,7 +686,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708955439194</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Some minor changes, added some unlock commands.">
+      <option name="closed" value="true" />
+      <created>1709020963306</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1709020963306</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +729,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed some issues where it was not possible to assign values to the Scraper object with the use of constructors." />
     <MESSAGE value="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete." />
     <MESSAGE value="Tried to create a frame to inform the user that they should wait while a scan runs but didn't work. After a bit of research, I think I need to implement the search in a different processor thread because the GUI stops working until the search is complete. From my understanding, multithreading should let the application start or stop a search at will and search for connectivity." />
     <MESSAGE value="Removed wait frame" />
@@ -754,7 +753,8 @@
     <MESSAGE value="I tried to fix the problem with a vector but the problem appears to be more complicated than I thought it was" />
     <MESSAGE value="Added mutex, added counters to control the message boxes the general flow of the progran." />
     <MESSAGE value="Fixed an issue where stopping the operation didn't stop the second thread." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue where stopping the operation didn't stop the second thread." />
+    <MESSAGE value="Some minor changes, added some unlock commands." />
+    <option name="LAST_COMMIT_MESSAGE" value="Some minor changes, added some unlock commands." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

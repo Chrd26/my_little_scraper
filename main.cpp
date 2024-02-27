@@ -452,9 +452,14 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             }
 
             scrapingState = SST_Waiting;
-            m.unlock();
-            return;
+            break;
         }
+
+        if (Scraper::isCanceled)
+        {
+            break;
+        }
+
         AnalyzePages::analyzeEntry(item, scraperKeywords, scraper);
     }
 
