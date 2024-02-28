@@ -20,9 +20,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Some minor changes, added some unlock commands.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added an iscanceled if statement in line 458">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,28 +75,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;CMake Application.scraper.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cf.advertisement.text.has.clang-format&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/chrisd/Desktop/my_little_scraper&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CMake Application.scraper.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.advertisement.text.has.clang-format": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/chrisd/Desktop/my_little_scraper",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -300,15 +302,8 @@
       <workItem from="1708439452854" duration="1717000" />
       <workItem from="1708514466975" duration="2648000" />
       <workItem from="1708941198823" duration="6902000" />
-      <workItem from="1709010850287" duration="1834000" />
-    </task>
-    <task id="LOCAL-00047" summary="Some minor refactoring">
-      <option name="closed" value="true" />
-      <created>1706705583632</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1706705583632</updated>
+      <workItem from="1709010850287" duration="2788000" />
+      <workItem from="1709118509018" duration="7500000" />
     </task>
     <task id="LOCAL-00048" summary="Added an event that runs when the use presses the confirm button.">
       <option name="closed" value="true" />
@@ -694,7 +689,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709020963306</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Added an iscanceled if statement in line 458">
+      <option name="closed" value="true" />
+      <created>1709030908581</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1709030908581</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +732,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed linker errors, removed inheritance from AnalyzePages and initialised a Scraper object instead, fixed problems with assigning to static variables. a Lot of testing is required. After that, the main concept of the application will be complete." />
     <MESSAGE value="Tried to create a frame to inform the user that they should wait while a scan runs but didn't work. After a bit of research, I think I need to implement the search in a different processor thread because the GUI stops working until the search is complete. From my understanding, multithreading should let the application start or stop a search at will and search for connectivity." />
     <MESSAGE value="Removed wait frame" />
     <MESSAGE value="Creatd a new method to run the whole process in a different thread." />
@@ -754,7 +756,8 @@
     <MESSAGE value="Added mutex, added counters to control the message boxes the general flow of the progran." />
     <MESSAGE value="Fixed an issue where stopping the operation didn't stop the second thread." />
     <MESSAGE value="Some minor changes, added some unlock commands." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some minor changes, added some unlock commands." />
+    <MESSAGE value="Added an iscanceled if statement in line 458" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an iscanceled if statement in line 458" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

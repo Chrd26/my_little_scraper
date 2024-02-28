@@ -31,7 +31,7 @@ public:
     static std::string baseURL;
     static cpr::Response request_info(std::string url);
     lxb_inline void serialize_node(lxb_dom_node_t *node);
-    static std::vector<std::string> ParseContent(std::string content, char* attributeName, char* value);
+    static std::vector<std::string> ParseContent(std::string content);
     lxb_inline lxb_html_document_t* Parse(const lxb_char_t* html, size_t html_len);
     static void SetupScraper(std::vector<std::string> inputKeywords, std::string url);
     static bool CheckForConnection();

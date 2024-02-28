@@ -121,7 +121,7 @@ void Scraper::serialize_node(lxb_dom_node_t *node)
 // Source 1: http://lexbor.com/docs/lexbor/
 // Source 2: https://github.com/lexbor/lexbor/tree/master/examples
 // Get elements by attribute: https://github.com/lexbor/lexbor/blob/master/examples/lexbor/html/elements_by_attr.c
-std::vector<std::string> Scraper::ParseContent(std::string content, char* attributeName, char* value) {
+std::vector<std::string> Scraper::ParseContent(std::string content) {
     lxb_status_t status;
     lxb_dom_element_t* body = nullptr;
     lxb_dom_element_t* gather_collection = nullptr;
@@ -166,13 +166,8 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
         exit(EXIT_FAILURE);
     }
 
-    // Find elements that contain the href attribute and start with /politics.
-    status = lxb_dom_elements_by_attr_begin(body,
-                                            collection,
-                                            (const lxb_char_t*) attributeName, 4,
-                                            (const lxb_char_t*) value, 1,
-                                            true
-                                            );
+    status = lxb_dom_elements_by_tag_name(lxb_dom_interface_element(document->body), collection,
+                                          (const lxb_char_t *) "a", 1);
 
     if (status != LXB_STATUS_OK)
     {
@@ -191,6 +186,7 @@ std::vector<std::string> Scraper::ParseContent(std::string content, char* attrib
     output.reserve(urls.size());
     for (std::string& item : urls)
     {
+        std::cout << item << std::endl;
         output.push_back(item);
     }
 
@@ -230,7 +226,7 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
     lxb_dom_node_t* node = nullptr;
     lxb_dom_character_data_t *ch_data = nullptr;
 
-    lxb_char_t *html = new lxb_char_t[getRes.text.size() + 1];
+    auto *html = new lxb_char_t[getRes.text.size() + 1];
     // Check for string, span and a tags, if a tags are found, then replace them with paragraph tags
     for (int i = 0; i < getRes.text.length();) {
         // This might need a refactor but I am unable to find a way to do so
@@ -331,7 +327,6 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
             continue;
         }
 
-
         html[i] = getRes.text[i];
         i++;
     }
@@ -345,7 +340,7 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
 
     size_t html_len = getHTML.length() - 1;
 
-    document = scraper.Parse(html, html_len);
+    document = Scraper::Parse(html, html_len);
     collection = lxb_dom_collection_make(&document->dom_document, 128);
 
     if (collection == nullptr)
@@ -379,6 +374,7 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
             // This is not very safe but it works Source:
             // https://stackoverflow.com/questions/17746688/convert-unsigned-char-to-stdstring
             std::string toString(reinterpret_cast<char*>(getData));
+            std::cout << toString << std::endl;
 
             for (std::string& keyword : grabKeywords)
             {

@@ -435,8 +435,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     cpr::Response r = Scraper::request_info(Scraper::baseURL);
 
     // Parse it
-    std::vector<std::string> urls = Scraper::ParseContent(r.text, (char *) "href",
-                                                          (char *) "/");
+    std::vector<std::string> urls = Scraper::ParseContent(r.text);
 
     // Iterate through the urls
     for (const std::string &item: urls) {
@@ -610,6 +609,8 @@ void MainFrame::StopOperation(wxMouseEvent &event)
     {
         threads.clear();
     }
+
+    wxMessageBox("Operation has been canceled.", "",wxOK);
 
     Scraper::isCanceled = true;
     scrapingState = SST_Waiting;
