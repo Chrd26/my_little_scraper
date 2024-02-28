@@ -20,11 +20,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added an iscanceled if statement in line 458">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Made changes to the scraping process to make the parser get every anchor link on a page. wxMessageBox has stopped appearing. I fixed it by adding it at the end of the stop operation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,15 +303,7 @@
       <workItem from="1708514466975" duration="2648000" />
       <workItem from="1708941198823" duration="6902000" />
       <workItem from="1709010850287" duration="2788000" />
-      <workItem from="1709118509018" duration="7500000" />
-    </task>
-    <task id="LOCAL-00048" summary="Added an event that runs when the use presses the confirm button.">
-      <option name="closed" value="true" />
-      <created>1706797431901</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1706797431901</updated>
+      <workItem from="1709118509018" duration="8952000" />
     </task>
     <task id="LOCAL-00049" summary="Found a way to get the values from csv input. Just use the GetValue() method.">
       <option name="closed" value="true" />
@@ -697,7 +689,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709030908581</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Made changes to the scraping process to make the parser get every anchor link on a page. wxMessageBox has stopped appearing. I fixed it by adding it at the end of the stop operation">
+      <option name="closed" value="true" />
+      <created>1709140490194</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1709140490194</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,7 +732,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tried to create a frame to inform the user that they should wait while a scan runs but didn't work. After a bit of research, I think I need to implement the search in a different processor thread because the GUI stops working until the search is complete. From my understanding, multithreading should let the application start or stop a search at will and search for connectivity." />
     <MESSAGE value="Removed wait frame" />
     <MESSAGE value="Creatd a new method to run the whole process in a different thread." />
     <MESSAGE value="Multithreading causes a bad access error. This needs investigation." />
@@ -757,7 +756,19 @@
     <MESSAGE value="Fixed an issue where stopping the operation didn't stop the second thread." />
     <MESSAGE value="Some minor changes, added some unlock commands." />
     <MESSAGE value="Added an iscanceled if statement in line 458" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added an iscanceled if statement in line 458" />
+    <MESSAGE value="Made changes to the scraping process to make the parser get every anchor link on a page. wxMessageBox has stopped appearing. I fixed it by adding it at the end of the stop operation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made changes to the scraping process to make the parser get every anchor link on a page. wxMessageBox has stopped appearing. I fixed it by adding it at the end of the stop operation" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>609</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

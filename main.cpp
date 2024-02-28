@@ -591,7 +591,6 @@ void MainFrame::StopOperation(wxMouseEvent &event)
 
     }
 
-//    content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
     if (scrapingInfoText != nullptr)
     {
         scrapingInfoText->Destroy();

@@ -186,7 +186,6 @@ std::vector<std::string> Scraper::ParseContent(std::string content) {
     output.reserve(urls.size());
     for (std::string& item : urls)
     {
-        std::cout << item << std::endl;
         output.push_back(item);
     }
 
@@ -335,7 +334,7 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
 
     for (int i = 0; html[i] != '\0'; i++)
     {
-        getHTML.push_back(html[i]);
+        getHTML.push_back(std::tolower(html[i]));
     }
 
     size_t html_len = getHTML.length() - 1;
@@ -374,7 +373,6 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
             // This is not very safe but it works Source:
             // https://stackoverflow.com/questions/17746688/convert-unsigned-char-to-stdstring
             std::string toString(reinterpret_cast<char*>(getData));
-            std::cout << toString << std::endl;
 
             for (std::string& keyword : grabKeywords)
             {

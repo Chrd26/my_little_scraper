@@ -31,6 +31,10 @@ void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url
     std::ofstream csvfile;
     csvfile.open("../settings/settings.csv", std::ios::app);
 
+    std::transform(keyword.begin(), keyword.end(), keyword.begin(),
+                   [](unsigned char c){return std::tolower(c);});
+
+
     if (!csvfile.is_open())
     {
         std::cout << "Failed to open settings file." << std::endl;
@@ -47,7 +51,7 @@ void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url
 }
 
 // Clearing a file quite easy, just open it without setting
-// an input or output mode and clsoe it
+// an input or output mode and close it
 // Source: https://stackoverflow.com/questions/25201131/writing-csv-files-from-c
 void CSV_Handler::ClearPreviousOptions()
 {
