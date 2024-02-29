@@ -31,9 +31,13 @@ void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url
     std::ofstream csvfile;
     csvfile.open("../settings/settings.csv", std::ios::app);
 
-    std::transform(keyword.begin(), keyword.end(), keyword.begin(),
-                   [](unsigned char c){return std::tolower(c);});
+    std::locale::global(std::locale("el_GR.UTF-8"));  // (*)
+    std::wcout.imbue(std::locale());
+    auto& f = std::use_facet<std::ctype<wchar_t>>(std::locale());
 
+//    To lower case
+    std::transform(keyword.begin(), keyword.end(), keyword.begin(),
+                   [](char c){return std::tolower(c, std::locale(""));});
 
     if (!csvfile.is_open())
     {
@@ -45,6 +49,7 @@ void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url
     std::string csvData = url;
     csvData.append(",");
     csvData.append(keyword);
+    std::cout << csvData << std::endl;
     csvfile << csvData << std::endl;
 
     csvfile.close();

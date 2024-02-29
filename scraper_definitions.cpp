@@ -144,6 +144,9 @@ std::vector<std::string> Scraper::ParseContent(std::string content) {
     lxb_char_t *html = new lxb_char_t[content.size() + 1];
 //    std::memset(html, 0, content.size() + 1);
 
+    std::transform(content.begin(), content.end(), content.begin(),
+                   [](unsigned char c){return std::tolower(c);});
+
     for (int i = 0; i < content.length(); i++) {
         html[i] = content[i];
     }
