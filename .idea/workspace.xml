@@ -20,11 +20,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="I need to make all keywords and incoming text lowercase as std::string.find is case sensitive">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="removed codecvt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,23 +304,9 @@
       <workItem from="1708941198823" duration="6902000" />
       <workItem from="1709010850287" duration="2788000" />
       <workItem from="1709118509018" duration="8990000" />
-      <workItem from="1709227192997" duration="1990000" />
-    </task>
-    <task id="LOCAL-00050" summary="Now pressing the database button, will open the csv file.">
-      <option name="closed" value="true" />
-      <created>1706874084055</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1706874084056</updated>
-    </task>
-    <task id="LOCAL-00051" summary="When the user presses the confirm button, the application cleans up the csv file with the previous search settings and applies the new ones.">
-      <option name="closed" value="true" />
-      <created>1707055089589</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1707055089589</updated>
+      <workItem from="1709227192997" duration="2687000" />
+      <workItem from="1709231408297" duration="778000" />
+      <workItem from="1709283534289" duration="4708000" />
     </task>
     <task id="LOCAL-00052" summary="Added a new file to save the number of urs that have been inserted.">
       <option name="closed" value="true" />
@@ -698,7 +684,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709142020355</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="Tried to fix an issue where converting non english characters to lower case resulted in random symbols appearing in the settings file. This is because the tolower() functions does not know how to convert a non english character. I might also need to start using wstrings instead of sinple strings as they are needed for unicode on windows os.">
+      <option name="closed" value="true" />
+      <created>1709230366648</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1709230366648</updated>
+    </task>
+    <task id="LOCAL-00100" summary="removed codecvt">
+      <option name="closed" value="true" />
+      <created>1709231425343</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1709231425343</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -733,8 +735,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Creatd a new method to run the whole process in a different thread." />
-    <MESSAGE value="Multithreading causes a bad access error. This needs investigation." />
     <MESSAGE value="Making some progress, setting up the lxb_char_t html the same size as the content.length() + 1 causes a bad access crash. Using any integer instead of content.length() doesn't cause this issue." />
     <MESSAGE value="Fixed an issue where parse content was causing a crash." />
     <MESSAGE value="Another part of the code was causing crashes for the same reasons. Scraping has stopped working alltogether now for some reason" />
@@ -758,7 +758,9 @@
     <MESSAGE value="Added an iscanceled if statement in line 458" />
     <MESSAGE value="Made changes to the scraping process to make the parser get every anchor link on a page. wxMessageBox has stopped appearing. I fixed it by adding it at the end of the stop operation" />
     <MESSAGE value="I need to make all keywords and incoming text lowercase as std::string.find is case sensitive" />
-    <option name="LAST_COMMIT_MESSAGE" value="I need to make all keywords and incoming text lowercase as std::string.find is case sensitive" />
+    <MESSAGE value="Tried to fix an issue where converting non english characters to lower case resulted in random symbols appearing in the settings file. This is because the tolower() functions does not know how to convert a non english character. I might also need to start using wstrings instead of sinple strings as they are needed for unicode on windows os." />
+    <MESSAGE value="removed codecvt" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed codecvt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

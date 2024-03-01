@@ -30,14 +30,13 @@ void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url
 {
     std::ofstream csvfile;
     csvfile.open("../settings/settings.csv", std::ios::app);
-
-    std::locale::global(std::locale("el_GR.UTF-8"));  // (*)
-    std::wcout.imbue(std::locale());
-    auto& f = std::use_facet<std::ctype<wchar_t>>(std::locale());
+//    std::setlocale(LC_ALL, "el_GR.UTF-8");
 
 //    To lower case
+//    Source: https://stackoverflow.com/questions/313970/how-to-convert-an-instance-of-stdstring-to-lower-case
     std::transform(keyword.begin(), keyword.end(), keyword.begin(),
-                   [](char c){return std::tolower(c, std::locale(""));});
+                   [](char c){return std::tolower(c, std::locale("el_GR.UTF-8"));});
+    std::cout << keyword << std::endl;
 
     if (!csvfile.is_open())
     {
@@ -47,7 +46,9 @@ void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url
     }
 
     std::string csvData = url;
-    csvData.append(",");
+    std::string separator = ",";
+
+    csvData.append(separator);
     csvData.append(keyword);
     std::cout << csvData << std::endl;
     csvfile << csvData << std::endl;
