@@ -20,11 +20,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="removed codecvt">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="I tried fixing the problem by converts standard strings to wide strings but it didn't work as wxString returned empty values.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +80,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;CMake Application.scraper.executor&quot;: &quot;Run&quot;,
+    &quot;CMake Debug.my_little_scraper.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
@@ -107,6 +110,11 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="scraper" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="my_little_scraper" TARGET_NAME="scraper" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="my_little_scraper" RUN_TARGET_NAME="scraper">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -306,15 +314,12 @@
       <workItem from="1709118509018" duration="8990000" />
       <workItem from="1709227192997" duration="2687000" />
       <workItem from="1709231408297" duration="778000" />
-      <workItem from="1709283534289" duration="4708000" />
-    </task>
-    <task id="LOCAL-00052" summary="Added a new file to save the number of urs that have been inserted.">
-      <option name="closed" value="true" />
-      <created>1707057535272</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1707057535272</updated>
+      <workItem from="1709283534289" duration="6407000" />
+      <workItem from="1709325734798" duration="582000" />
+      <workItem from="1709397575699" duration="4775000" />
+      <workItem from="1709406447569" duration="34000" />
+      <workItem from="1709406491410" duration="60000" />
+      <workItem from="1709406562323" duration="44000" />
     </task>
     <task id="LOCAL-00053" summary="Started working on getting the saved settings from the files.">
       <option name="closed" value="true" />
@@ -700,7 +705,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709231425343</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="I tried fixing the problem by converts standard strings to wide strings but it didn't work as wxString returned empty values.">
+      <option name="closed" value="true" />
+      <created>1709297080238</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1709297080238</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,7 +748,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Making some progress, setting up the lxb_char_t html the same size as the content.length() + 1 causes a bad access crash. Using any integer instead of content.length() doesn't cause this issue." />
     <MESSAGE value="Fixed an issue where parse content was causing a crash." />
     <MESSAGE value="Another part of the code was causing crashes for the same reasons. Scraping has stopped working alltogether now for some reason" />
     <MESSAGE value="This took me a bit but I found where the problem lies. I need to search why it doesn't work." />
@@ -760,7 +772,8 @@
     <MESSAGE value="I need to make all keywords and incoming text lowercase as std::string.find is case sensitive" />
     <MESSAGE value="Tried to fix an issue where converting non english characters to lower case resulted in random symbols appearing in the settings file. This is because the tolower() functions does not know how to convert a non english character. I might also need to start using wstrings instead of sinple strings as they are needed for unicode on windows os." />
     <MESSAGE value="removed codecvt" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed codecvt" />
+    <MESSAGE value="I tried fixing the problem by converts standard strings to wide strings but it didn't work as wxString returned empty values." />
+    <option name="LAST_COMMIT_MESSAGE" value="I tried fixing the problem by converts standard strings to wide strings but it didn't work as wxString returned empty values." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -818,7 +818,7 @@ void MainFrame::PressConfirm(wxMouseEvent &event)
 
         if (!keywords1[i]->GetValue().empty())
         {
-            std::string getKeyword = (std::string)keywords1[i]->GetValue();
+            std::string getKeyword = std::string(keywords1[i]->GetValue());
             handler.WriteSavedSearchOptions(getKeyword,
                                             getUrlValue);
         }
