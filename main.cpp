@@ -234,12 +234,12 @@ bool ScraperApp::OnInit()
 MainFrame::MainFrame()
         : wxFrame(nullptr, eID_Frame, "Info Hunter")
 {
-    // Set Font
-    // Frame Layout
+//  Set Font
+//  Frame Layout
     top = new wxPanel(this, eID_TopPanel, wxDefaultPosition, wxSize(200,100));
     top->SetBackgroundColour("#4C6E81");
 
-//    Set Locale
+//  Set Locale
     boost::locale::generator gen;
     std::locale::global(gen("el_GR.UTF-8"));
 
@@ -435,11 +435,10 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     content->SetSizer(runContentHolder);
     content->Layout();
 
-    // Get info from website
     cpr::Response r = Scraper::request_info(Scraper::baseURL);
+    std::string convertToLowerCase = boost::locale::to_lower(r.text);
 
-    // Parse it
-    std::vector<std::string> urls = Scraper::ParseContent(r.text);
+    std::vector<std::string> urls = Scraper::ParseContent(convertToLowerCase);
 
     // Iterate through the urls
     for (const std::string &item: urls) {

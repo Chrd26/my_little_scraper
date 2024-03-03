@@ -11,6 +11,8 @@
 #include <string>
 #include <vector>
 #include <thread>
+#include <boost/locale.hpp>
+#include <boost/algorithm/string/case_conv.hpp>
 
 // Scraper
 class Scraper

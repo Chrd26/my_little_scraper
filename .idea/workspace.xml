@@ -20,11 +20,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Installed boost locale">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="When everything else fails, just use a boost library">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +77,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.scraper.executor": "Run",
+    "CMake Application.scraper.executor": "Debug",
     "CMake Debug.my_little_scraper.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -314,15 +314,7 @@
       <workItem from="1709406491410" duration="60000" />
       <workItem from="1709406562323" duration="103000" />
       <workItem from="1709408173321" duration="949000" />
-      <workItem from="1709474503147" duration="2835000" />
-    </task>
-    <task id="LOCAL-00054" summary="Updated instructions text and readme.">
-      <option name="closed" value="true" />
-      <created>1707107131984</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1707107131984</updated>
+      <workItem from="1709474503147" duration="4554000" />
     </task>
     <task id="LOCAL-00055" summary="Added 2 conditional statements to make sure that no empty keywords are added.">
       <option name="closed" value="true" />
@@ -708,7 +700,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709406652657</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="When everything else fails, just use a boost library">
+      <option name="closed" value="true" />
+      <created>1709479901663</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1709479901663</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -743,7 +743,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Another part of the code was causing crashes for the same reasons. Scraping has stopped working alltogether now for some reason" />
     <MESSAGE value="This took me a bit but I found where the problem lies. I need to search why it doesn't work." />
     <MESSAGE value="Fixed it!" />
     <MESSAGE value="Now the application checks for connection when tries to access a webpage." />
@@ -768,14 +767,15 @@
     <MESSAGE value="removed codecvt" />
     <MESSAGE value="I tried fixing the problem by converts standard strings to wide strings but it didn't work as wxString returned empty values." />
     <MESSAGE value="Installed boost locale" />
-    <option name="LAST_COMMIT_MESSAGE" value="Installed boost locale" />
+    <MESSAGE value="When everything else fails, just use a boost library" />
+    <option name="LAST_COMMIT_MESSAGE" value="When everything else fails, just use a boost library" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>613</line>
+          <line>612</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

@@ -330,10 +330,17 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
 
     for (int i = 0; html[i] != '\0'; i++)
     {
-        getHTML.push_back(std::tolower(html[i]));
+        getHTML.push_back(html[i]);
     }
 
-    size_t html_len = getHTML.length() - 1;
+    std::string convertToLower = boost::locale::to_lower(getHTML);
+
+    size_t html_len = convertToLower.length() - 1;
+
+    for (int i = 0; i < html_len; i++)
+    {
+        html[i] = convertToLower[i];
+    }
 
     document = Scraper::Parse(html, html_len);
     collection = lxb_dom_collection_make(&document->dom_document, 128);
