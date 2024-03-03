@@ -36,15 +36,13 @@ void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url
 //    Source: https://stackoverflow.com/questions/313970/how-to-convert-an-instance-of-stdstring-to-lower-case
 //    std::transform(keyword.begin(), keyword.end(), keyword.begin(),
 //                   [](char c){return std::tolower(c, std::locale("el_GR"));});
-
 //  Iterating through each character ends up with ? symbols instead of
 //  printing the correct character. This is why the iterator in std::transform
 //  doesn't work
 
-    for (wchar_t character : keyword)
-    {
-        std::wcout << character << std::endl;
-    }
+    std::cout << "Keyword: " << keyword << std::endl;
+    std::string keywordLowercase = boost::locale::to_lower(keyword);
+    std::cout << keywordLowercase << std::endl;
 
     if (!csvfile.is_open())
     {
@@ -57,7 +55,7 @@ void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url
     std::string separator = ",";
 
     csvData.append(separator);
-    csvData.append(keyword);
+    csvData.append(keywordLowercase);
     csvfile << csvData << std::endl;
     csvfile.close();
 }

@@ -239,6 +239,10 @@ MainFrame::MainFrame()
     top = new wxPanel(this, eID_TopPanel, wxDefaultPosition, wxSize(200,100));
     top->SetBackgroundColour("#4C6E81");
 
+//    Set Locale
+    boost::locale::generator gen;
+    std::locale::global(gen("el_GR.UTF-8"));
+
     // This is how I managed to make font settings to work. Helvetica Neue indeed changes the font
     // Read more here: https://docs.wxwidgets.org/latest/classwx_font_info.html#a7273ff25fbd808e83ee79103d117ecaf
     top->SetFont(wxFontInfo(65).FaceName("Helvetica Neue").Bold());
