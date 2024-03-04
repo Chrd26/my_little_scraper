@@ -386,6 +386,9 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
                 }
             }
 
+            std::cout << "Current String: " << toString << std::endl;
+            std::cout << "Has been found? " << keywordsFound << std::endl;
+
             // Output
             if (keywordsFound)
             {

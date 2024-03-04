@@ -39,10 +39,7 @@ void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url
 //  Iterating through each character ends up with ? symbols instead of
 //  printing the correct character. This is why the iterator in std::transform
 //  doesn't work
-
-    std::cout << "Keyword: " << keyword << std::endl;
     std::string keywordLowercase = boost::locale::to_lower(keyword);
-    std::cout << keywordLowercase << std::endl;
 
     if (!csvfile.is_open())
     {

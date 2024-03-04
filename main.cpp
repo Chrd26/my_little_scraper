@@ -471,9 +471,11 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         scrapingInfoText = nullptr;
     }
 
+    operationCounter++;
+
     m.unlock();
 
-    if (Scraper::isCanceled && operationCounter == operationSize)
+    if (Scraper::isCanceled && operationCounter >= operationSize)
     {
         wxMessageBox("Operation has been canceled.", "",wxOK);
 
@@ -485,7 +487,8 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             threads.clear();
         }
     }
-    else if (operationCounter == operationSize)
+
+    if (operationCounter >= operationSize)
     {
         if (!threads.empty())
         {
@@ -497,9 +500,6 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 
         scrapingState = SST_Waiting;
         wxMessageBox("Operation has been completed.", "", wxOK);
-    } else
-    {
-        operationCounter++;
     }
 }
 
