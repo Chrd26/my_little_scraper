@@ -486,6 +486,8 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         {
             threads.clear();
         }
+
+        return;
     }
 
     if (operationCounter >= operationSize)
@@ -500,6 +502,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 
         scrapingState = SST_Waiting;
         wxMessageBox("Operation has been completed.", "", wxOK);
+        return;
     }
 }
 
