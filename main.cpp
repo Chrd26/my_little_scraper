@@ -105,6 +105,7 @@ private:
     void StopOperation(wxMouseEvent &event);
     static std::vector<std::thread> threads;
     static std::mutex m;
+    CSV_Handler handler;
 
     static wxSizer *scrapingInfoSizer;
     static wxStaticText *scrapingInfoText;
@@ -383,6 +384,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             threads.clear();
         }
 
+        CSV_Handler::hasStarted = false;
         m.unlock();
         return;
     }
@@ -403,7 +405,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         {
             threads.clear();
         }
-
+        CSV_Handler::hasStarted = false;
         m.unlock();
         return;
     }
@@ -487,6 +489,8 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             threads.clear();
         }
 
+        CSV_Handler::hasStarted = false;
+
         return;
     }
 
@@ -501,6 +505,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         operationSize = 0;
 
         scrapingState = SST_Waiting;
+        CSV_Handler::hasStarted = false;
         wxMessageBox("Operation has been completed.", "", wxOK);
         return;
     }
@@ -509,7 +514,6 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 // Start Scraping button
 void MainFrame::StartOperation(wxMouseEvent &event)
 {
-    CSV_Handler handler;
     Scraper::isCanceled = false;
 
     if (scrapingState == SST_Waiting)
@@ -808,7 +812,6 @@ void MainFrame::PressSearchSettings(wxEvent &event) {
 
 void MainFrame::PressConfirm(wxMouseEvent &event)
 {
-    CSV_Handler handler;
     CSV_Handler::ClearPreviousOptions();
 //    Get Value:
 //    https://docs.wxwidgets.org/3.2.4/classwx_text_entry.html#a39335d9009b2053b5daf850c7b9d2974

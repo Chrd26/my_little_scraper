@@ -4,6 +4,8 @@
 #include "csv_handler.h"
 // Read more
 
+bool CSV_Handler::hasStarted = false;
+
 void CSV_Handler::ReadSettings()
 {
     std::ifstream settingsCSV;
@@ -29,7 +31,15 @@ void CSV_Handler::ReadSettings()
 void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url)
 {
     std::ofstream csvfile;
-    csvfile.open("../settings/settings.csv", std::ios::app);
+
+    if(hasStarted)
+    {
+        csvfile.open("../settings/settings.csv", std::ios::app);
+    }else
+    {
+        csvfile.open("../settings/settings.csv");
+        hasStarted = true;
+    }
 //    std::setlocale(LC_ALL, "el_GR.UTF-8");
 
 //    To lower case

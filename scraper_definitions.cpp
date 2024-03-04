@@ -202,7 +202,7 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
     }
 
     std::ofstream contentFile;
-    contentFile.open("../content/content.txt");
+    contentFile.open("../content/content.txt", std::ios::app);
 
     if (!contentFile.is_open())
     {
@@ -379,6 +379,8 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
 
             for (std::string& keyword : grabKeywords)
             {
+                std::cout << "Keyword compare: " << keyword << std::endl;
+                std::cout << "Result: " << toString.find(keyword) << std::endl;
                 if (toString.find(keyword) != std::string::npos)
                 {
                     keywordsFound = true;
@@ -393,7 +395,9 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
             if (keywordsFound)
             {
                 contentFile << input << std::endl;
+                std::cout << "Written: " << input << std::endl;
                 contentFile << toString << std::endl;
+                std::cout << "Written: " << toString << std::endl;
                 keywordsFound = false;
             }
 

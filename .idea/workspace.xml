@@ -20,9 +20,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Added an cout to check if something is wrong, added the operationCounter update to the locked section just in case, I changed some comparison operators in some conditional statements.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed an issue where multiple message boxes appeared. For some reason the content is not being written to the text file and english words are not being found.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csv_handler_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/csv_handler_definitions.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,15 +318,8 @@
       <workItem from="1709474503147" duration="4839000" />
       <workItem from="1709488336592" duration="664000" />
       <workItem from="1709544687274" duration="1080000" />
-      <workItem from="1709555426785" duration="500000" />
-    </task>
-    <task id="LOCAL-00057" summary="Made sure that static texts also get cleaned up upon selection">
-      <option name="closed" value="true" />
-      <created>1707137537965</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1707137537965</updated>
+      <workItem from="1709555426785" duration="1393000" />
+      <workItem from="1709564198961" duration="537000" />
     </task>
     <task id="LOCAL-00058" summary="Added an any of in getFileUrls to get each url without duplicating it. It needs a counter.">
       <option name="closed" value="true" />
@@ -709,7 +705,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709546163699</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="Fixed an issue where multiple message boxes appeared. For some reason the content is not being written to the text file and english character with find() doesn't work.">
+      <option name="closed" value="true" />
+      <created>1709555978540</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1709555978540</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -744,7 +748,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Now the application checks for connection when tries to access a webpage." />
     <MESSAGE value="Added Buttons to the run panel." />
     <MESSAGE value="Created start and stop functions, created a global scraper object to handle it throughout the applicaiton." />
     <MESSAGE value="The application now starts and stops at will. I think, it checks for connection way too many times." />
@@ -769,14 +772,15 @@
     <MESSAGE value="When everything else fails, just use a boost library" />
     <MESSAGE value="The text in pages is being converted to lower case. I used an unorthodox method to achieve this, it might be a good idea to creat a better solution." />
     <MESSAGE value="Added an cout to check if something is wrong, added the operationCounter update to the locked section just in case, I changed some comparison operators in some conditional statements." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added an cout to check if something is wrong, added the operationCounter update to the locked section just in case, I changed some comparison operators in some conditional statements." />
+    <MESSAGE value="Fixed an issue where multiple message boxes appeared. For some reason the content is not being written to the text file and english character with find() doesn't work." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue where multiple message boxes appeared. For some reason the content is not being written to the text file and english character with find() doesn't work." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>615</line>
+          <line>619</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
