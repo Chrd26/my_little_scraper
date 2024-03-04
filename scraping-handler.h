@@ -27,8 +27,8 @@ private:
     lxb_inline lxb_status_t serializer_callback(const lxb_char_t *data, size_t len, void *ctx);
 
 public:
-    static bool analysis;
     static bool isCanceled;
+    static bool analysis;
     static std::vector<std::string> keywords;
     static std::string baseURL;
     static cpr::Response request_info(std::string url);
@@ -37,11 +37,13 @@ public:
     lxb_inline lxb_html_document_t* Parse(const lxb_char_t* html, size_t html_len);
     static void SetupScraper(std::vector<std::string> inputKeywords, std::string url);
     static bool CheckForConnection();
+    static bool hasStarted;
 
 };
 
 class AnalyzePages
 {
 public:
+    static bool hasStarted;
     static void analyzeEntry(std::string input, std::vector<std::string> grabKeywords, Scraper scraper);
 };

@@ -2,6 +2,7 @@
 std::string Scraper::baseURL;
 std::vector<std::string> Scraper::keywords = {"Hello"};
 bool Scraper::isCanceled = false;
+bool AnalyzePages::hasStarted = false;
 
 bool Scraper::CheckForConnection()
 {
@@ -202,7 +203,16 @@ void AnalyzePages::analyzeEntry(std::string input, std::vector<std::string> grab
     }
 
     std::ofstream contentFile;
-    contentFile.open("../content/content.txt", std::ios::app);
+
+    if(hasStarted)
+    {
+        contentFile.open("../content/content.txt", std::ios::app);
+    }else
+    {
+        contentFile.open("../content/content.txt");
+        hasStarted = true;
+    }
+
 
     if (!contentFile.is_open())
     {

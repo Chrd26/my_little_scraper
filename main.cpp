@@ -40,6 +40,7 @@ private:
                        std::vector<std::string> keywords,
                        std::vector<std::string> getUrls);
     static Scraper scraper;
+    static AnalyzePages pageAnalyzer;
 
 // Class Properties
 // Inserting properties to event functors is not possible
@@ -384,7 +385,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             threads.clear();
         }
 
-        CSV_Handler::hasStarted = false;
+        AnalyzePages::hasStarted = false;
         m.unlock();
         return;
     }
@@ -405,7 +406,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         {
             threads.clear();
         }
-        CSV_Handler::hasStarted = false;
+        AnalyzePages::hasStarted = false;
         m.unlock();
         return;
     }
@@ -489,7 +490,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             threads.clear();
         }
 
-        CSV_Handler::hasStarted = false;
+        AnalyzePages::hasStarted = false;
 
         return;
     }
@@ -505,7 +506,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         operationSize = 0;
 
         scrapingState = SST_Waiting;
-        CSV_Handler::hasStarted = false;
+        AnalyzePages::hasStarted = false;
         wxMessageBox("Operation has been completed.", "", wxOK);
         return;
     }

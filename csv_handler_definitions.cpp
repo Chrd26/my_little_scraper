@@ -32,14 +32,7 @@ void CSV_Handler::WriteSavedSearchOptions(std::string &keyword, std::string &url
 {
     std::ofstream csvfile;
 
-    if(hasStarted)
-    {
-        csvfile.open("../settings/settings.csv", std::ios::app);
-    }else
-    {
-        csvfile.open("../settings/settings.csv");
-        hasStarted = true;
-    }
+    csvfile.open("../settings/settings.csv", std::ios::app);
 //    std::setlocale(LC_ALL, "el_GR.UTF-8");
 
 //    To lower case
