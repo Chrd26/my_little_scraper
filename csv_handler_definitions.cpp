@@ -4,8 +4,6 @@
 #include "csv_handler.h"
 // Read more
 
-bool CSV_Handler::hasStarted = false;
-
 void CSV_Handler::ReadSettings()
 {
     std::ifstream settingsCSV;

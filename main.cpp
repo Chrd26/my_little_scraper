@@ -375,7 +375,6 @@ MainFrame::MainFrame()
 void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> keywords,
                               std::vector<std::string> getUrls)
 {
-
     m.lock();
 
     if (Scraper::isCanceled)
