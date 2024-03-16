@@ -379,17 +379,30 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 
     if (Scraper::isCanceled)
     {
-        if (!threads.empty())
-        {
-            threads.clear();
+//        if (!threads.empty())
+//        {
+//            threads.clear();
+//        }
+
+        if (scrapingInfoText != nullptr) {
+            scrapingInfoText->Destroy();
+            scrapingInfoText = nullptr;
         }
 
-        AnalyzePages::hasStarted = false;
-        m.unlock();
-        return;
-    }
+        content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
+        scrapingInfoText = new wxStaticText(MainFrame::content, wxID_ANY,
+                                            "Please wait while stopping.",
+                                            wxDefaultPosition, wxDefaultSize);
 
-    if (!Scraper::CheckForConnection())
+        scrapingInfoSizer = new wxBoxSizer(wxVERTICAL);
+        scrapingInfoSizer->Add(scrapingInfoText, 0, wxCENTER);
+        runContentHolder->Add(scrapingInfoSizer, 1, wxEXPAND);
+        content->SetSizer(runContentHolder);
+        content->Layout();
+        operationCounter++;
+        m.unlock();
+    }
+    else if (!Scraper::CheckForConnection())
     {
         wxMessageBox("You have been disconnected from the internet",
                      "", wxOK);
@@ -405,92 +418,85 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         {
             threads.clear();
         }
+
         AnalyzePages::hasStarted = false;
         m.unlock();
         return;
     }
+    else {
+        std::vector<std::string> scraperKeywords;
+        scraperKeywords.reserve(amount);
+        for (int j = 0; j < amount; j++) {
+            scraperKeywords.push_back(keywords[j]);
+        }
 
+        if (scrapingInfoText != nullptr) {
+            scrapingInfoText->Destroy();
+            scrapingInfoText = nullptr;
+        }
 
-    std::vector<std::string> scraperKeywords;
-    scraperKeywords.reserve(amount);
-    for (int j = 0; j < amount; j++)
-    {
-        scraperKeywords.push_back(keywords[j]);
-    }
+        content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
+        Scraper::SetupScraper(scraperKeywords, getUrls[counter]);
+        scrapingInfoText = new wxStaticText(MainFrame::content, wxID_ANY,
+                                            std::string("Currently checking: ") +
+                                            std::string(getUrls[counter]),
+                                            wxDefaultPosition, wxDefaultSize);
 
-    if (scrapingInfoText != nullptr)
-    {
-        scrapingInfoText->Destroy();
-        scrapingInfoText = nullptr;
-    }
+        scrapingInfoSizer = new wxBoxSizer(wxVERTICAL);
+        scrapingInfoSizer->Add(scrapingInfoText, 0, wxCENTER);
+        runContentHolder->Add(scrapingInfoSizer, 1, wxEXPAND);
+        content->SetSizer(runContentHolder);
+        content->Layout();
 
-    content->SetFont(wxFontInfo(32).FaceName("Helvetica Neue").Bold());
-    Scraper::SetupScraper(scraperKeywords, getUrls[counter]);
-    scrapingInfoText = new wxStaticText(MainFrame::content, wxID_ANY,
-                                        std::string("Currently checking: ") +
-                                        std::string(getUrls[counter]),
-                                        wxDefaultPosition, wxDefaultSize);
+        cpr::Response r = Scraper::request_info(Scraper::baseURL);
+        std::string convertToLowerCase = boost::locale::to_lower(r.text);
 
-    scrapingInfoSizer = new wxBoxSizer(wxVERTICAL);
-    scrapingInfoSizer->Add(scrapingInfoText, 0, wxCENTER);
-    runContentHolder->Add(scrapingInfoSizer, 1, wxEXPAND);
-    content->SetSizer(runContentHolder);
-    content->Layout();
+        std::vector<std::string> urls = Scraper::ParseContent(convertToLowerCase);
 
-    cpr::Response r = Scraper::request_info(Scraper::baseURL);
-    std::string convertToLowerCase = boost::locale::to_lower(r.text);
+        // Iterate through the urls
+        for (const std::string &item: urls) {
+            if (!Scraper::CheckForConnection()) {
+                wxMessageBox("You have been disconnected from the internet", "",
+                             wxOK);
 
-    std::vector<std::string> urls = Scraper::ParseContent(convertToLowerCase);
+                if (scrapingInfoText != nullptr) {
+                    scrapingInfoText->Destroy();
+                    scrapingInfoText = nullptr;
+                }
 
-    // Iterate through the urls
-    for (const std::string &item: urls) {
-        if (!Scraper::CheckForConnection())
-        {
-            wxMessageBox("You have been disconnected from the internet", "",
-                         wxOK);
-
-            if (scrapingInfoText != nullptr)
-            {
-                scrapingInfoText->Destroy();
-                scrapingInfoText = nullptr;
+                scrapingState = SST_Waiting;
+                break;
             }
 
-            scrapingState = SST_Waiting;
-            break;
+            if (Scraper::isCanceled) {
+                break;
+            }
+
+            AnalyzePages::analyzeEntry(item, scraperKeywords, scraper);
         }
 
-        if (Scraper::isCanceled)
-        {
-            break;
+        if (scrapingInfoText != nullptr) {
+            scrapingInfoText->Destroy();
+            scrapingInfoText = nullptr;
         }
 
-        AnalyzePages::analyzeEntry(item, scraperKeywords, scraper);
+        operationCounter++;
     }
-
-    if (scrapingInfoText != nullptr)
-    {
-        scrapingInfoText->Destroy();
-        scrapingInfoText = nullptr;
-    }
-
-    operationCounter++;
-
     m.unlock();
 
     if (Scraper::isCanceled && operationCounter >= operationSize)
     {
-        wxMessageBox("Operation has been canceled.", "",wxOK);
-
         operationCounter = 0;
         operationSize = 0;
 
-        if (!threads.empty())
-        {
-            threads.clear();
+        if (scrapingInfoText != nullptr) {
+            scrapingInfoText->Destroy();
+            scrapingInfoText = nullptr;
         }
 
         AnalyzePages::hasStarted = false;
-
+        scrapingState = SST_Waiting;
+        wxMessageBox("Operation has been canceled.", "",wxOK);
         return;
     }
 
@@ -501,6 +507,11 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             threads.clear();
         }
 
+        if (scrapingInfoText != nullptr) {
+            scrapingInfoText->Destroy();
+            scrapingInfoText = nullptr;
+        }
+
         operationCounter = 0;
         operationSize = 0;
 
@@ -508,6 +519,11 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         AnalyzePages::hasStarted = false;
         wxMessageBox("Operation has been completed.", "", wxOK);
         return;
+    }
+
+    if (!threads.empty())
+    {
+        threads.clear();
     }
 }
 
@@ -594,38 +610,13 @@ void MainFrame::StartOperation(wxMouseEvent &event)
 // Cancel Scraping button
 void MainFrame::StopOperation(wxMouseEvent &event)
 {
-    m.lock();
     if (scrapingState == SST_Waiting)
     {
         wxMessageBox("There are no operations running", "", wxOK);
         return;
-
     }
-
-    if (scrapingInfoText != nullptr)
-    {
-        scrapingInfoText->Destroy();
-    }
-
-    scrapingInfoText = new wxStaticText(content, wxID_ANY, "Please wait while the operation is stopping",
-                                        wxDefaultPosition, wxDefaultSize);
-    scrapingInfoSizer = new wxBoxSizer(wxVERTICAL);
-    scrapingInfoSizer->Add(scrapingInfoText, 0, wxCENTER);
-    runContentHolder->Add(scrapingInfoSizer, 1, wxEXPAND);
-    content->SetSizer(runContentHolder);
-    content->Layout();
-
-    m.unlock();
-
-    if (!threads.empty())
-    {
-        threads.clear();
-    }
-
-    wxMessageBox("Operation has been canceled.", "",wxOK);
 
     Scraper::isCanceled = true;
-    scrapingState = SST_Waiting;
 }
 
 // Hover Events Functions

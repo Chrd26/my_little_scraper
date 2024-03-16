@@ -20,10 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Made some minor changes, the application works at last. It is still a little bit buggy though.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="fixed an issue where the url vector ended up holding duplicate urls.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +75,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.scraper.executor": "Debug",
+    "CMake Application.scraper.executor": "Run",
     "CMake Debug.my_little_scraper.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -320,15 +319,7 @@
       <workItem from="1709564198961" duration="575000" />
       <workItem from="1709585168778" duration="588000" />
       <workItem from="1709631737835" duration="931000" />
-      <workItem from="1710611208876" duration="609000" />
-    </task>
-    <task id="LOCAL-00061" summary="removed uneeded comments">
-      <option name="closed" value="true" />
-      <created>1707199025203</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1707199025208</updated>
+      <workItem from="1710611208876" duration="1709000" />
     </task>
     <task id="LOCAL-00062" summary="Removed regex">
       <option name="closed" value="true" />
@@ -714,7 +705,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709632697642</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="fixed an issue where the url vector ended up holding duplicate urls.">
+      <option name="closed" value="true" />
+      <created>1710611937895</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1710611937896</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -749,7 +748,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed unnecessary code" />
     <MESSAGE value="Added message boxes to inform the user what is going when they press a button." />
     <MESSAGE value="I found that there is a crash due to the runContentHolder variable which leads to a bad access error." />
     <MESSAGE value="Fixed crash. A sizer gets deleted after being used, it needs to be assigned something each time it is used." />
@@ -774,18 +772,8 @@
     <MESSAGE value="Added a hasStarted boolean variable to the csv handler as it is needed to make sure that the content file is being empties while an operation runs." />
     <MESSAGE value="I accidentally edited the wrong code." />
     <MESSAGE value="Made some minor changes, the application works at last. It is still a little bit buggy though." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made some minor changes, the application works at last. It is still a little bit buggy though." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>443</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="fixed an issue where the url vector ended up holding duplicate urls." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed an issue where the url vector ended up holding duplicate urls." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
