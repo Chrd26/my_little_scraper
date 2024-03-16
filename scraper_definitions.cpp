@@ -183,7 +183,10 @@ std::vector<std::string> Scraper::ParseContent(std::string content) {
     output.reserve(urls.size());
     for (std::string& item : urls)
     {
-        output.push_back(item);
+        if (std::find(output.begin(), output.end(), item) == output.end())
+        {
+            output.push_back(item);
+        }
     }
 
     // Destroy objects to avoid memory leaks

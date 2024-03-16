@@ -594,6 +594,7 @@ void MainFrame::StartOperation(wxMouseEvent &event)
 // Cancel Scraping button
 void MainFrame::StopOperation(wxMouseEvent &event)
 {
+    m.lock();
     if (scrapingState == SST_Waiting)
     {
         wxMessageBox("There are no operations running", "", wxOK);
@@ -613,6 +614,8 @@ void MainFrame::StopOperation(wxMouseEvent &event)
     runContentHolder->Add(scrapingInfoSizer, 1, wxEXPAND);
     content->SetSizer(runContentHolder);
     content->Layout();
+
+    m.unlock();
 
     if (!threads.empty())
     {
