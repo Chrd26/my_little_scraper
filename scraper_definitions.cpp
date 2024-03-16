@@ -3,6 +3,7 @@ std::string Scraper::baseURL;
 std::vector<std::string> Scraper::keywords = {"Hello"};
 bool Scraper::isCanceled = false;
 bool AnalyzePages::hasStarted = false;
+bool Scraper::hasDisconnected = false;
 
 bool Scraper::CheckForConnection()
 {

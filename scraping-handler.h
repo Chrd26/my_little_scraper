@@ -38,7 +38,7 @@ public:
     static void SetupScraper(std::vector<std::string> inputKeywords, std::string url);
     static bool CheckForConnection();
     static bool hasStarted;
-
+    static bool hasDisconnected;
 };
 
 class AnalyzePages

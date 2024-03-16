@@ -377,7 +377,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 {
     m.lock();
 
-    if (Scraper::isCanceled)
+    if (Scraper::isCanceled || Scraper::hasDisconnected)
     {
 //        if (!threads.empty())
 //        {
@@ -414,14 +414,10 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             scrapingInfoText = nullptr;
         }
 
-        if (!threads.empty())
-        {
-            threads.clear();
-        }
-
-        AnalyzePages::hasStarted = false;
-        m.unlock();
-        return;
+//        if (!threads.empty())
+//        {
+//            threads.clear();
+//        }
     }
     else {
         std::vector<std::string> scraperKeywords;
@@ -458,11 +454,12 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             if (!Scraper::CheckForConnection()) {
                 wxMessageBox("You have been disconnected from the internet", "",
                              wxOK);
-
                 if (scrapingInfoText != nullptr) {
                     scrapingInfoText->Destroy();
                     scrapingInfoText = nullptr;
                 }
+
+                Scraper::hasDisconnected = true;
 
                 scrapingState = SST_Waiting;
                 break;
@@ -479,12 +476,12 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             scrapingInfoText->Destroy();
             scrapingInfoText = nullptr;
         }
-
         operationCounter++;
     }
     m.unlock();
 
-    if (Scraper::isCanceled && operationCounter >= operationSize)
+    if (Scraper::isCanceled && operationCounter >= operationSize ||
+        Scraper::hasDisconnected && operationCounter >= operationSize)
     {
         operationCounter = 0;
         operationSize = 0;
@@ -494,6 +491,8 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             scrapingInfoText = nullptr;
         }
 
+        Scraper::hasDisconnected = false;
+        Scraper::isCanceled = false;
         AnalyzePages::hasStarted = false;
         scrapingState = SST_Waiting;
         wxMessageBox("Operation has been canceled.", "",wxOK);
