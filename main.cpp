@@ -400,26 +400,9 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         content->SetSizer(runContentHolder);
         content->Layout();
         operationCounter++;
-        m.unlock();
     }
-    else if (!Scraper::CheckForConnection())
+    else
     {
-        wxMessageBox("You have been disconnected from the internet",
-                     "", wxOK);
-        Scraper::isCanceled = true;
-
-        if (scrapingInfoText != nullptr)
-        {
-            scrapingInfoText->Destroy();
-            scrapingInfoText = nullptr;
-        }
-
-//        if (!threads.empty())
-//        {
-//            threads.clear();
-//        }
-    }
-    else {
         std::vector<std::string> scraperKeywords;
         scraperKeywords.reserve(amount);
         for (int j = 0; j < amount; j++) {
@@ -472,12 +455,14 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
             AnalyzePages::analyzeEntry(item, scraperKeywords, scraper);
         }
 
-        if (scrapingInfoText != nullptr) {
-            scrapingInfoText->Destroy();
-            scrapingInfoText = nullptr;
-        }
+//        if (scrapingInfoText != nullptr) {
+//            scrapingInfoText->Destroy();
+//            scrapingInfoText = nullptr;
+//        }
+
         operationCounter++;
     }
+
     m.unlock();
 
     if (Scraper::isCanceled && operationCounter >= operationSize ||

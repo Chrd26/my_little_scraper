@@ -20,11 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Fixed an issue where the operation was not being cancelled properly, I need to make sure that this is also the case with disconnections.">
+    <list default="true" id="6f077f79-ec3e-4555-a4c5-fef79de41761" name="Changes" comment="Refactored the code to make it a bit cleaner.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper_definitions.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/scraper_definitions.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraping-handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/scraping-handler.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,15 +319,7 @@
       <workItem from="1709564198961" duration="575000" />
       <workItem from="1709585168778" duration="588000" />
       <workItem from="1709631737835" duration="931000" />
-      <workItem from="1710611208876" duration="3335000" />
-    </task>
-    <task id="LOCAL-00063" summary="The settings lines are now being added to a vector.">
-      <option name="closed" value="true" />
-      <created>1707210112574</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1707210112575</updated>
+      <workItem from="1710611208876" duration="4336000" />
     </task>
     <task id="LOCAL-00064" summary="Urls and keywords are now being separated and will be added to new vectors. There is going to be a need to count how many times a url appears to make sure that only the correct keywords are being used.">
       <option name="closed" value="true" />
@@ -715,7 +705,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710613171823</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Refactored the code to make it a bit cleaner.">
+      <option name="closed" value="true" />
+      <created>1710617470061</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1710617470062</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -750,7 +748,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="I found that there is a crash due to the runContentHolder variable which leads to a bad access error." />
     <MESSAGE value="Fixed crash. A sizer gets deleted after being used, it needs to be assigned something each time it is used." />
     <MESSAGE value="Fixed an issue where the current state text of the scraping operation was too low on the panel. Added a new wxFormBuilder project." />
     <MESSAGE value="Moved &quot;The operation has started&quot; to an if statement." />
@@ -775,7 +772,8 @@
     <MESSAGE value="Made some minor changes, the application works at last. It is still a little bit buggy though." />
     <MESSAGE value="fixed an issue where the url vector ended up holding duplicate urls." />
     <MESSAGE value="Fixed an issue where the operation was not being cancelled properly, I need to make sure that this is also the case with disconnections." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed an issue where the operation was not being cancelled properly, I need to make sure that this is also the case with disconnections." />
+    <MESSAGE value="Refactored the code to make it a bit cleaner." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored the code to make it a bit cleaner." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
