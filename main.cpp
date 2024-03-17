@@ -405,8 +405,17 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
     {
         std::vector<std::string> scraperKeywords;
         scraperKeywords.reserve(amount);
+
         for (int j = 0; j < amount; j++) {
-            scraperKeywords.push_back(keywords[j]);
+
+            if (counter == 0)
+            {
+                scraperKeywords.push_back(keywords[j]);
+            }
+            else
+            {
+                scraperKeywords.push_back(keywords[j + amount + counter]);
+            }
         }
 
         if (scrapingInfoText != nullptr) {
@@ -427,7 +436,7 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
         content->SetSizer(runContentHolder);
         content->Layout();
 
-        cpr::Response r = Scraper::request_info(Scraper::baseURL);
+        cpr::Response r = Scraper::request_info(getUrls[counter]);
         std::string convertToLowerCase = boost::locale::to_lower(r.text);
 
         std::vector<std::string> urls = Scraper::ParseContent(convertToLowerCase);
@@ -462,7 +471,6 @@ void MainFrame::StartScraping(int amount, int counter, std::vector<std::string> 
 
         operationCounter++;
     }
-
     m.unlock();
 
     if (Scraper::isCanceled && operationCounter >= operationSize ||
@@ -540,7 +548,6 @@ void MainFrame::StartOperation(wxMouseEvent &event)
 
     std::vector<std::string> getUrls;
     std::vector<int> urlCounterHolder;
-    int counter = 0;
 
 //    count how many keywords each url has
     for (const auto &url : getSettingsUrl)
@@ -553,22 +560,23 @@ void MainFrame::StartOperation(wxMouseEvent &event)
             getUrls.push_back(url);
         }
 
+
+
         if (std::find(getUrls.begin(), getUrls.end(), url) != std::end(getUrls))
         {
-            counter++;
             continue;
         }
         else
         {
-            urlCounterHolder.push_back(counter);
-            counter = 0;
+            int count = (int)std::count(getSettingsUrl.begin(), getSettingsUrl.end(),
+                                        url);
+            urlCounterHolder.push_back((count));
             getUrls.push_back(url);
-            counter++;
         }
     }
 
     getSettingsUrl.clear();
-    counter = 0;
+    int counter = 0;
     operationSize = urlCounterHolder.size();
 
     for (int amount : urlCounterHolder)
